@@ -1,5 +1,5 @@
 # VCLThemeSelector
-Easy and elegant preview/selection of Theme (Light/Dark/Other) for VCL apps
+**Easy and elegant preview/selection of Theme (Light/Dark/Other) for VCL apps plus HighDPI demo**
 
 With VCLThemeSelector you can easily add a modern and elegant Theme selector for your Delphi VCL app with few lines of code:
 
@@ -23,3 +23,10 @@ The Form shows all the VCL Styles included in your application, then arrange the
 You can specify to include or not 'Windows' not-styled option.
 
 ![https://github.com/EtheaDev/VCLThemeSelector/blob/master/Demo/Images/Preview3x3.jpg](https://github.com/EtheaDev/VCLThemeSelector/blob/master/Demo/Images/Preview3x3.jpg)
+
+Included in this repository you can find a full example of an HighDPI - VCL Themed enabled application that uses the VCLThemeSelector to change the Theme. You can run the demo from: Demo\Bin\SplitViewDemo.exe.
+
+![https://github.com/EtheaDev/VCLThemeSelector/blob/master/Demo/Images/DemoPreview.jpg](https://github.com/EtheaDev/VCLThemeSelector/blob/master/Demo/Images/DemoPreview.jpg)
+
+WARNING: to edit and compile the demo you must first download 
+[IconFontsImageList components here...](https://github.com/EtheaDev/IconFontsImageList/)
