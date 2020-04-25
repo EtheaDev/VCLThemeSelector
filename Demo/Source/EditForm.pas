@@ -23,11 +23,10 @@ type
     Edit2: TEdit;
     LabeledEdit2: TLabeledEdit;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormAfterMonitorDpiChanged(Sender: TObject; OldDPI,
+      NewDPI: Integer);
   private
-    procedure UpdateFontAttributes;
-    { Private declarations }
   protected
-    procedure Loaded; override;
   public
   end;
 
@@ -38,26 +37,17 @@ implementation
 
 {$R *.dfm}
 
+procedure TFmEdit.FormAfterMonitorDpiChanged(Sender: TObject; OldDPI,
+  NewDPI: Integer);
+begin
+  if ParentFont and (Application.MainForm.Monitor.Handle <> Self.Monitor.Handle) then
+    Font.Height := MulDiv(Font.Height, NewDPI, OldDPI);
+end;
+
 procedure TFmEdit.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   Action := caFree;
   FmEdit := nil;
-end;
-
-procedure TFmEdit.UpdateFontAttributes;
-begin
-  NameEdit.ParentFont := True;
-  NameEdit.Font.Style := [fsBold];
-  SurNameEdit.ParentFont := True;
-  SurNameEdit.Font.Style := [fsBold];
-  LabeledEdit.ParentFont := True;
-  LabeledEdit.Font.Style := [fsBold];
-end;
-
-procedure TFmEdit.Loaded;
-begin
-  inherited;
-  UpdateFontAttributes;
 end;
 
 end.

@@ -7,6 +7,7 @@ object FmEdit: TFmEdit
   Color = clBtnFace
   ParentFont = True
   OldCreateOrder = False
+  OnAfterMonitorDpiChanged = FormAfterMonitorDpiChanged
   OnClose = FormClose
   PixelsPerInch = 96
   TextHeight = 13
@@ -77,10 +78,6 @@ object FmEdit: TFmEdit
     object tsNoParent: TTabSheet
       Caption = 'Parent Font = False'
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label3: TLabel
         Left = 12
         Top = 11
