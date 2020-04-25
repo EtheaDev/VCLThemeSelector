@@ -236,6 +236,7 @@ type
     procedure DBImageDblClick(Sender: TObject);
     procedure ClientDataSetAfterPost(DataSet: TDataSet);
     procedure PageControlChange(Sender: TObject);
+    procedure IconFontsImageListFontMissing(const AFontName: string);
   private
     FActiveFont: TFont;
     FActiveStyleName: string;
@@ -361,6 +362,31 @@ begin
 end;
 
 { TFormMain }
+
+procedure TFormMain.IconFontsImageListFontMissing(const AFontName: string);
+var
+  LFontFileName: string;
+begin
+  inherited;
+  //The "material design web-font is not installed into system: load and install now from disk
+  LFontFileName := ExtractFilePath(Application.ExeName)+'..\Fonts\materialdesignicons-webfont.ttf';
+  if FileExists(LFontFileName) then
+  begin
+    {$IFNDEF D2010+}
+    AddFontResource(PChar(LFontFileName));
+    {$ELSE}
+    AddFontResource(PWideChar(LFontFileName));
+    {$ENDIF}
+    SendMessage(HWND_BROADCAST, WM_FONTCHANGE, 0, 0);
+  end
+  else
+  begin
+    //If the font file is not available
+    MessageDlg(Format('Warning: "%s" font is not present in your system!'+sLineBreak+
+      'Please download at https://materialdesignicons.com and install it, because this demo is based on this font.',
+        [AFontName]), mtError, [mbOK], 0);
+  end;
+end;
 
 procedure TFormMain.FontTrackBarUpdate;
 begin

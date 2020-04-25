@@ -1303,6 +1303,7 @@ object FormMain: TFormMain
     FontColor = clWhite
     MaskColor = clSilver
     Size = 24
+    OnFontMissing = IconFontsImageListFontMissing
     Left = 480
     Top = 544
   end
@@ -1363,6 +1364,7 @@ object FormMain: TFormMain
     FontColor = clBlack
     MaskColor = clWhite
     Size = 24
+    OnFontMissing = IconFontsImageListFontMissing
     Left = 568
     Top = 544
   end
