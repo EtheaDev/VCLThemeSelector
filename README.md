@@ -1,7 +1,11 @@
 # VCLThemeSelector
 **Easy and elegant preview/selection of Theme (Light/Dark/Other) for VCL apps plus HighDPI demo**
 
-With VCLThemeSelector you can easily add a modern and elegant Theme selector for your Delphi VCL app with few lines of code:
+With VCLThemeSelector you can easily add a modern and elegant Theme selector for your Delphi VCL app. The Form shows all the VCL Styles included in your application, then arrange them in defined Rows and Columns. You can specify to include or not 'Windows' not-styled option.
+
+![https://github.com/EtheaDev/VCLThemeSelector/blob/master/Demo/Images/Preview3x3.jpg](https://github.com/EtheaDev/VCLThemeSelector/blob/master/Demo/Images/Preview3x3.jpg)
+
+Example:
 
 ```pascal
 var
@@ -17,12 +21,6 @@ begin
     TStyleManager.SetStyle(LActiveStyleName);
 end;    
 ```
-
-The Form shows all the VCL Styles included in your application, then arrange them in defined Rows and Columns.
-
-You can specify to include or not 'Windows' not-styled option.
-
-![https://github.com/EtheaDev/VCLThemeSelector/blob/master/Demo/Images/Preview3x3.jpg](https://github.com/EtheaDev/VCLThemeSelector/blob/master/Demo/Images/Preview3x3.jpg)
 
 License: the CBVCLStylePreview is based on VCLStylePreview (Vcl.Styles.Ext) from:
 [github.com/RRUZ/vcl-styles-utils](https://github.com/RRUZ/vcl-styles-utils/) and includes High-DPI support.
