@@ -23,13 +23,17 @@ end;
 ```
 
 License: the CBVCLStylePreview is based on VCLStylePreview (Vcl.Styles.Ext) from:
-[github.com/RRUZ/vcl-styles-utils](https://github.com/RRUZ/vcl-styles-utils/) and includes High-DPI support.
+[github.com/RRUZ/vcl-styles-utils](https://github.com/RRUZ/vcl-styles-utils/) and includes High-DPI support, and released under Apache 2.0 license.
+
+## High-DPI Delphi App full example ##
 
 Also included in this repository you can find a full example of an HighDPI - VCL Themed enabled application that uses the VCLThemeSelector to change the Theme. You can run the demo from: Demo\Bin\SplitViewDemo.exe.
 
 ![https://github.com/EtheaDev/VCLThemeSelector/blob/master/Demo/Images/DemoPreview.jpg](https://github.com/EtheaDev/VCLThemeSelector/blob/master/Demo/Images/DemoPreview.jpg)
 
-License: this Demo is inspired by TSplitView demo: original software is Copyright (c) 2015 Embarcadero Technologies, Inc.
+License: this Demo is inspired by TSplitView demo (original software is Copyright (c) 2015 Embarcadero Technologies, Inc.) and is released under Apache 2.0 license.
 
 WARNING: to edit and compile the demo you must first download:
 [IconFontsImageList free components here...](https://github.com/EtheaDev/IconFontsImageList/)
+
+Feedback are welcome!
