@@ -1,4 +1,5 @@
-# VCLThemeSelector
+# VCLThemeSelector [![License](https://img.shields.io/badge/License-Apache%202.0-yellowgreen.svg)](https://opensource.org/licenses/Apache-2.0)
+
 **Easy and elegant preview/selection of Theme (Light/Dark/Other) for VCL apps plus HighDPI demo**
 
 With VCLThemeSelector you can easily add a modern and elegant Theme selector for your Delphi VCL app. The Form shows all the VCL Styles included in your application, then arrange them in defined Rows and Columns. You can specify to include or not 'Windows' not-styled option.
