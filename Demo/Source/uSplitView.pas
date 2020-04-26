@@ -622,8 +622,6 @@ procedure TFormMain.AdjustCatSettings;
 var
   LButtonWidth, LNumButtons, LButtonsFit: Integer;
   LCaptionOffset: Integer;
-  LFontHeight: Integer;
-  LButtonRect: TRect;
 begin
   catSettings.Realign;
   LButtonWidth := catSettings.ButtonWidth;
