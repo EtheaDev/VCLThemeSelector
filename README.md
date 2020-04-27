@@ -28,7 +28,7 @@ License: the CBVCLStylePreview is based on VCLStylePreview (Vcl.Styles.Ext) from
 
 ## High-DPI Delphi App full example ##
 
-Also included in this repository you can find a full example of an HighDPI - VCL Themed enabled application that uses the VCLThemeSelector to change the Theme. You can run the demo from: Demo\Bin\SplitViewDemo.exe.
+Also included in this repository you can find a full example of an HighDPI - VCL Themed enabled application that uses the VCLThemeSelector to change the Theme. You can run the demo from: Demo\Bin\ModernAppDemo.exe.
 
 ![https://github.com/EtheaDev/VCLThemeSelector/blob/master/Demo/Images/DemoPreview.jpg](https://github.com/EtheaDev/VCLThemeSelector/blob/master/Demo/Images/DemoPreview.jpg)
 
@@ -37,4 +37,7 @@ License: this Demo is inspired by TSplitView demo (original software is Copyrigh
 WARNING: to edit and compile the demo you must first download:
 [IconFontsImageList free components here...](https://github.com/EtheaDev/IconFontsImageList/)
 
-Feedback are welcome!
+## Compatibility ##
+
+VCLThemeSelector and ModerAppDemo are compatible with Delphi 10.3, Delphi 10.2 and Delphi 10.1 (with 10.1 png stream format of pictures inside biolife.xml are incompatible: use an old biolife.xml file).
+
