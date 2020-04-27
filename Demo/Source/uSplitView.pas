@@ -33,7 +33,7 @@
 
 unit uSplitView;
 
-{$I Demo.inc}
+{$I ..\..\Source\VCLThemeSelector.inc}
 
 interface
 
@@ -311,92 +311,13 @@ type
 var
   FormMain: TFormMain;
 
-//Utilities to read/write application preferences from/to Registry
-function ReadAppStyleFromReg(const CompanyName, ApplicationName: string) : string;
-procedure WriteAppStyleToReg(const CompanyName, ApplicationName, AppStyle : string);
-procedure ReadAppStyleAndFontFromReg(const CompanyName, ApplicationName: string;
-  out AAppStyle: string; const AFont: TFont);
-procedure WriteAppStyleAndFontToReg(const CompanyName, ApplicationName: string;
-  const AAppStyle: string; const AFont: TFont);
-
 implementation
 
 uses
   Vcl.Themes
-  , System.Win.Registry
   , System.UITypes;
 
 {$R *.dfm}
-
-procedure ReadAppStyleAndFontFromReg(const CompanyName, ApplicationName: string;
-  out AAppStyle: string; const AFont: TFont);
-var
-  FRegistry : TRegistry;
-  RegistryKey : string;
-begin
-  FRegistry := TRegistry.Create(KEY_ALL_ACCESS);
-  try
-    FRegistry.RootKey := HKEY_CURRENT_USER;
-    RegistryKey := Format('\Software\%s\%s',[CompanyName, ApplicationName]);
-    FRegistry.OpenKey(RegistryKey, True);
-    //Read Application Style
-    AAppStyle := FRegistry.ReadString('AppStyle');
-    if AAppStyle = '' then
-      AAppStyle := 'Windows';
-    //Read font attributes
-    if Assigned(AFont) then
-    begin
-      if FRegistry.ValueExists('FontName') then
-        AFont.Name := FRegistry.ReadString('FontName');
-      if FRegistry.ValueExists('FontHeight') then
-        AFont.Height := FRegistry.ReadInteger('FontHeight');
-      if FRegistry.ValueExists('FontColor') then
-        AFont.Color := TColor(FRegistry.ReadInteger('FontColor'));
-    end;
-  finally
-    FRegistry.Free;
-  end;
-end;
-
-procedure WriteAppStyleAndFontToReg(const CompanyName, ApplicationName: string;
-  const AAppStyle: string; const AFont: TFont);
-var
-  FRegistry : TRegistry;
-  RegistryKey : string;
-begin
-  FRegistry := TRegistry.Create(KEY_ALL_ACCESS);
-  try
-    RegistryKey := Format('\Software\%s\%s',[CompanyName, ApplicationName]);
-    FRegistry.RootKey := HKEY_CURRENT_USER;
-    FRegistry.OpenKey(RegistryKey, True);
-    FRegistry.WriteString('AppStyle',AAppStyle);
-    if Assigned(AFont) then
-    begin
-      FRegistry.WriteString('FontName',AFont.Name);
-      FRegistry.WriteInteger('FontHeight',AFont.Height);
-      FRegistry.WriteInteger('FontColor',AFont.Color);
-      FRegistry.WriteBool('FontBold',fsBold in AFont.Style);
-      FRegistry.WriteBool('FontItalic',fsItalic in AFont.Style);
-      FRegistry.WriteBool('FontUnderline',fsUnderline in AFont.Style);
-      FRegistry.WriteBool('FontStrikeOut',fsStrikeOut in AFont.Style);
-    end;
-  finally
-    FRegistry.Free;
-  end;
-end;
-
-function ReadAppStyleFromReg(const CompanyName, ApplicationName: string) : string;
-var
-  LFont: TFont;
-begin
-  LFont := nil;
-  ReadAppStyleAndFontFromReg(CompanyName, ApplicationName, Result, LFont);
-end;
-
-procedure WriteAppStyleToReg(const CompanyName, ApplicationName, AppStyle : string);
-begin
-  WriteAppStyleAndFontToReg(CompanyName, ApplicationName, AppStyle, nil);
-end;
 
 procedure ApplyStyleElements(ARootControl: TControl;
   AStyleElements: TStyleElements);
@@ -572,7 +493,7 @@ begin
   lblTitle.Font.Style := lblTitle.Font.Style + [fsBold];
 
   //Assign file for ClientDataSet
-  ClientDataSet.FileName := ExtractFilePath(ParamStr(0))+'..\Data\biolife.xml';
+  ClientDataSet.FileName := ExtractFilePath(Application.ExeName)+'..\Data\biolife.xml';
 end;
 
 procedure TFormMain.CatPreventCollapase(Sender: TObject;
@@ -804,7 +725,7 @@ procedure TFormMain.acApplyFontExecute(Sender: TObject);
 begin
   FActiveFont.Name := FontComboBox.Text;
   FActiveFont.Height := -FontTrackBar.Position;
-  WriteAppStyleAndFontToReg(COMPANY_NAME, ExtractFileName(ParamStr(0)),
+  WriteAppStyleAndFontToReg(COMPANY_NAME, ExtractFileName(Application.ExeName),
     FActiveStyleName, FActiveFont);
 
   //Update Child Forms
@@ -945,7 +866,7 @@ begin
 
   //Check for Font stored into Registry (user preferences)
   ReadAppStyleAndFontFromReg(COMPANY_NAME,
-    ExtractFileName(ParamStr(0)), FActiveStyleName, FActiveFont);
+    ExtractFileName(Application.ExeName), FActiveStyleName, FActiveFont);
   LFontHeight := FActiveFont.Height;
   Font.Assign(FActiveFont);
 

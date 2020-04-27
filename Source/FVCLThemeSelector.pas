@@ -26,6 +26,8 @@
 
 unit FVCLThemeSelector;
 
+{$Include VCLThemeSelector.inc}
+
 interface
 
 uses
@@ -36,6 +38,7 @@ uses
   , Vcl.ExtCtrls
   , Vcl.Forms
   , Vcl.StdCtrls
+  , Vcl.Graphics
   , Vcl.Controls;
 
 const
@@ -99,10 +102,19 @@ type
       const AMaxColumns: Integer = DEFAULT_MAXCOLUMNS);
   end;
 
+//function to launch form
 function ShowVCLThemeSelector(var AStyleName: string;
   const AExcludeWindows: Boolean = False;
   const AMaxRows: Integer = DEFAULT_MAXROWS;
   const AMaxColumns: Integer = DEFAULT_MAXCOLUMNS): boolean;
+
+//Utilities to read/write application preferences from/to Registry
+function ReadAppStyleFromReg(const CompanyName, ApplicationName: string) : string;
+procedure WriteAppStyleToReg(const CompanyName, ApplicationName, AppStyle : string);
+procedure ReadAppStyleAndFontFromReg(const CompanyName, ApplicationName: string;
+  out AAppStyle: string; const AFont: TFont);
+procedure WriteAppStyleAndFontToReg(const CompanyName, ApplicationName: string;
+  const AAppStyle: string; const AFont: TFont);
 
 implementation
 
@@ -111,10 +123,81 @@ implementation
 uses
   Vcl.Themes
   , Winapi.Messages
-  , Vcl.Graphics
   , CBVCLStylePreview
+  , System.UITypes
   , System.SysUtils
+  , System.Win.Registry
   , System.Math;
+
+procedure ReadAppStyleAndFontFromReg(const CompanyName, ApplicationName: string;
+  out AAppStyle: string; const AFont: TFont);
+var
+  FRegistry : TRegistry;
+  RegistryKey : string;
+begin
+  FRegistry := TRegistry.Create(KEY_ALL_ACCESS);
+  try
+    FRegistry.RootKey := HKEY_CURRENT_USER;
+    RegistryKey := Format('\Software\%s\%s',[CompanyName, ApplicationName]);
+    FRegistry.OpenKey(RegistryKey, True);
+    //Read Application Style
+    AAppStyle := FRegistry.ReadString('AppStyle');
+    if AAppStyle = '' then
+      AAppStyle := 'Windows';
+    //Read font attributes
+    if Assigned(AFont) then
+    begin
+      if FRegistry.ValueExists('FontName') then
+        AFont.Name := FRegistry.ReadString('FontName');
+      if FRegistry.ValueExists('FontHeight') then
+        AFont.Height := FRegistry.ReadInteger('FontHeight');
+      if FRegistry.ValueExists('FontColor') then
+        AFont.Color := TColor(FRegistry.ReadInteger('FontColor'));
+    end;
+  finally
+    FRegistry.Free;
+  end;
+end;
+
+procedure WriteAppStyleAndFontToReg(const CompanyName, ApplicationName: string;
+  const AAppStyle: string; const AFont: TFont);
+var
+  FRegistry : TRegistry;
+  RegistryKey : string;
+begin
+  FRegistry := TRegistry.Create(KEY_ALL_ACCESS);
+  try
+    RegistryKey := Format('\Software\%s\%s',[CompanyName, ApplicationName]);
+    FRegistry.RootKey := HKEY_CURRENT_USER;
+    FRegistry.OpenKey(RegistryKey, True);
+    FRegistry.WriteString('AppStyle',AAppStyle);
+    if Assigned(AFont) then
+    begin
+      FRegistry.WriteString('FontName',AFont.Name);
+      FRegistry.WriteInteger('FontHeight',AFont.Height);
+      FRegistry.WriteInteger('FontColor',AFont.Color);
+      FRegistry.WriteBool('FontBold',fsBold in AFont.Style);
+      FRegistry.WriteBool('FontItalic',fsItalic in AFont.Style);
+      FRegistry.WriteBool('FontUnderline',fsUnderline in AFont.Style);
+      FRegistry.WriteBool('FontStrikeOut',fsStrikeOut in AFont.Style);
+    end;
+  finally
+    FRegistry.Free;
+  end;
+end;
+
+function ReadAppStyleFromReg(const CompanyName, ApplicationName: string) : string;
+var
+  LFont: TFont;
+begin
+  LFont := nil;
+  ReadAppStyleAndFontFromReg(CompanyName, ApplicationName, Result, LFont);
+end;
+
+procedure WriteAppStyleToReg(const CompanyName, ApplicationName, AppStyle : string);
+begin
+  WriteAppStyleAndFontToReg(CompanyName, ApplicationName, AppStyle, nil);
+end;
 
 function ShowVCLThemeSelector(var AStyleName: string;
   const AExcludeWindows: Boolean = False;
@@ -268,9 +351,9 @@ begin
       Self.ClientHeight := LCalcHeight;
       ScrollBox.VertScrollBar.Visible := True;
       i := FMaxColumns;
-      while true do
+      while True do
       begin
-        LCalcWidth := LWidth * i + LScrollBarWidth;
+        LCalcWidth := LWidth * i + LScrollBarWidth + 6;
         if LCalcWidth <= LMonitor.Width - LMonitorMargin then
           break
         else
@@ -344,6 +427,10 @@ end;
 
 procedure TVCLThemeSelectorForm.Loaded;
 begin
+  {$IFDEF D10_1+}
+  OnAfterMonitorDpiChanged := FormAfterMonitorDpiChanged;
+  {$ENDIF}
+
   inherited;
   //Build Preview panels
   BuildPreviewPanels;

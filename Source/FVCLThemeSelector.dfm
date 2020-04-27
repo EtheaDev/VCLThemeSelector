@@ -10,7 +10,6 @@ object VCLThemeSelectorForm: TVCLThemeSelectorForm
   OldCreateOrder = True
   Position = poScreenCenter
   ShowHint = True
-  OnAfterMonitorDpiChanged = FormAfterMonitorDpiChanged
   OnCreate = FormCreate
   OnResize = FormResize
   PixelsPerInch = 96
@@ -49,6 +48,7 @@ object VCLThemeSelectorForm: TVCLThemeSelectorForm
         Width = 88
         Height = 29
         Action = acApplyStyle
+        Default = True
         TabOrder = 0
       end
       object btCancel: TButton
@@ -57,6 +57,7 @@ object VCLThemeSelectorForm: TVCLThemeSelectorForm
         Width = 88
         Height = 29
         Action = acCancel
+        Cancel = True
         TabOrder = 1
       end
     end
