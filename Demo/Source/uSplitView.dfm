@@ -223,7 +223,7 @@ object FormMain: TFormMain
         TabOrder = 12
         Zoom = 100
       end
-      object DateTimePicker1: TDateTimePicker
+      object DateTimePicker: TDateTimePicker
         Left = 8
         Top = 457
         Width = 129
@@ -236,8 +236,6 @@ object FormMain: TFormMain
     object tsWindows10: TTabSheet
       Caption = 'Windows 10 controls'
       ImageIndex = 2
-      ExplicitWidth = 90
-      ExplicitHeight = 131
       object CalendarView: TCalendarView
         Left = 3
         Top = 16
@@ -287,55 +285,27 @@ object FormMain: TFormMain
         TabOrder = 1
         TextHint = 'select a date'
       end
-      object TimePicker: TTimePicker
-        Left = 3
-        Top = 280
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -16
-        Font.Name = 'Segoe UI'
-        Font.Style = []
-        TabOrder = 2
-        Time = 43946.734516469910000000
-        TimeFormat = 'hh:mm'
-      end
-      object DatePicker: TDatePicker
-        Left = 2
-        Top = 336
-        Date = 43946.000000000000000000
-        DateFormat = 'dd/MM/yyyy'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -16
-        Font.Name = 'Segoe UI'
-        Font.Style = []
-        TabOrder = 3
-      end
       object ButtonEdit: TSearchBox
         Left = 3
-        Top = 387
+        Top = 279
         Width = 223
         Height = 21
-        TabOrder = 4
+        TabOrder = 2
         Text = 'Milano'
         SearchIndicator = sbiAudio
       end
       object ButtonEditDate: TSearchBox
         Left = 3
-        Top = 428
+        Top = 323
         Width = 223
         Height = 21
         MaxLength = 10
-        TabOrder = 5
+        TabOrder = 3
       end
     end
     object tsDatabase: TTabSheet
       Caption = 'Database'
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 540
       object DBNavigator: TDBNavigator
         Left = 0
         Top = 0
@@ -404,7 +374,6 @@ object FormMain: TFormMain
         Align = alClient
         ParentColor = True
         TabOrder = 2
-        ExplicitHeight = 379
         DesignSize = (
           786
           397)
@@ -549,7 +518,6 @@ object FormMain: TFormMain
           Stretch = True
           TabOrder = 7
           OnDblClick = DBImageDblClick
-          ExplicitHeight = 348
         end
       end
     end
@@ -672,7 +640,7 @@ object FormMain: TFormMain
       ButtonOptions = [boFullSize, boShowCaptions, boCaptionOnlyBorder]
       Categories = <
         item
-          Caption = 'First'
+          Caption = 'Actions'
           Color = clNone
           Collapsed = False
           Items = <
@@ -688,34 +656,37 @@ object FormMain: TFormMain
           TextColor = clHighlightText
         end
         item
-          Caption = 'Second'
+          Caption = 'Messages'
           Color = clNone
           Collapsed = False
           Items = <
             item
-              Action = actHome
+              Action = acErrorMessage
             end
             item
-              Action = actChangeTheme
+              Action = acConfirmMessage
             end
             item
-              Action = actShowChildForm
+              Action = acWarningMessage
+            end
+            item
+              Action = acInfoMessage
             end>
           TextColor = clHighlightText
         end
         item
-          Caption = 'Last'
+          Caption = 'Info'
           Color = clNone
           Collapsed = False
           Items = <
             item
-              Action = actHome
-            end
-            item
-              Action = actChangeTheme
+              Action = actLog
             end
             item
               Action = actSettings
+            end
+            item
+              Action = acAbout
             end>
           TextColor = clHighlightText
         end>
@@ -836,16 +807,12 @@ object FormMain: TFormMain
         Width = 300
         Height = 270
         Margins.Top = 60
-        ActivePage = tsStyle
+        ActivePage = tsFont
         Align = alClient
         TabOrder = 0
         object tsFont: TTabSheet
           Caption = 'Font'
           ImageIndex = 3
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 224
           DesignSize = (
             292
             242)
@@ -897,7 +864,6 @@ object FormMain: TFormMain
             Anchors = [akLeft, akBottom]
             Caption = 'Save'
             TabOrder = 2
-            ExplicitTop = 192
           end
         end
         object tsStyle: TTabSheet
@@ -954,10 +920,6 @@ object FormMain: TFormMain
         object tsIconFonts: TTabSheet
           Caption = 'Icon Fonts'
           ImageIndex = 4
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 224
           DesignSize = (
             292
             242)
@@ -991,10 +953,6 @@ object FormMain: TFormMain
         object tsAnimation: TTabSheet
           Caption = 'Animation'
           ImageIndex = 1
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 224
           object grpAnimation: TGroupBox
             Left = 0
             Top = 0
@@ -1003,7 +961,6 @@ object FormMain: TFormMain
             Align = alClient
             Caption = 'Animate'
             TabOrder = 0
-            ExplicitHeight = 224
             DesignSize = (
               292
               242)
@@ -1090,10 +1047,6 @@ object FormMain: TFormMain
         object tsLog: TTabSheet
           Caption = 'Log'
           ImageIndex = 2
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 224
           object lstLog: TListBox
             Left = 0
             Top = 0
@@ -1209,6 +1162,31 @@ object FormMain: TFormMain
       ImageIndex = 14
       OnExecute = acIconFontsExecute
     end
+    object acErrorMessage: TAction
+      Caption = 'Error Message...'
+      ImageIndex = 16
+      OnExecute = acMessageExecute
+    end
+    object acWarningMessage: TAction
+      Caption = 'Warning Message...'
+      ImageIndex = 15
+      OnExecute = acMessageExecute
+    end
+    object acInfoMessage: TAction
+      Caption = 'Info Message...'
+      ImageIndex = 17
+      OnExecute = acMessageExecute
+    end
+    object acConfirmMessage: TAction
+      Caption = 'Confirmation Message...'
+      ImageIndex = 18
+      OnExecute = acMessageExecute
+    end
+    object acAbout: TAction
+      Caption = 'About...'
+      ImageIndex = 19
+      OnExecute = acAboutExecute
+    end
   end
   object ClientDataSet: TClientDataSet
     Aggregates = <>
@@ -1298,6 +1276,25 @@ object FormMain: TFormMain
       end
       item
         FontIconDec = 983084
+      end
+      item
+        FontIconDec = 61478
+        IconName = 'warning'
+      end
+      item
+        FontIconDec = 61481
+        IconName = 'error'
+      end
+      item
+        FontIconDec = 62204
+        IconName = 'info'
+      end
+      item
+        FontIconDec = 61480
+        IconName = 'confirmation'
+      end
+      item
+        FontIconDec = 62167
       end>
     FontName = 'material Design Icons'
     FontColor = clWhite
@@ -1359,6 +1356,29 @@ object FormMain: TFormMain
       item
         FontIconDec = 983084
         FontColor = clMaroon
+      end
+      item
+        FontIconDec = 61478
+        FontColor = clYellow
+        IconName = 'warning'
+      end
+      item
+        FontIconDec = 61481
+        FontColor = clRed
+        IconName = 'error'
+      end
+      item
+        FontIconDec = 62204
+        FontColor = clGreen
+        IconName = 'info'
+      end
+      item
+        FontIconDec = 61480
+        FontColor = clBlue
+        IconName = 'confirmation'
+      end
+      item
+        FontIconDec = 62167
       end>
     FontName = 'material Design Icons'
     FontColor = clBlack

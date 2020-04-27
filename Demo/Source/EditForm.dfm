@@ -6,6 +6,7 @@ object FmEdit: TFmEdit
   ClientWidth = 635
   Color = clBtnFace
   ParentFont = True
+  Menu = MainMenu1
   OldCreateOrder = False
   OnAfterMonitorDpiChanged = FormAfterMonitorDpiChanged
   OnClose = FormClose
@@ -39,13 +40,7 @@ object FmEdit: TFmEdit
         Left = 8
         Top = 24
         Width = 257
-        Height = 24
-        BevelEdges = [beBottom]
-        BevelInner = bvNone
-        BevelKind = bkFlat
-        BevelOuter = bvRaised
-        BorderStyle = bsNone
-        Color = 13816530
+        Height = 21
         TabOrder = 0
         Text = 'Barazzetta'
       end
@@ -53,13 +48,7 @@ object FmEdit: TFmEdit
         Left = 271
         Top = 24
         Width = 257
-        Height = 24
-        BevelEdges = [beBottom]
-        BevelInner = bvNone
-        BevelKind = bkFlat
-        BevelOuter = bvRaised
-        BorderStyle = bsNone
-        Color = 13816530
+        Height = 21
         TabOrder = 1
         Text = 'Carlo'
       end
@@ -96,13 +85,7 @@ object FmEdit: TFmEdit
         Left = 12
         Top = 28
         Width = 257
-        Height = 24
-        BevelEdges = [beBottom]
-        BevelInner = bvNone
-        BevelKind = bkFlat
-        BevelOuter = bvRaised
-        BorderStyle = bsNone
-        Color = 13816530
+        Height = 21
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -11
@@ -116,13 +99,7 @@ object FmEdit: TFmEdit
         Left = 275
         Top = 28
         Width = 257
-        Height = 24
-        BevelEdges = [beBottom]
-        BevelInner = bvNone
-        BevelKind = bkFlat
-        BevelOuter = bvRaised
-        BorderStyle = bsNone
-        Color = 13816530
+        Height = 21
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -11
@@ -148,6 +125,40 @@ object FmEdit: TFmEdit
         ParentFont = False
         TabOrder = 2
         Text = 'Text'
+      end
+    end
+  end
+  object MainMenu1: TMainMenu
+    Left = 312
+    Top = 152
+    object File1: TMenuItem
+      Caption = '&File'
+      object New1: TMenuItem
+        Caption = '&New'
+      end
+      object Open1: TMenuItem
+        Caption = '&Open...'
+      end
+      object Save1: TMenuItem
+        Caption = '&Save'
+      end
+      object SaveAs1: TMenuItem
+        Caption = 'Save &As...'
+      end
+      object N2: TMenuItem
+        Caption = '-'
+      end
+      object Print1: TMenuItem
+        Caption = '&Print...'
+      end
+      object PrintSetup1: TMenuItem
+        Caption = 'P&rint Setup...'
+      end
+      object N1: TMenuItem
+        Caption = '-'
+      end
+      object Exit1: TMenuItem
+        Caption = 'E&xit'
       end
     end
   end

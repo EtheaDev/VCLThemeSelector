@@ -9,7 +9,7 @@
 
 //-----------------------------------------------------------------------------
 {******************************************************************************}
-{  SplitViewDemo by Carlo Barazzetta                                           }
+{  ModernAppDemo by Carlo Barazzetta                                           }
 {  A full example of an HighDPI - VCL Themed enabled application               }
 {  See how to select the application Theme using VCLThemeSelector Form         }
 {                                                                              }
@@ -32,6 +32,8 @@
 {******************************************************************************}
 
 unit uSplitView;
+
+{$I Demo.inc}
 
 interface
 
@@ -72,7 +74,41 @@ uses
   ,  EditForm
   , IconFontsImageList //uses IconFontsImageList - download free at: https://github.com/EtheaDev/IconFontsImageList
   , IconFontsUtils
-  , FVCLThemeSelector, Vcl.WinXPickers
+  , FVCLThemeSelector
+{$IFDEF VCLSTYLEUTILS}
+  //VCLStyles support
+  , Vcl.PlatformVclStylesActnCtrls
+  , Vcl.Styles.ColorTabs
+  , Vcl.Styles.ControlColor
+  , Vcl.Styles.DbGrid
+  , Vcl.Styles.DPIAware
+  , Vcl.Styles.Fixes
+  , Vcl.Styles.Ext
+  , Vcl.Styles.FontAwesome
+  , Vcl.Styles.FormStyleHooks
+  , Vcl.Styles.NC
+  , Vcl.Styles.OwnerDrawFix
+  , Vcl.Styles.Preview
+  , Vcl.Styles.Register
+  , Vcl.Styles.Utils.ScreenTips
+  , Vcl.Styles.Utils.SysStyleHook
+  , Vcl.Styles.WebBrowser
+  , Vcl.Styles.Utils
+  , Vcl.Styles.Utils.Menus
+  , Vcl.Styles.Utils.Misc
+  , Vcl.Styles.Utils.SystemMenu
+  , Vcl.Styles.Utils.Graphics
+  , Vcl.Styles.Utils.SysControls
+  , Vcl.Styles.UxTheme
+  , Vcl.Styles.Hooks
+  , Vcl.Styles.Utils.Forms
+  , Vcl.Styles.Utils.ComCtrls
+  , Vcl.Styles.Utils.StdCtrls
+{$ENDIF}
+
+{$IFDEF D10_3+}
+  , Vcl.WinXPickers
+{$ENDIF}
   ;
 
 const
@@ -150,7 +186,7 @@ type
     ToolButton4: TToolButton;
     tsvDisplayMode: TToggleSwitch;
     ttsCloseStyle: TToggleSwitch;
-    DateTimePicker1: TDateTimePicker;
+    DateTimePicker: TDateTimePicker;
     ClientDataSetSpeciesNo: TFloatField;
     ClientDataSetCategory: TStringField;
     ClientDataSetCommon_Name: TStringField;
@@ -192,10 +228,13 @@ type
     DBImage: TDBImage;
     FileOpenDialog: TFileOpenDialog;
     ttsCloseSplitView: TToggleSwitch;
-    TimePicker: TTimePicker;
-    DatePicker: TDatePicker;
     ButtonEdit: TSearchBox;
     ButtonEditDate: TSearchBox;
+    acErrorMessage: TAction;
+    acWarningMessage: TAction;
+    acInfoMessage: TAction;
+    acConfirmMessage: TAction;
+    acAbout: TAction;
     procedure FormCreate(Sender: TObject);
     procedure grpDisplayModeClick(Sender: TObject);
     procedure grpPlacementClick(Sender: TObject);
@@ -237,10 +276,18 @@ type
     procedure ClientDataSetAfterPost(DataSet: TDataSet);
     procedure PageControlChange(Sender: TObject);
     procedure IconFontsImageListFontMissing(const AFontName: string);
+    procedure acMessageExecute(Sender: TObject);
+    procedure acAboutExecute(Sender: TObject);
   private
     FActiveFont: TFont;
     FActiveStyleName: string;
-    procedure FixComponentsFont;
+    {$IFDEF D10_3+}
+    TimePicker: TTimePicker;
+    DatePicker: TDatePicker;
+    {$ELSE}
+    FScaleFactor: Single;
+    {$ENDIF}
+    procedure CreateAndFixFontComponents;
     procedure Log(const Msg: string);
     procedure AfterMenuClick;
     procedure ShowSettingPage(TabSheet: TTabSheet; AutoOpen: Boolean = False);
@@ -248,9 +295,15 @@ type
     procedure IconFontsTrackBarUpdate;
     procedure SetActiveStyleName(const Value: string);
     procedure AdjustCatSettings;
+    procedure UpdateDefaultAndSystemFonts;
+    procedure FixSplitViewResize(ASplitView: TSplitView; const OldDPI, NewDPI: Integer);
   protected
     procedure Loaded; override;
+    {$IFNDEF D10_3+}
+    procedure ChangeScale(M, D: Integer); override;
+    {$ENDIF}
   public
+    procedure ScaleForPPI(NewPPI: Integer); override;
     destructor Destroy; override;
     property ActiveStyleName: string read FActiveStyleName write SetActiveStyleName;
   end;
@@ -399,14 +452,26 @@ begin
   IconFontsTrackBarUpdate;
 end;
 
-procedure TFormMain.FixComponentsFont;
+procedure TFormMain.CreateAndFixFontComponents;
 begin
   CalendarView.ParentFont := True;
   CalendarView.HeaderInfo.Font.Assign(Font);
   CalendarView.HeaderInfo.DaysOfWeekFont.Assign(Font);
   CalendarPicker.ParentFont := True;
+
+{$IFDEF D10_3+}
+  TimePicker := TTimePicker.Create(Self);
+  TimePicker.Left := 3;
+  TimePicker.Top := 367;
+  TimePicker.Parent := tsWindows10;
   TimePicker.Font.Assign(Font);
+
+  DatePicker := TDatePicker.Create(Self);
+  DatePicker.Left := 2;
+  DatePicker.Top := 423;
+  DatePicker.Parent := tsWindows10;
   DatePicker.Font.Assign(Font);
+{$ENDIF}
 end;
 
 procedure TFormMain.FontComboBoxSelect(Sender: TObject);
@@ -416,7 +481,9 @@ end;
 
 procedure TFormMain.FontTrackBarChange(Sender: TObject);
 begin
-  Font.Height := MulDiv(-FontTrackBar.Position, Round(100*ScaleFactor), 100);
+  //ScaleFactor is available only from Delphi 10.3, FScaleFactor is calculated
+  Font.Height := MulDiv(-FontTrackBar.Position,
+    Round(100*{$IFDEF D10_3+}ScaleFactor{$ELSE}FScaleFactor{$ENDIF}), 100);
   FontTrackBarUpdate;
 end;
 
@@ -440,9 +507,14 @@ var
 begin
   IconFontsTrackBar.Position := IconFontsImageList.Size;
   IconFontsSizeLabel.Caption := IntToStr(IconFontsTrackBar.Position);
-  LContainerSize := IconFontsTrackBar.Position + Round(10 * ScaleFactor);
-  panlTop.Height := LContainerSize + Round(4 * ScaleFactor);
+
+  //ScaleFactor is available only from Delphi 10.3, FScaleFactor is calculated
+  LContainerSize := IconFontsTrackBar.Position +
+    Round(10 * {$IFDEF D10_3+}ScaleFactor{$ELSE}FScaleFactor{$ENDIF});
+  panlTop.Height := LContainerSize +
+    Round(4 * {$IFDEF D10_3+}ScaleFactor{$ELSE}FScaleFactor{$ENDIF});
   SV.Top := panlTop.Top+panlTop.Height;
+
   svSettings.Top := SV.Top;
   UpdateCategoryButtonSize(catMenuItems);
   UpdateCategoryButtonSize(catMenuSettings);
@@ -450,26 +522,30 @@ begin
   UpdateCategoryButtonSize(catPanelSettings);
 end;
 
+procedure TFormMain.FixSplitViewResize(ASplitView: TSplitView;
+  const OldDPI, NewDPI: Integer);
+begin
+  ASplitView.CompactWidth := MulDiv(ASplitView.CompactWidth, NewDPI, OldDPI);
+  ASplitView.OpenedWidth := MulDiv(ASplitView.OpenedWidth, NewDPI, OldDPI);
+end;
+
 procedure TFormMain.FormAfterMonitorDpiChanged(Sender: TObject; OldDPI,
   NewDPI: Integer);
-
-  procedure FixSplitViewResize(ASplitView: TSplitView);
-  begin
-    ASplitView.CompactWidth := MulDiv(ASplitView.CompactWidth, NewDPI, OldDPI);
-    ASplitView.OpenedWidth := MulDiv(ASplitView.OpenedWidth, NewDPI, OldDPI);
-  end;
-
 begin
+  {$IFNDEF D10_3}
+  IconFontsImageList.DPIChanged(Self, OldDPI, NewDPI);
+  ImlIconsBlack.DPIChanged(Self, OldDPI, NewDPI);
+  {$ENDIF}
+
   FontTrackBarUpdate;
   IconFontsTrackBarUpdate;
   AdjustCatSettings;
 
   //Fix for SplitViews
-  FixSplitViewResize(SV);
-  FixSplitViewResize(svSettings);
+  FixSplitViewResize(SV, OldDPI, NewDPI);
+  FixSplitViewResize(svSettings, OldDPI, NewDPI);
 
-  //Update Application.DefaultFont for Childforms with ParentFont = True
-  Application.DefaultFont.Assign(Font);
+  UpdateDefaultAndSystemFonts;
 end;
 
 procedure TFormMain.FormCreate(Sender: TObject);
@@ -504,6 +580,28 @@ procedure TFormMain.CatPreventCollapase(Sender: TObject;
 begin
   // Prevent the catMenuButton Category group from being collapsed
   (Sender as TCategoryButtons).Categories[0].Collapsed := False;
+end;
+
+{$IFNDEF D10_3+}
+procedure TFormMain.ChangeScale(M, D: Integer);
+begin
+  inherited;
+  FScaleFactor := FScaleFactor * M / D;
+  IconFontsImageList.DPIChanged(Self, M, D);
+  ImlIconsBlack.DPIChanged(Self, M, D);
+end;
+{$ENDIF}
+
+procedure TFormMain.ScaleForPPI(NewPPI: Integer);
+begin
+  inherited;
+{$IFNDEF D10_3+}
+  FScaleFactor := NewPPI / PixelsPerInch;
+  IconFontsImageList.DPIChanged(Self, Self.PixelsPerInch, NewPPI);
+  ImlIconsBlack.DPIChanged(Self, Self.PixelsPerInch, NewPPI);
+{$ENDIF}
+  FixSplitViewResize(SV, Self.PixelsPerInch, NewPPI);
+  FixSplitViewResize(svSettings, Self.PixelsPerInch, NewPPI);
 end;
 
 procedure TFormMain.ClientDataSetAfterPost(DataSet: TDataSet);
@@ -696,6 +794,12 @@ begin
   trkAnimationStep.Enabled := SV.UseAnimation;
 end;
 
+procedure TFormMain.acAboutExecute(Sender: TObject);
+begin
+  TaskMessageDlg('About this Application',
+    Application.Title, mtInformation, [mbOK], 2000);
+end;
+
 procedure TFormMain.acApplyFontExecute(Sender: TObject);
 begin
   FActiveFont.Name := FontComboBox.Text;
@@ -707,6 +811,8 @@ begin
   if Assigned(FmEdit) then
     FmEdit.Font.Assign(Font);
 
+  UpdateDefaultAndSystemFonts;
+
   AfterMenuClick;
 end;
 
@@ -714,6 +820,19 @@ procedure TFormMain.acApplyFontUpdate(Sender: TObject);
 begin
   acApplyFont.Enabled := (FActiveFont.Name <> FontComboBox.Text) or
     (FActiveFont.Height <> FontTrackBar.Position);
+end;
+
+procedure TFormMain.acMessageExecute(Sender: TObject);
+begin
+  if Sender = acErrorMessage then
+    MessageDlg('Error Message...', mtError, [mbOK, mbHelp], 1000)
+  else if Sender = acWarningMessage then
+    MessageDlg('Warning Message...', mtWarning, [mbOK, mbHelp], 1000)
+  else if Sender = acInfoMessage then
+    MessageDlg('Information Message...', mtInformation, [mbOK, mbHelp], 1000)
+  else if Sender = acConfirmMessage then
+    MessageDlg('Do you want to confirm?', mtConfirmation, [mbYes, mbNo, mbHelp], 1000);
+  Log((Sender as TAction).Caption + ' Clicked');
 end;
 
 procedure TFormMain.acFontExecute(Sender: TObject);
@@ -753,6 +872,8 @@ end;
 
 procedure TFormMain.actLogExecute(Sender: TObject);
 begin
+  if not svSettings.Opened then
+    svSettings.Open;
   ShowSettingPage(tsLog);
 end;
 
@@ -794,10 +915,26 @@ begin
     svSettings.Close;
 end;
 
+procedure TFormMain.UpdateDefaultAndSystemFonts;
+begin
+  //Update Application.DefaultFont for Childforms with ParentFont = True
+  Application.DefaultFont.Assign(Font);
+  //Update system fonts
+  Screen.IconFont.Assign(Font);
+  Screen.MenuFont.Assign(Font);
+  Screen.MessageFont.Assign(Font);
+  Screen.HintFont.Assign(Font);
+  Screen.CaptionFont.Name := Font.Name;
+end;
+
 procedure TFormMain.Loaded;
 var
   LFontHeight: Integer;
 begin
+  {$IFNDEF D10_3+}
+  FScaleFactor := 1;
+  {$ENDIF}
+
   FActiveFont := TFont.Create;
 
   //Acquire system font and size (eg. for windows 10 Segoe UI and 14 at 96 DPI)
@@ -812,8 +949,8 @@ begin
   LFontHeight := FActiveFont.Height;
   Font.Assign(FActiveFont);
 
-  //Fix components for ParentFont
-  FixComponentsFont;
+  //Create and Fix components for ParentFont
+  CreateAndFixFontComponents;
 
   inherited;
 
@@ -821,13 +958,12 @@ begin
   FontTrackBar.Position := - LFontHeight;
 
   //For ParentFont on Child Forms
-  Application.DefaultFont.Assign(Font);
+  UpdateDefaultAndSystemFonts;
 
   //GUI default
   ActiveStyleName := FActiveStyleName;
   svSettings.Opened := False;
   PageControl.ActivePageIndex := 0;
-
 end;
 
 procedure TFormMain.Log(const Msg: string);
