@@ -6,7 +6,7 @@ With VCLThemeSelector you can easily add a modern and elegant Theme selector for
 
 ![https://github.com/EtheaDev/VCLThemeSelector/blob/master/Demo/Images/Preview3x3.jpg](https://github.com/EtheaDev/VCLThemeSelector/blob/master/Demo/Images/Preview3x3.jpg)
 
-Example:
+Use the **VCLThemeSelectorLauncher** demo present in Demo Folder to test it, and see how it's easy to use it, like in this example:
 
 ```pascal
 var
@@ -24,7 +24,7 @@ end;
 ```
 
 License: the CBVCLStylePreview is based on VCLStylePreview (Vcl.Styles.Ext) from:
-[github.com/RRUZ/vcl-styles-utils](https://github.com/RRUZ/vcl-styles-utils/) and includes High-DPI support, and released under Apache 2.0 license.
+[github.com/RRUZ/vcl-styles-utils](https://github.com/RRUZ/vcl-styles-utils/) with full High-DPI support, and released under Apache 2.0 license.
 
 ## High-DPI Delphi App full example ##
 
