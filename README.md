@@ -10,16 +10,16 @@ Example:
 
 ```pascal
 var
-  LActiveStyleName: string;
+  LStyleName: string;
   LExcludeWindows: boolean;
   LMaxRows, LMaxCols: Integer;
 begin  
-  LActiveStyleName := TStyleManager.ActiveStyle.Name;
+  LStyleName := TStyleManager.ActiveStyle.Name;
   LExcludeWindows := False;
   LMaxRows := 3;
   LMaxCols := 3;
-  if ShowVCLThemeSelector(LActiveStyleName, LExcludeWindows, LMaxRows, LMaxCols) then
-    TStyleManager.SetStyle(LActiveStyleName);
+  if ShowVCLThemeSelector(LStyleName, LExcludeWindows, LMaxRows, LMaxCols) then
+    TStyleManager.SetStyle(LStyleName);
 end;    
 ```
 
