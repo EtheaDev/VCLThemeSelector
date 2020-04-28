@@ -106,7 +106,7 @@ uses
   , Vcl.Styles.Utils.StdCtrls
 {$ENDIF}
 
-{$IFDEF D10_3+}
+{$IFDEF D10_2+}
   , Vcl.WinXPickers
 {$ENDIF}
   ;
@@ -281,10 +281,11 @@ type
   private
     FActiveFont: TFont;
     FActiveStyleName: string;
-    {$IFDEF D10_3+}
+    {$IFDEF D10_2+}
     TimePicker: TTimePicker;
     DatePicker: TDatePicker;
-    {$ELSE}
+    {$ENDIF}
+    {$IFNDEF D10_3+}
     FScaleFactor: Single;
     {$ENDIF}
     procedure CreateAndFixFontComponents;
@@ -326,13 +327,13 @@ var
   LControl: TControl;
 begin
   ARootControl.StyleElements := AStyleElements;
-  ARootControl.Invalidate;
   if ARootControl is TWinControl then
   For I := 0 to TWinControl(ARootControl).ControlCount -1 do
   begin
     LControl := TWinControl(ARootControl).Controls[I];
     ApplyStyleElements(TWinControl(LControl), AStyleElements);
   end;
+  ARootControl.Invalidate;
 end;
 
 { TFormMain }
@@ -380,7 +381,7 @@ begin
   CalendarView.HeaderInfo.DaysOfWeekFont.Assign(Font);
   CalendarPicker.ParentFont := True;
 
-{$IFDEF D10_3+}
+{$IFDEF D10_2+}
   TimePicker := TTimePicker.Create(Self);
   TimePicker.Left := 3;
   TimePicker.Top := 367;
@@ -563,6 +564,8 @@ begin
 end;
 
 procedure TFormMain.SetActiveStyleName(const Value: string);
+var
+  I: Integer;
 begin
   if Value <> '' then
   begin
@@ -572,7 +575,11 @@ begin
     //Windows Style: use white icons
     if FActiveStyleName = 'Windows' then
     begin
-      catMenuItems.Font.Color := clWhite;
+      catMenuItems.Color := clHighlight;
+      catMenuItems.Font.Color := clHighlightText;
+      for I := 0 to catMenuItems.Categories.Count -1 do
+        catMenuItems.Categories[I].Color := clNone;
+
       DBImage.Color := clAqua;
       IconFontsImageList.UpdateIconsAttributes(clWhite, clHighlight);
     end
@@ -837,15 +844,21 @@ begin
 end;
 
 procedure TFormMain.UpdateDefaultAndSystemFonts;
+var
+  LHeight: Integer;
 begin
   //Update Application.DefaultFont for Childforms with ParentFont = True
   Application.DefaultFont.Assign(Font);
   //Update system fonts
-  Screen.IconFont.Assign(Font);
-  Screen.MenuFont.Name := Font.Name; //Assign only name!
-  Screen.MessageFont.Name := Font.Name; //Assign only name!
-  Screen.HintFont.Assign(Font);
+  LHeight := Muldiv(Font.Height, Screen.PixelsPerInch, Monitor.PixelsPerInch);
+  Screen.MenuFont.Name := Font.Name;
+  Screen.MenuFont.Height := LHeight;
+  Screen.MessageFont.Name := Font.Name;
+  Screen.MessageFont.Height := LHeight;
+  Screen.HintFont.Name := Font.Name;
+  Screen.HintFont.Height := LHeight;
   Screen.CaptionFont.Name := Font.Name;
+  Screen.CaptionFont.Height := LHeight;
 end;
 
 procedure TFormMain.Loaded;

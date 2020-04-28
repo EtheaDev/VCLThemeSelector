@@ -36,10 +36,10 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormAfterMonitorDpiChanged(Sender: TObject; OldDPI,
       NewDPI: Integer);
+    procedure FormShow(Sender: TObject);
   private
     procedure UpdateFontAttributes;
   protected
-    procedure Loaded; override;
   public
   end;
 
@@ -63,6 +63,11 @@ begin
   FmEdit := nil;
 end;
 
+procedure TFmEdit.FormShow(Sender: TObject);
+begin
+  UpdateFontAttributes;
+end;
+
 procedure TFmEdit.UpdateFontAttributes;
 begin
   NameEdit.ParentFont := True;
@@ -71,12 +76,6 @@ begin
   SurNameEdit.Font.Style := [fsBold];
   LabeledEdit.ParentFont := True;
   LabeledEdit.Font.Style := [fsBold];
-end;
-
-procedure TFmEdit.Loaded;
-begin
-  inherited;
-  UpdateFontAttributes;
 end;
 
 end.

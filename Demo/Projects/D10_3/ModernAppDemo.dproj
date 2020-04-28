@@ -79,6 +79,7 @@
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
         <DCC_RemoteDebug>false</DCC_RemoteDebug>
         <Icon_MainIcon>..\Ethea_vela_multires.ico</Icon_MainIcon>
+        <DCC_Define>VCLSTYLEUTILS;$(DCC_Define)</DCC_Define>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
