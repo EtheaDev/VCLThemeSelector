@@ -8,6 +8,7 @@ object FmEdit: TFmEdit
   ParentFont = True
   Menu = MainMenu1
   OldCreateOrder = False
+  ShowHint = True
   OnAfterMonitorDpiChanged = FormAfterMonitorDpiChanged
   OnClose = FormClose
   PixelsPerInch = 96
@@ -41,6 +42,7 @@ object FmEdit: TFmEdit
         Top = 24
         Width = 257
         Height = 21
+        Hint = 'Name'
         TabOrder = 0
         Text = 'Barazzetta'
       end
@@ -49,6 +51,7 @@ object FmEdit: TFmEdit
         Top = 24
         Width = 257
         Height = 21
+        Hint = 'SurName'
         TabOrder = 1
         Text = 'Carlo'
       end

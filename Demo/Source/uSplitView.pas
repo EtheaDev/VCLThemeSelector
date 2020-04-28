@@ -842,8 +842,8 @@ begin
   Application.DefaultFont.Assign(Font);
   //Update system fonts
   Screen.IconFont.Assign(Font);
-  Screen.MenuFont.Assign(Font);
-  Screen.MessageFont.Assign(Font);
+  Screen.MenuFont.Name := Font.Name; //Assign only name!
+  Screen.MessageFont.Name := Font.Name; //Assign only name!
   Screen.HintFont.Assign(Font);
   Screen.CaptionFont.Name := Font.Name;
 end;
