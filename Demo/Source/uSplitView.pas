@@ -178,7 +178,7 @@ type
     RadioGroup: TRadioGroup;
     DBRichEdit: TDBRichEdit;
     Label1: TLabel;
-    MenuButtonPanel: TToolBar;
+    MenuButtonToolbar: TToolBar;
     ToolButton1: TToolButton;
     ToolBar: TToolBar;
     ToolButton2: TToolButton;
@@ -378,6 +378,7 @@ procedure TFormMain.CreateAndFixFontComponents;
 begin
   CalendarView.ParentFont := True;
   CalendarView.HeaderInfo.Font.Assign(Font);
+  CalendarView.HeaderInfo.Font.Height := Round(CalendarView.HeaderInfo.Font.Height*1.2);
   CalendarView.HeaderInfo.DaysOfWeekFont.Assign(Font);
   CalendarPicker.ParentFont := True;
 
@@ -430,14 +431,13 @@ begin
   IconFontsTrackBar.Position := IconFontsImageList.Size;
   IconFontsSizeLabel.Caption := IntToStr(IconFontsTrackBar.Position);
 
-  //ScaleFactor is available only from Delphi 10.3, FScaleFactor is calculated
-  LContainerSize := IconFontsTrackBar.Position +
-    Round(10 * {$IFDEF D10_3+}ScaleFactor{$ELSE}FScaleFactor{$ENDIF});
-  panlTop.Height := LContainerSize +
-    Round(4 * {$IFDEF D10_3+}ScaleFactor{$ELSE}FScaleFactor{$ENDIF});
+  LContainerSize := IconFontsTrackBar.Position + 10;
+  panlTop.Height := LContainerSize + 10;
   SV.Top := panlTop.Top+panlTop.Height;
 
   svSettings.Top := SV.Top;
+  ToolBar.ButtonHeight := LContainerSize;
+  MenuButtonToolbar.ButtonHeight := LContainerSize;
   UpdateCategoryButtonSize(catMenuItems);
   UpdateCategoryButtonSize(catMenuSettings);
   UpdateCategoryButtonSize(catSettings);
@@ -849,8 +849,10 @@ var
 begin
   //Update Application.DefaultFont for Childforms with ParentFont = True
   Application.DefaultFont.Assign(Font);
-  //Update system fonts
+  //Update system fonts as user preferences
   LHeight := Muldiv(Font.Height, Screen.PixelsPerInch, Monitor.PixelsPerInch);
+  Screen.IconFont.Name := Font.Name;
+  Screen.IconFont.Height := LHeight;
   Screen.MenuFont.Name := Font.Name;
   Screen.MenuFont.Height := LHeight;
   Screen.MessageFont.Name := Font.Name;

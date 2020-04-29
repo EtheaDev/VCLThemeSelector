@@ -67,7 +67,7 @@ type
   public
     procedure SetCaptions(const ACaptions: string);
     property Icon:HICON read FIcon Write FIcon;
-    property Style:TCustomStyleServices read FStyle Write FStyle;
+    property Style: TCustomStyleServices read FStyle Write FStyle;
     property Caption : TCaption read FCaption write FCaption;
     constructor Create(AControl: TComponent); override;
     destructor Destroy; override;
@@ -127,6 +127,7 @@ var
   ThemeTextColor: TColor;
   ARect, LRect: TRect;
   LRegion: HRgn;
+  LDPI: Integer;
 
     function GetBorderSize: TRect;
     var
@@ -193,7 +194,9 @@ begin
   FBitmap := TBitmap.Create;
   try
     FBitmap.PixelFormat := pf32bit;
-    FBitmap.Canvas.Font.Height := Muldiv(FBitmap.Canvas.Font.Height,Round(96*FScale),FBitmap.Canvas.Font.PixelsPerInch);
+    FBitmap.Canvas.Font.Height := Muldiv(FBitmap.Canvas.Font.Height,
+      Round(96*FScale), Screen.PixelsPerInch);
+    LDPI := Round(96 / screen.pixelsperinch * fscale * 96);
 
     BorderRect := GetBorderSize;
     ARect := ClientRect;
@@ -253,8 +256,9 @@ begin
       if ButtonRect.Left > 0 then
         TextRect.Right := ButtonRect.Left;
 
-      //Draw text
-      Style.DrawText(CaptionBitmap.Canvas.Handle, CaptionDetails, FCaption, TextRect, [tfLeft, tfSingleLine, tfVerticalCenter]);
+      //Draw text "Preview"
+      Style.DrawText(CaptionBitmap.Canvas.Handle, CaptionDetails,
+        FCaption, TextRect, [tfLeft, tfSingleLine, tfVerticalCenter], clNone, LDPI);
 
       //Draw caption
       FBitmap.Canvas.Draw(0, 0, CaptionBitmap);

@@ -308,10 +308,6 @@ object FormMain: TFormMain
     object tsDatabase: TTabSheet
       Caption = 'Database'
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object DBNavigator: TDBNavigator
         Left = 0
         Top = 0
@@ -549,7 +545,7 @@ object FormMain: TFormMain
       Layout = tlCenter
       ExplicitHeight = 13
     end
-    object MenuButtonPanel: TToolBar
+    object MenuButtonToolbar: TToolBar
       AlignWithMargins = True
       Left = 3
       Top = 3
@@ -744,7 +740,7 @@ object FormMain: TFormMain
     Left = 700
     Top = 42
     Width = 300
-    Height = 586
+    Height = 664
     AnimationDelay = 10
     AnimationStep = 30
     Color = 15000804
@@ -801,7 +797,7 @@ object FormMain: TFormMain
       Left = 0
       Top = 249
       Width = 300
-      Height = 337
+      Height = 415
       Align = alClient
       BevelOuter = bvNone
       ParentColor = True
@@ -811,9 +807,9 @@ object FormMain: TFormMain
         Left = 0
         Top = 67
         Width = 300
-        Height = 270
+        Height = 348
         Margins.Top = 60
-        ActivePage = tsFont
+        ActivePage = tsIconFonts
         Align = alClient
         TabOrder = 0
         object tsFont: TTabSheet
@@ -821,7 +817,7 @@ object FormMain: TFormMain
           ImageIndex = 3
           DesignSize = (
             292
-            242)
+            320)
           object Label2: TLabel
             Left = 18
             Top = 16
@@ -863,7 +859,7 @@ object FormMain: TFormMain
           end
           object SaveFontButton: TBitBtn
             Left = 18
-            Top = 210
+            Top = 288
             Width = 75
             Height = 25
             Action = acApplyFont
@@ -874,13 +870,9 @@ object FormMain: TFormMain
         end
         object tsStyle: TTabSheet
           Caption = 'Menu'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           DesignSize = (
             292
-            242)
+            320)
           object grpDisplayMode: TRadioGroup
             Left = 2
             Top = 6
@@ -930,13 +922,9 @@ object FormMain: TFormMain
         object tsIconFonts: TTabSheet
           Caption = 'Icon Fonts'
           ImageIndex = 4
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           DesignSize = (
             292
-            242)
+            320)
           object Label3: TLabel
             Left = 26
             Top = 24
@@ -967,21 +955,17 @@ object FormMain: TFormMain
         object tsAnimation: TTabSheet
           Caption = 'Animation'
           ImageIndex = 1
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object grpAnimation: TGroupBox
             Left = 0
             Top = 0
             Width = 292
-            Height = 242
+            Height = 320
             Align = alClient
             Caption = 'Animate'
             TabOrder = 0
             DesignSize = (
               292
-              242)
+              320)
             object lblAnimationDelay: TLabel
               Left = 16
               Top = 56
@@ -1065,15 +1049,11 @@ object FormMain: TFormMain
         object tsLog: TTabSheet
           Caption = 'Log'
           ImageIndex = 2
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object lstLog: TListBox
             Left = 0
             Top = 0
             Width = 292
-            Height = 242
+            Height = 320
             Align = alClient
             ItemHeight = 13
             ParentColor = True

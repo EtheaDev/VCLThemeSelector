@@ -274,7 +274,7 @@ var
   LMonitorMargin: Integer;
   LScrollBarWidth: Integer;
 const
-  MARGIN = 2;
+  MARGIN = 4;
 begin
   LStyleName := TStyleManager.ActiveStyle.Name;
   LStyleNames := TStringList.Create;
@@ -427,6 +427,10 @@ end;
 
 procedure TVCLThemeSelectorForm.Loaded;
 begin
+  ParentFont := False;
+  //Note: the form uses Screen.IconFont by default
+  Font.Name := Screen.IconFont.Name;
+  Font.Height := Muldiv(Screen.IconFont.Height, 96, Screen.IconFont.PixelsPerInch);
   {$IFDEF D10_1+}
   OnAfterMonitorDpiChanged := FormAfterMonitorDpiChanged;
   {$ENDIF}
