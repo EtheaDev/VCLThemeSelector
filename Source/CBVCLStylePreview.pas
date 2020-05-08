@@ -127,7 +127,7 @@ var
   ThemeTextColor: TColor;
   ARect, LRect: TRect;
   LRegion: HRgn;
-  LDPI: Integer;
+  {$ifdef Compiler33_Plus}LDPI: Integer;{$endif}
 
     function GetBorderSize: TRect;
     var
@@ -196,7 +196,7 @@ begin
     FBitmap.PixelFormat := pf32bit;
     FBitmap.Canvas.Font.Height := Muldiv(FBitmap.Canvas.Font.Height,
       Round(96*FScale), Screen.PixelsPerInch);
-    LDPI := Round(96 / screen.pixelsperinch * fscale * 96);
+    {$ifdef Compiler33_Plus}LDPI := Round(96 / screen.pixelsperinch * fscale * 96);{$endif}
 
     BorderRect := GetBorderSize;
     ARect := ClientRect;
@@ -258,7 +258,7 @@ begin
 
       //Draw text "Preview"
       Style.DrawText(CaptionBitmap.Canvas.Handle, CaptionDetails,
-        FCaption, TextRect, [tfLeft, tfSingleLine, tfVerticalCenter], clNone, LDPI);
+        FCaption, TextRect, [tfLeft, tfSingleLine, tfVerticalCenter], clNone{$ifdef Compiler33_Plus}, LDPI{$endif});
 
       //Draw caption
       FBitmap.Canvas.Draw(0, 0, CaptionBitmap);

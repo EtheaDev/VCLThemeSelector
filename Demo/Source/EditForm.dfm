@@ -133,37 +133,128 @@ object FmEdit: TFmEdit
     end
   end
   object MainMenu1: TMainMenu
+    Images = ImlIconsBlack
     Left = 312
     Top = 152
     object File1: TMenuItem
       Caption = '&File'
       object New1: TMenuItem
         Caption = '&New'
+        ImageIndex = 0
       end
       object Open1: TMenuItem
         Caption = '&Open...'
+        ImageIndex = 1
       end
       object Save1: TMenuItem
         Caption = '&Save'
+        ImageIndex = 2
       end
       object SaveAs1: TMenuItem
         Caption = 'Save &As...'
+        ImageIndex = 3
       end
       object N2: TMenuItem
         Caption = '-'
       end
       object Print1: TMenuItem
         Caption = '&Print...'
+        ImageIndex = 4
       end
       object PrintSetup1: TMenuItem
         Caption = 'P&rint Setup...'
+        ImageIndex = 5
       end
       object N1: TMenuItem
         Caption = '-'
       end
       object Exit1: TMenuItem
         Caption = 'E&xit'
+        ImageIndex = 6
       end
     end
+  end
+  object ImlIconsBlack: TIconFontsImageList
+    IconFontItems = <
+      item
+        FontIconDec = 62300
+      end
+      item
+        FontIconDec = 62611
+      end
+      item
+        FontIconDec = 61675
+      end
+      item
+        FontIconDec = 62248
+      end
+      item
+        FontIconDec = 61746
+      end
+      item
+        FontIconDec = 62172
+      end
+      item
+        FontIconDec = 61565
+      end
+      item
+        FontIconDec = 62424
+        FontColor = clRed
+      end
+      item
+        FontIconDec = 61517
+        FontColor = clTeal
+      end
+      item
+        FontIconDec = 62475
+      end
+      item
+        FontIconDec = 65228
+      end
+      item
+        FontIconDec = 63189
+        FontColor = clNavy
+      end
+      item
+        FontIconDec = 62830
+        FontColor = 13536057
+      end
+      item
+        FontIconDec = 65134
+        FontColor = clGreen
+      end
+      item
+        FontIconDec = 983084
+        FontColor = clMaroon
+      end
+      item
+        FontIconDec = 61478
+        FontColor = clYellow
+        IconName = 'warning'
+      end
+      item
+        FontIconDec = 61481
+        FontColor = clRed
+        IconName = 'error'
+      end
+      item
+        FontIconDec = 62204
+        FontColor = clGreen
+        IconName = 'info'
+      end
+      item
+        FontIconDec = 61480
+        FontColor = clBlue
+        IconName = 'confirmation'
+      end
+      item
+        FontIconDec = 62167
+      end>
+    FontName = 'material Design Icons'
+    FontColor = clBlack
+    MaskColor = clWhite
+    Size = 24
+    Left = 432
+    Top = 175
   end
 end

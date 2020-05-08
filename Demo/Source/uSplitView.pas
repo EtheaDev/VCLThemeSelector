@@ -275,7 +275,7 @@ type
     procedure DBImageDblClick(Sender: TObject);
     procedure ClientDataSetAfterPost(DataSet: TDataSet);
     procedure PageControlChange(Sender: TObject);
-    procedure IconFontsImageListFontMissing(const AFontName: string);
+    procedure IconFontsImageListFontMissing(const AFontName: TFontName);
     procedure acMessageExecute(Sender: TObject);
     procedure acAboutExecute(Sender: TObject);
   private
@@ -338,7 +338,7 @@ end;
 
 { TFormMain }
 
-procedure TFormMain.IconFontsImageListFontMissing(const AFontName: string);
+procedure TFormMain.IconFontsImageListFontMissing(const AFontName: TFontName);
 var
   LFontFileName: string;
 begin
@@ -494,7 +494,12 @@ begin
   lblTitle.Font.Style := lblTitle.Font.Style + [fsBold];
 
   //Assign file for ClientDataSet
+  {$IFDEF D10_2+}
+  ClientDataSet.FileName := ExtractFilePath(Application.ExeName)+'..\Data\biolife_png.xml';
+  {$ELSE}
+  //Delphi 10.1 cannot load png blob field automatically
   ClientDataSet.FileName := ExtractFilePath(Application.ExeName)+'..\Data\biolife.xml';
+  {$ENDIF}
 end;
 
 procedure TFormMain.CatPreventCollapase(Sender: TObject;
@@ -593,6 +598,8 @@ begin
     catMenuItems.BackgroundGradientDirection := gdVertical;
     catMenuItems.RegularButtonColor := clNone;
     catMenuItems.SelectedButtonColor := clNone;
+    HomeButton.Action := actHome;
+    LogButton.Action := actLog;
   end;
 end;
 

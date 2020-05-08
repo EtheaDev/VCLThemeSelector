@@ -5,7 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Mask, Vcl.DBCtrls,
-  Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.ComCtrls, Vcl.Menus;
+  Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.ComCtrls, Vcl.Menus, System.ImageList,
+  Vcl.ImgList, IconFontsImageList;
 
 type
   TFmEdit = class(TForm)
@@ -33,6 +34,7 @@ type
     Exit1: TMenuItem;
     N1: TMenuItem;
     N2: TMenuItem;
+    ImlIconsBlack: TIconFontsImageList;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormAfterMonitorDpiChanged(Sender: TObject; OldDPI,
       NewDPI: Integer);
