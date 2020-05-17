@@ -344,7 +344,7 @@ var
 begin
   inherited;
   //The "material design web-font is not installed into system: load and install now from disk
-  LFontFileName := ExtractFilePath(Application.ExeName)+'..\Fonts\materialdesignicons-webfont.ttf';
+  LFontFileName := ExtractFilePath(Application.ExeName)+'..\Fonts\Material Design Icons Desktop.ttf';
   if FileExists(LFontFileName) then
   begin
     {$IFNDEF D2010+}
@@ -358,7 +358,7 @@ begin
   begin
     //If the font file is not available
     MessageDlg(Format('Warning: "%s" font is not present in your system!'+sLineBreak+
-      'Please download at https://materialdesignicons.com and install it, because this demo is based on this font.',
+      'Please download from https://github.com/Templarian/MaterialDesign-Font and install it, because this demo is based on this font!',
         [AFontName]), mtError, [mbOK], 0);
   end;
 end;

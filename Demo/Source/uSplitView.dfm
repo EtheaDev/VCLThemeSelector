@@ -236,8 +236,6 @@ object FormMain: TFormMain
     object tsWindows10: TTabSheet
       Caption = 'Windows 10 controls'
       ImageIndex = 2
-      ExplicitWidth = 90
-      ExplicitHeight = 131
       object CalendarView: TCalendarView
         Left = 3
         Top = 16
@@ -1235,70 +1233,70 @@ object FormMain: TFormMain
   object IconFontsImageList: TIconFontsImageList
     IconFontItems = <
       item
-        FontIconDec = 62300
+        FontIconDec = 983900
       end
       item
-        FontIconDec = 62611
+        FontIconDec = 984211
       end
       item
-        FontIconDec = 61675
+        FontIconDec = 983275
       end
       item
-        FontIconDec = 62248
+        FontIconDec = 983848
       end
       item
-        FontIconDec = 61746
+        FontIconDec = 983346
       end
       item
-        FontIconDec = 62172
+        FontIconDec = 983772
       end
       item
-        FontIconDec = 61565
+        FontIconDec = 983165
       end
       item
-        FontIconDec = 62424
+        FontIconDec = 984024
       end
       item
-        FontIconDec = 61517
+        FontIconDec = 983117
       end
       item
-        FontIconDec = 62475
+        FontIconDec = 984075
       end
       item
-        FontIconDec = 65228
+        FontIconDec = 986799
       end
       item
-        FontIconDec = 63189
+        FontIconDec = 984790
       end
       item
-        FontIconDec = 62830
+        FontIconDec = 984430
       end
       item
-        FontIconDec = 65134
+        FontIconDec = 986654
       end
       item
-        FontIconDec = 983084
+        FontIconDec = 987146
       end
       item
-        FontIconDec = 61478
+        FontIconDec = 983078
         IconName = 'warning'
       end
       item
-        FontIconDec = 61481
+        FontIconDec = 983081
         IconName = 'error'
       end
       item
-        FontIconDec = 62204
+        FontIconDec = 983804
         IconName = 'info'
       end
       item
-        FontIconDec = 61480
+        FontIconDec = 983080
         IconName = 'confirmation'
       end
       item
-        FontIconDec = 62167
+        FontIconDec = 983767
       end>
-    FontName = 'material Design Icons'
+    FontName = 'Material Design Icons Desktop'
     FontColor = clWhite
     MaskColor = clSilver
     Size = 24
@@ -1309,80 +1307,80 @@ object FormMain: TFormMain
   object ImlIconsBlack: TIconFontsImageList
     IconFontItems = <
       item
-        FontIconDec = 62300
+        FontIconDec = 983900
       end
       item
-        FontIconDec = 62611
+        FontIconDec = 984211
       end
       item
-        FontIconDec = 61675
+        FontIconDec = 983275
       end
       item
-        FontIconDec = 62248
+        FontIconDec = 983848
       end
       item
-        FontIconDec = 61746
+        FontIconDec = 983346
       end
       item
-        FontIconDec = 62172
+        FontIconDec = 983772
       end
       item
-        FontIconDec = 61565
+        FontIconDec = 983165
       end
       item
-        FontIconDec = 62424
+        FontIconDec = 984024
         FontColor = clRed
       end
       item
-        FontIconDec = 61517
+        FontIconDec = 983117
         FontColor = clTeal
       end
       item
-        FontIconDec = 62475
+        FontIconDec = 984075
       end
       item
-        FontIconDec = 65228
+        FontIconDec = 986799
       end
       item
-        FontIconDec = 63189
+        FontIconDec = 984790
         FontColor = clNavy
       end
       item
-        FontIconDec = 62830
+        FontIconDec = 984430
         FontColor = 13536057
       end
       item
-        FontIconDec = 65134
+        FontIconDec = 986654
         FontColor = clGreen
       end
       item
-        FontIconDec = 983084
+        FontIconDec = 987146
         FontColor = clMaroon
       end
       item
-        FontIconDec = 61478
+        FontIconDec = 983078
         FontColor = clYellow
         IconName = 'warning'
       end
       item
-        FontIconDec = 61481
+        FontIconDec = 983081
         FontColor = clRed
         IconName = 'error'
       end
       item
-        FontIconDec = 62204
+        FontIconDec = 983804
         FontColor = clGreen
         IconName = 'info'
       end
       item
-        FontIconDec = 61480
+        FontIconDec = 983080
         FontColor = clBlue
         IconName = 'confirmation'
       end
       item
-        FontIconDec = 62167
+        FontIconDec = 983767
       end>
-    FontName = 'material Design Icons'
+    FontName = 'Material Design Icons Desktop'
     FontColor = clBlack
     MaskColor = clWhite
     Size = 24
