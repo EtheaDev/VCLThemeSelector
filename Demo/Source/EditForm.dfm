@@ -177,80 +177,96 @@ object FmEdit: TFmEdit
   object ImlIconsBlack: TIconFontsImageList
     IconFontItems = <
       item
-        FontIconDec = 62300
+        FontIconDec = 983900
+        IconName = 'menu'
       end
       item
-        FontIconDec = 62611
+        FontIconDec = 984211
+        IconName = 'cog'
       end
       item
-        FontIconDec = 61675
+        FontIconDec = 983275
+        IconName = 'cake-variant'
       end
       item
-        FontIconDec = 62248
+        FontIconDec = 983848
+        IconName = 'layers'
       end
       item
-        FontIconDec = 61746
+        FontIconDec = 983346
+        IconName = 'checkbox-marked'
       end
       item
-        FontIconDec = 62172
+        FontIconDec = 983772
+        IconName = 'home'
       end
       item
-        FontIconDec = 61565
+        FontIconDec = 983165
+        IconName = 'battery-40'
       end
       item
-        FontIconDec = 62424
+        FontIconDec = 984024
         FontColor = clRed
+        IconName = 'palette'
       end
       item
-        FontIconDec = 61517
+        FontIconDec = 983117
         FontColor = clTeal
+        IconName = 'arrow-left'
       end
       item
-        FontIconDec = 62475
+        FontIconDec = 984075
+        IconName = 'play-box-outline'
       end
       item
-        FontIconDec = 65228
+        FontIconDec = 986799
+        IconName = 'text-box-search-outline'
       end
       item
-        FontIconDec = 63189
+        FontIconDec = 984790
         FontColor = clNavy
+        IconName = 'format-font'
       end
       item
-        FontIconDec = 62830
+        FontIconDec = 984430
         FontColor = 13536057
+        IconName = 'view-dashboard'
       end
       item
-        FontIconDec = 65134
+        FontIconDec = 986654
         FontColor = clGreen
+        IconName = 'check-bold'
       end
       item
-        FontIconDec = 983084
+        FontIconDec = 987146
         FontColor = clMaroon
+        IconName = 'account-box-multiple-outline'
       end
       item
-        FontIconDec = 61478
+        FontIconDec = 983078
         FontColor = clYellow
-        IconName = 'warning'
+        IconName = 'alert'
       end
       item
-        FontIconDec = 61481
+        FontIconDec = 983081
         FontColor = clRed
-        IconName = 'error'
+        IconName = 'alert-octagon'
       end
       item
-        FontIconDec = 62204
+        FontIconDec = 983804
         FontColor = clGreen
-        IconName = 'info'
+        IconName = 'information'
       end
       item
-        FontIconDec = 61480
+        FontIconDec = 983080
         FontColor = clBlue
-        IconName = 'confirmation'
+        IconName = 'alert-circle'
       end
       item
-        FontIconDec = 62167
+        FontIconDec = 983767
+        IconName = 'help-circle'
       end>
-    FontName = 'material Design Icons'
+    FontName = 'Material Design Icons Desktop'
     FontColor = clBlack
     MaskColor = clWhite
     Size = 24

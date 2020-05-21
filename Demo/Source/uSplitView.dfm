@@ -1234,67 +1234,83 @@ object FormMain: TFormMain
     IconFontItems = <
       item
         FontIconDec = 983900
+        IconName = 'menu'
       end
       item
         FontIconDec = 984211
+        IconName = 'cog'
       end
       item
         FontIconDec = 983275
+        IconName = 'cake-variant'
       end
       item
         FontIconDec = 983848
+        IconName = 'layers'
       end
       item
         FontIconDec = 983346
+        IconName = 'checkbox-marked'
       end
       item
         FontIconDec = 983772
+        IconName = 'home'
       end
       item
         FontIconDec = 983165
+        IconName = 'battery-40'
       end
       item
         FontIconDec = 984024
+        IconName = 'palette'
       end
       item
         FontIconDec = 983117
+        IconName = 'arrow-left'
       end
       item
         FontIconDec = 984075
+        IconName = 'play-box-outline'
       end
       item
         FontIconDec = 986799
+        IconName = 'text-box-search-outline'
       end
       item
         FontIconDec = 984790
+        IconName = 'format-font'
       end
       item
         FontIconDec = 984430
+        IconName = 'view-dashboard'
       end
       item
         FontIconDec = 986654
+        IconName = 'check-bold'
       end
       item
         FontIconDec = 987146
+        IconName = 'account-box-multiple-outline'
       end
       item
         FontIconDec = 983078
-        IconName = 'warning'
+        IconName = 'alert'
       end
       item
         FontIconDec = 983081
-        IconName = 'error'
+        IconName = 'alert-octagon'
       end
       item
         FontIconDec = 983804
-        IconName = 'info'
+        IconName = 'information'
       end
       item
         FontIconDec = 983080
-        IconName = 'confirmation'
+        IconName = 'alert-circle'
       end
       item
         FontIconDec = 983767
+        IconName = 'help-circle'
       end>
     FontName = 'Material Design Icons Desktop'
     FontColor = clWhite
@@ -1308,77 +1324,93 @@ object FormMain: TFormMain
     IconFontItems = <
       item
         FontIconDec = 983900
+        IconName = 'menu'
       end
       item
         FontIconDec = 984211
+        IconName = 'cog'
       end
       item
         FontIconDec = 983275
+        IconName = 'cake-variant'
       end
       item
         FontIconDec = 983848
+        IconName = 'layers'
       end
       item
         FontIconDec = 983346
+        IconName = 'checkbox-marked'
       end
       item
         FontIconDec = 983772
+        IconName = 'home'
       end
       item
         FontIconDec = 983165
+        IconName = 'battery-40'
       end
       item
         FontIconDec = 984024
         FontColor = clRed
+        IconName = 'palette'
       end
       item
         FontIconDec = 983117
         FontColor = clTeal
+        IconName = 'arrow-left'
       end
       item
         FontIconDec = 984075
+        IconName = 'play-box-outline'
       end
       item
         FontIconDec = 986799
+        IconName = 'text-box-search-outline'
       end
       item
         FontIconDec = 984790
         FontColor = clNavy
+        IconName = 'format-font'
       end
       item
         FontIconDec = 984430
         FontColor = 13536057
+        IconName = 'view-dashboard'
       end
       item
         FontIconDec = 986654
         FontColor = clGreen
+        IconName = 'check-bold'
       end
       item
         FontIconDec = 987146
         FontColor = clMaroon
+        IconName = 'account-box-multiple-outline'
       end
       item
         FontIconDec = 983078
         FontColor = clYellow
-        IconName = 'warning'
+        IconName = 'alert'
       end
       item
         FontIconDec = 983081
         FontColor = clRed
-        IconName = 'error'
+        IconName = 'alert-octagon'
       end
       item
         FontIconDec = 983804
         FontColor = clGreen
-        IconName = 'info'
+        IconName = 'information'
       end
       item
         FontIconDec = 983080
         FontColor = clBlue
-        IconName = 'confirmation'
+        IconName = 'alert-circle'
       end
       item
         FontIconDec = 983767
+        IconName = 'help-circle'
       end>
     FontName = 'Material Design Icons Desktop'
     FontColor = clBlack
