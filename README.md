@@ -47,6 +47,10 @@ License: this Demo is inspired by TSplitView demo (original software is Copyrigh
 WARNING: to edit and compile the demo you must first download:
 [IconFontsImageList free components here...](https://github.com/EtheaDev/IconFontsImageList/)
 
+and
+
+[SVGIconImageList free components here...](https://github.com/EtheaDev/SVGIconImageList/)
+
 ## Compatibility ##
 
 **VCLThemeSelector** and **VCLThemeSelectorLauncher** are compatible from Delphi XE5 to 10.3, with some differences to High-DPI support.
