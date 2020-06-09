@@ -45,15 +45,9 @@ Also included in this repository you can find a full example of an HighDPI - VCL
 License: this Demo is inspired by TSplitView demo (original software is Copyright (c) 2015 Embarcadero Technologies, Inc.) and is released under Apache 2.0 license.
 
 WARNING: to edit and compile the demo you must first download:
-[IconFontsImageList free components here...](https://github.com/EtheaDev/IconFontsImageList/)
-
-and
-
-[SVGIconImageList free components here...](https://github.com/EtheaDev/SVGIconImageList/)
+[IconFontsImageList free components here...](https://github.com/EtheaDev/IconFontsImageList/) and [SVGIconImageList free components here...](https://github.com/EtheaDev/SVGIconImageList/)
 
 ## Compatibility ##
 
 **VCLThemeSelector** and **VCLThemeSelectorLauncher** are compatible from Delphi XE5 to 10.3, with some differences to High-DPI support.
 **ModernAppDemo** is compatible with Delphi 10.3, Delphi 10.2 and Delphi 10.1 (with 10.1 png stream format of pictures inside biolife.xml are incompatible: use an old biolife.xml file).
-
-
