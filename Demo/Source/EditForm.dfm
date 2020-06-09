@@ -6,7 +6,7 @@ object FmEdit: TFmEdit
   ClientWidth = 635
   Color = clBtnFace
   ParentFont = True
-  Menu = MainMenu1
+  Menu = MainMenu
   OldCreateOrder = False
   ShowHint = True
   OnAfterMonitorDpiChanged = FormAfterMonitorDpiChanged
@@ -70,7 +70,13 @@ object FmEdit: TFmEdit
     end
     object tsNoParent: TTabSheet
       Caption = 'Parent Font = False'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
       ImageIndex = 1
+      ParentFont = False
       object Label3: TLabel
         Left = 12
         Top = 11
@@ -132,19 +138,18 @@ object FmEdit: TFmEdit
       end
     end
   end
-  object MainMenu1: TMainMenu
-    Images = ImlIconsBlack
+  object MainMenu: TMainMenu
     Left = 312
     Top = 152
     object File1: TMenuItem
       Caption = '&File'
-      object New1: TMenuItem
+      object SettingsMenuitem: TMenuItem
         Caption = '&New'
-        ImageIndex = 0
+        ImageIndex = 13
       end
       object Open1: TMenuItem
         Caption = '&Open...'
-        ImageIndex = 1
+        ImageIndex = 4
       end
       object Save1: TMenuItem
         Caption = '&Save'
@@ -173,104 +178,5 @@ object FmEdit: TFmEdit
         ImageIndex = 6
       end
     end
-  end
-  object ImlIconsBlack: TIconFontsImageList
-    IconFontItems = <
-      item
-        FontIconDec = 983900
-        IconName = 'menu'
-      end
-      item
-        FontIconDec = 984211
-        IconName = 'cog'
-      end
-      item
-        FontIconDec = 983275
-        IconName = 'cake-variant'
-      end
-      item
-        FontIconDec = 983848
-        IconName = 'layers'
-      end
-      item
-        FontIconDec = 983346
-        IconName = 'checkbox-marked'
-      end
-      item
-        FontIconDec = 983772
-        IconName = 'home'
-      end
-      item
-        FontIconDec = 983165
-        IconName = 'battery-40'
-      end
-      item
-        FontIconDec = 984024
-        FontColor = clRed
-        IconName = 'palette'
-      end
-      item
-        FontIconDec = 983117
-        FontColor = clTeal
-        IconName = 'arrow-left'
-      end
-      item
-        FontIconDec = 984075
-        IconName = 'play-box-outline'
-      end
-      item
-        FontIconDec = 986799
-        IconName = 'text-box-search-outline'
-      end
-      item
-        FontIconDec = 984790
-        FontColor = clNavy
-        IconName = 'format-font'
-      end
-      item
-        FontIconDec = 984430
-        FontColor = 13536057
-        IconName = 'view-dashboard'
-      end
-      item
-        FontIconDec = 986654
-        FontColor = clGreen
-        IconName = 'check-bold'
-      end
-      item
-        FontIconDec = 987146
-        FontColor = clMaroon
-        IconName = 'account-box-multiple-outline'
-      end
-      item
-        FontIconDec = 983078
-        FontColor = clYellow
-        IconName = 'alert'
-      end
-      item
-        FontIconDec = 983081
-        FontColor = clRed
-        IconName = 'alert-octagon'
-      end
-      item
-        FontIconDec = 983804
-        FontColor = clGreen
-        IconName = 'information'
-      end
-      item
-        FontIconDec = 983080
-        FontColor = clBlue
-        IconName = 'alert-circle'
-      end
-      item
-        FontIconDec = 983767
-        IconName = 'help-circle'
-      end>
-    FontName = 'Material Design Icons Desktop'
-    FontColor = clBlack
-    MaskColor = clWhite
-    Size = 24
-    Left = 432
-    Top = 175
   end
 end

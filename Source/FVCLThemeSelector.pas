@@ -42,9 +42,11 @@ uses
   , Vcl.Controls;
 
 const
-  VCLThemeSelectorVersion = '1.0.0';
+  VCLThemeSelectorVersion = '1.1.0';
   DEFAULT_MAXROWS = 3;
   DEFAULT_MAXCOLUMNS = 4;
+
+resourcestring
   SELECT_THEME = 'Select Light or Dark theme';
   APPLY_THEME = 'Apply';
   CANCEL_THEME = 'Cancel';
@@ -59,7 +61,10 @@ const
     'Normal'+sLineBreak+
     'Hot'+sLineBreak+
     'Pressed'+sLineBreak+
-    'Disabled';
+    'Disabled'+sLineBreak+
+    'Tab1'+sLineBreak+
+    'Tab2'+sLineBreak+
+    'Tab3';
 
 type
   TVCLThemeSelectorForm = class(TForm)
@@ -122,8 +127,12 @@ implementation
 
 uses
   Vcl.Themes
-  , Winapi.Messages
+  {$IFDEF D10_4+}
+  , CBVCLStylePreviewForm
+  {$ELSE}
   , CBVCLStylePreview
+  {$ENDIF}
+  , Winapi.Messages
   , System.UITypes
   , System.SysUtils
   , System.Win.Registry
@@ -265,7 +274,11 @@ var
   LStyleNames: TStringList;
   LpnPreview: TPanel;
   LpnButton: TButton;
+  {$IFDEF D10_4+}
+  LVCLPreview: TCBVCLPreviewForm;
+  {$ELSE}
   LVCLPreview: TCBVclStylesPreview;
+  {$ENDIF}
   LCountStyle : Integer;
   LNumRows : integer;
   LCalcHeight, LCalcWidth : Integer;
@@ -311,11 +324,15 @@ begin
       LpnButton.Caption :=  LStyleNames.Strings[i];
       LpnButton.Cursor := crHandPoint;
 
+      {$IFDEF D10_4+}
+      LVCLPreview := TCBVCLPreviewForm.Create(LpnPreview);
+      {$ELSE}
       LVCLPreview := TCBVclStylesPreview.Create(LpnPreview);
+      {$ENDIF}
       LVCLPreview.Caption := PREVIEW_THEME;
       LVCLPreview.SetCaptions(THEME_PREVIEW_VALUES);
       LVCLPreview.Parent := LpnPreview;
-      LVCLPreview.Style := TStyleManager.Style[LStyleNames.Strings[i]];
+      LVCLPreview.CustomStyle := TStyleManager.Style[LStyleNames.Strings[i]];
       LVCLPreview.Align := alClient;
 
       if SameText(LStyleNames.Strings[i], LStyleName)  then
@@ -324,6 +341,10 @@ begin
         FStyleName := LStyleNames.Strings[i];
         LpnButton.Font.Style := [fsBold];
       end;
+
+      {$IFDEF D10_4+}
+      LVCLPreview.FormShow(LVCLPreview);
+      {$ENDIF}
     end;
 
     if (LCountStyle mod FMaxColumns) <> 0 then

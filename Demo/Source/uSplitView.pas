@@ -72,8 +72,9 @@ uses
   , Vcl.ToolWin
   , Vcl.GraphUtil
   ,  EditForm
-  , IconFontsImageList //uses IconFontsImageList - download free at: https://github.com/EtheaDev/IconFontsImageList
   , IconFontsUtils
+  , IconFontsImageList //uses IconFontsImageList - download free at: https://github.com/EtheaDev/IconFontsImageList
+  , SVGIconImageList //uses SVGIconImageList - download free at: https://github.com/EtheaDev/SVGIconImageList
   , FVCLThemeSelector
 {$IFDEF VCLSTYLEUTILS}
   //VCLStyles support
@@ -115,6 +116,8 @@ const
   COMPANY_NAME = 'Ethea';
 
 type
+  TIconsType = (itIconFonts, itSVGIcons);
+
   TFormMain = class(TForm)
     panlTop: TPanel;
     SV: TSplitView;
@@ -131,7 +134,7 @@ type
     lblTitle: TLabel;
     splSplit: TSplitter;
     svSettings: TSplitView;
-    imlIconsBlack: TIconFontsImageList;
+    IconFontsImageListColored: TIconFontsImageList;
     splSettings: TSplitter;
     actSettings: TAction;
     actViewOptions: TAction;
@@ -142,12 +145,6 @@ type
     grpCloseStyle: TRadioGroup;
     grpPlacement: TRadioGroup;
     tsAnimation: TTabSheet;
-    grpAnimation: TGroupBox;
-    lblAnimationDelay: TLabel;
-    lblAnimationStep: TLabel;
-    trkAnimationDelay: TTrackBar;
-    trkAnimationStep: TTrackBar;
-    tswAnimation: TToggleSwitch;
     tsLog: TTabSheet;
     lstLog: TListBox;
     actBack: TAction;
@@ -184,8 +181,6 @@ type
     ToolButton2: TToolButton;
     ToolButton3: TToolButton;
     ToolButton4: TToolButton;
-    tsvDisplayMode: TToggleSwitch;
-    ttsCloseStyle: TToggleSwitch;
     DateTimePicker: TDateTimePicker;
     ClientDataSetSpeciesNo: TFloatField;
     ClientDataSetCategory: TStringField;
@@ -227,7 +222,6 @@ type
     Label11: TLabel;
     DBImage: TDBImage;
     FileOpenDialog: TFileOpenDialog;
-    ttsCloseSplitView: TToggleSwitch;
     ButtonEdit: TSearchBox;
     ButtonEditDate: TSearchBox;
     acErrorMessage: TAction;
@@ -235,6 +229,16 @@ type
     acInfoMessage: TAction;
     acConfirmMessage: TAction;
     acAbout: TAction;
+    SVGIconImageList: TSVGIconImageList;
+    IconsToggleSwitch: TToggleSwitch;
+    tswAnimation: TToggleSwitch;
+    lblAnimationDelay: TLabel;
+    trkAnimationDelay: TTrackBar;
+    lblAnimationStep: TLabel;
+    trkAnimationStep: TTrackBar;
+    tsvDisplayMode: TToggleSwitch;
+    ttsCloseStyle: TToggleSwitch;
+    ttsCloseSplitView: TToggleSwitch;
     procedure FormCreate(Sender: TObject);
     procedure grpDisplayModeClick(Sender: TObject);
     procedure grpPlacementClick(Sender: TObject);
@@ -278,6 +282,7 @@ type
     procedure IconFontsImageListFontMissing(const AFontName: TFontName);
     procedure acMessageExecute(Sender: TObject);
     procedure acAboutExecute(Sender: TObject);
+    procedure IconsToggleSwitchClick(Sender: TObject);
   private
     FActiveFont: TFont;
     FActiveStyleName: string;
@@ -288,6 +293,7 @@ type
     {$IFNDEF D10_3+}
     FScaleFactor: Single;
     {$ENDIF}
+    FIconsType: TIconsType;
     procedure CreateAndFixFontComponents;
     procedure Log(const Msg: string);
     procedure AfterMenuClick;
@@ -297,7 +303,10 @@ type
     procedure SetActiveStyleName(const Value: string);
     procedure AdjustCatSettings;
     procedure UpdateDefaultAndSystemFonts;
+    {$IFNDEF D10_4+}
     procedure FixSplitViewResize(ASplitView: TSplitView; const OldDPI, NewDPI: Integer);
+    {$ENDIF}
+    procedure SetIconsType(const Value: TIconsType);
   protected
     procedure Loaded; override;
     {$IFNDEF D10_3+}
@@ -307,6 +316,7 @@ type
     procedure ScaleForPPI(NewPPI: Integer); override;
     destructor Destroy; override;
     property ActiveStyleName: string read FActiveStyleName write SetActiveStyleName;
+    property IconsType: TIconsType read FIconsType write SetIconsType;
   end;
 
 var
@@ -400,6 +410,7 @@ end;
 procedure TFormMain.FontComboBoxSelect(Sender: TObject);
 begin
   Font.Name := FontComboBox.Text;
+  UpdateDefaultAndSystemFonts;
 end;
 
 procedure TFormMain.FontTrackBarChange(Sender: TObject);
@@ -408,12 +419,14 @@ begin
   Font.Height := MulDiv(-FontTrackBar.Position,
     Round(100*{$IFDEF D10_3+}ScaleFactor{$ELSE}FScaleFactor{$ENDIF}), 100);
   FontTrackBarUpdate;
+  UpdateDefaultAndSystemFonts;
 end;
 
 procedure TFormMain.IconFontsTrackBarChange(Sender: TObject);
 begin
   IconFontsImageList.Size := IconFontsTrackBar.Position;
-  imlIconsBlack.Size := IconFontsTrackBar.Position;
+  IconFontsImageListColored.Size := IconFontsTrackBar.Position;
+  SVGIconImageList.Size := IconFontsTrackBar.Position;
   IconFontsTrackBarUpdate;
 end;
 
@@ -444,28 +457,41 @@ begin
   UpdateCategoryButtonSize(catPanelSettings);
 end;
 
+procedure TFormMain.IconsToggleSwitchClick(Sender: TObject);
+begin
+  if IconsToggleSwitch.State = tssOn then
+    IconsType := itSVGIcons
+  else
+    IconsType := itIconFonts;
+end;
+
+{$IFNDEF D10_4+}
 procedure TFormMain.FixSplitViewResize(ASplitView: TSplitView;
   const OldDPI, NewDPI: Integer);
 begin
   ASplitView.CompactWidth := MulDiv(ASplitView.CompactWidth, NewDPI, OldDPI);
   ASplitView.OpenedWidth := MulDiv(ASplitView.OpenedWidth, NewDPI, OldDPI);
 end;
+{$ENDIF}
 
 procedure TFormMain.FormAfterMonitorDpiChanged(Sender: TObject; OldDPI,
   NewDPI: Integer);
 begin
   {$IFNDEF D10_3}
   IconFontsImageList.DPIChanged(Self, OldDPI, NewDPI);
-  ImlIconsBlack.DPIChanged(Self, OldDPI, NewDPI);
+  imlIconsColored.DPIChanged(Self, OldDPI, NewDPI);
   {$ENDIF}
 
   FontTrackBarUpdate;
   IconFontsTrackBarUpdate;
+
+  {$IFNDEF D10_4+}
   AdjustCatSettings;
 
   //Fix for SplitViews
   FixSplitViewResize(SV, OldDPI, NewDPI);
   FixSplitViewResize(svSettings, OldDPI, NewDPI);
+  {$ENDIF}
 
   UpdateDefaultAndSystemFonts;
 end;
@@ -481,7 +507,11 @@ begin
     pcSettings.Pages[I].TabVisible := False;
 
   //Disable any StyleElements of all components contained into svSettings
-  ApplyStyleElements(svSettings, []);
+  {$IFDEF D10_4+}
+  svSettings.StyleName := 'Windows10';
+  {$ELSE}
+  ApplyStyleElements(svSettings, [seFont]);
+  {$ENDIF}
 
   //Assign Fonts to Combobox
   FontComboBox.Items.Assign(Screen.Fonts);
@@ -515,7 +545,7 @@ begin
   inherited;
   FScaleFactor := FScaleFactor * M / D;
   IconFontsImageList.DPIChanged(Self, M, D);
-  ImlIconsBlack.DPIChanged(Self, M, D);
+  imlIconsColored.DPIChanged(Self, M, D);
 end;
 {$ENDIF}
 
@@ -525,10 +555,12 @@ begin
 {$IFNDEF D10_3+}
   FScaleFactor := NewPPI / PixelsPerInch;
   IconFontsImageList.DPIChanged(Self, Self.PixelsPerInch, NewPPI);
-  ImlIconsBlack.DPIChanged(Self, Self.PixelsPerInch, NewPPI);
+  imlIconsColored.DPIChanged(Self, Self.PixelsPerInch, NewPPI);
 {$ENDIF}
+{$IFNDEF D10_4+}
   FixSplitViewResize(SV, Self.PixelsPerInch, NewPPI);
   FixSplitViewResize(svSettings, Self.PixelsPerInch, NewPPI);
+{$ENDIF}
 end;
 
 procedure TFormMain.ClientDataSetAfterPost(DataSet: TDataSet);
@@ -577,7 +609,6 @@ begin
     TStyleManager.SetStyle(Value);
     WriteAppStyleToReg(COMPANY_NAME, ExtractFileName(Application.ExeName), Value);
     FActiveStyleName := Value;
-    //Windows Style: use white icons
     if FActiveStyleName = 'Windows' then
     begin
       catMenuItems.Color := clHighlight;
@@ -586,6 +617,7 @@ begin
         catMenuItems.Categories[I].Color := clNone;
 
       DBImage.Color := clAqua;
+      //Default non-style "Windows": use White icons over Highlight Color
       IconFontsImageList.UpdateIconsAttributes(clWhite, clHighlight);
     end
     else
@@ -600,6 +632,29 @@ begin
     catMenuItems.SelectedButtonColor := clNone;
     HomeButton.Action := actHome;
     LogButton.Action := actLog;
+  end;
+end;
+
+procedure TFormMain.SetIconsType(const Value: TIconsType);
+begin
+  FIconsType := Value;
+  case FIconsType of
+    itIconFonts:
+    begin
+      MenuButtonToolbar.Images := IconFontsImageList;
+      ToolBar.Images := IconFontsImageList;
+      catMenuItems.Images := IconFontsImageList;
+      catSettings.Images := IconFontsImageList;
+      catMenuSettings.Images := IconFontsImageListColored; //Colored icons
+    end;
+    itSVGIcons:
+    begin
+      MenuButtonToolbar.Images := SVGIconImageList;
+      ToolBar.Images := SVGIconImageList;
+      catMenuItems.Images := SVGIconImageList;
+      catSettings.Images := SVGIconImageList;
+      catMenuSettings.Images := SVGIconImageList;
+    end;
   end;
 end;
 
@@ -824,6 +879,10 @@ procedure TFormMain.actShowChildFormExecute(Sender: TObject);
 begin
   if not Assigned(FmEdit) then
     FmEdit := TFmEdit.Create(Self);
+  if FIconsType = itIconFonts then
+    FmEdit.MainMenu.Images := Self.IconFontsImageList
+  else
+    FmEdit.MainMenu.Images := Self.SVGIconImageList;
   FmEdit.Show;
   Log(actShowChildForm.Caption + ' Clicked');
   AfterMenuClick;
@@ -868,6 +927,8 @@ begin
   Screen.HintFont.Height := LHeight;
   Screen.CaptionFont.Name := Font.Name;
   Screen.CaptionFont.Height := LHeight;
+
+  catMenuItems.Font.Assign(Font);
 end;
 
 procedure TFormMain.Loaded;

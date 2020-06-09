@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Mask, Vcl.DBCtrls,
   Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.ComCtrls, Vcl.Menus, System.ImageList,
-  Vcl.ImgList, IconFontsImageList;
+  Vcl.ImgList;
 
 type
   TFmEdit = class(TForm)
@@ -23,9 +23,9 @@ type
     Edit1: TEdit;
     Edit2: TEdit;
     LabeledEdit2: TLabeledEdit;
-    MainMenu1: TMainMenu;
+    MainMenu: TMainMenu;
     File1: TMenuItem;
-    New1: TMenuItem;
+    SettingsMenuitem: TMenuItem;
     Open1: TMenuItem;
     Save1: TMenuItem;
     SaveAs1: TMenuItem;
@@ -34,7 +34,6 @@ type
     Exit1: TMenuItem;
     N1: TMenuItem;
     N2: TMenuItem;
-    ImlIconsBlack: TIconFontsImageList;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormAfterMonitorDpiChanged(Sender: TObject; OldDPI,
       NewDPI: Integer);

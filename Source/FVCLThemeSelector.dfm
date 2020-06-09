@@ -10,6 +10,7 @@ object VCLThemeSelectorForm: TVCLThemeSelectorForm
   OldCreateOrder = True
   Position = poScreenCenter
   ShowHint = True
+  OnAfterMonitorDpiChanged = FormAfterMonitorDpiChanged
   OnCreate = FormCreate
   OnResize = FormResize
   PixelsPerInch = 96
