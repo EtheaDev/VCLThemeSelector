@@ -23,7 +23,7 @@ type
     procedure acOpenChildFormExecute(Sender: TObject);
   private
     FStart, FEnd: TDateTime;
-    procedure AssignDefaultFont;
+    procedure UpdateDefaultAndSystemFonts;
   protected
     procedure Loaded; override;
   public
@@ -95,9 +95,24 @@ begin
   UpdateLabel(Self, Label1, Edit1, Panel1);
 end;
 
-procedure TMainForm.AssignDefaultFont;
+procedure TMainForm.UpdateDefaultAndSystemFonts;
+var
+  LHeight: Integer;
 begin
+  //Update Application.DefaultFont used by ChildForms with ParentFont = True
   Application.DefaultFont.Assign(Font);
+  //Update system fonts as user preferences (without using Assign!)
+  LHeight := Muldiv(Font.Height, Screen.PixelsPerInch, Monitor.PixelsPerInch);
+  Screen.IconFont.Name := Font.Name;
+  Screen.IconFont.Height := LHeight;
+  Screen.MenuFont.Name := Font.Name;
+  Screen.MenuFont.Height := LHeight;
+  Screen.MessageFont.Name := Font.Name;
+  Screen.MessageFont.Height := LHeight;
+  Screen.HintFont.Name := Font.Name;
+  Screen.HintFont.Height := LHeight;
+  Screen.CaptionFont.Name := Font.Name;
+  Screen.CaptionFont.Height := LHeight;
 end;
 
 procedure TMainForm.BuildLabels;
@@ -129,7 +144,7 @@ procedure TMainForm.FormAfterMonitorDpiChanged(Sender: TObject; OldDPI,
   NewDPI: Integer);
 begin
   inherited;
-  AssignDefaultFont;
+  UpdateDefaultAndSystemFonts;
 end;
 
 procedure TMainForm.FormShow(Sender: TObject);
@@ -151,25 +166,27 @@ procedure TMainForm.Loaded;
 begin
   //Very important for HighDPI: on Main Screen ParentFont must be always be False
   ParentFont := False;
-(*
+
   //Acquire system font and size (eg. for windows 10 Segoe UI and 14 at 96 DPI)
   //but without using Assign!
   Font.Name := Screen.IconFont.Name;
   //If you want to use system font Height:
   Font.Height := Muldiv(Screen.IconFont.Height, 96, Screen.IconFont.PixelsPerInch);
-*)
-  //User preferences:
+
+  (*
+  //Sample assign Font by user preferences:
   Font.Name := 'Century Gothic';
   Font.Color := clBlue;
   Font.Height := -14;
+  *)
 
   inherited;
 
   //For Child Forms with ParentFont = True
-  //but without using Assign!
-  AssignDefaultFont;
+  UpdateDefaultAndSystemFonts;
 
-  BuildLabels;
+  //Test build run-time components
+  //BuildLabels;
 end;
 
 end.
