@@ -129,9 +129,8 @@ uses
   Vcl.Themes
   {$IFDEF D10_4+}
   , CBVCLStylePreviewForm
-  {$ELSE}
-  , CBVCLStylePreview
   {$ENDIF}
+  , CBVCLStylePreview
   , Winapi.Messages
   , System.UITypes
   , System.SysUtils
@@ -270,15 +269,14 @@ end;
 procedure TVCLThemeSelectorForm.BuildPreviewPanels;
 var
   i : Integer;
-  LStyleName: string;
+  LStyleName, LActiveStyleName: string;
   LStyleNames: TStringList;
   LpnPreview: TPanel;
   LpnButton: TButton;
   {$IFDEF D10_4+}
-  LVCLPreview: TCBVCLPreviewForm;
-  {$ELSE}
-  LVCLPreview: TCBVclStylesPreview;
+  LVCLPreviewForm: TCBVCLPreviewForm;
   {$ENDIF}
+  LVCLPreview: TCBVclStylesPreview;
   LCountStyle : Integer;
   LNumRows : integer;
   LCalcHeight, LCalcWidth : Integer;
@@ -289,7 +287,7 @@ var
 const
   MARGIN = 4;
 begin
-  LStyleName := TStyleManager.ActiveStyle.Name;
+  LActiveStyleName := TStyleManager.ActiveStyle.Name;
   LStyleNames := TStringList.Create;
   LCountStyle := 0;
   LpnPreview := nil;
@@ -299,8 +297,9 @@ begin
     LStyleNames.Sort;
     for i := 0 to LStyleNames.Count -1 do
     begin
+      LStyleName := LStyleNames.Strings[i];
       //Jump Windows Style if requested
-      if FExcludeWindows and (LStyleNames.Strings[i] = 'Windows') then
+      if FExcludeWindows and (LStyleName = 'Windows') then
         Continue;
 
       Inc(LCountStyle);
@@ -321,29 +320,50 @@ begin
       LpnButton.Parent := LpnPreview;
       LpnButton.Align := alTop;
       LpnButton.OnClick := SelectionClick;
-      LpnButton.Caption :=  LStyleNames.Strings[i];
+      LpnButton.Caption :=  LStyleName;
       LpnButton.Cursor := crHandPoint;
 
       {$IFDEF D10_4+}
-      LVCLPreview := TCBVCLPreviewForm.Create(LpnPreview);
+      if TStyleManager.ActiveStyle.Name = 'Windows' then
+      begin
+        //If the application Style is "Windows" cannot use per-control styles
+        LVCLPreviewForm := nil;
+        LVCLPreview := TCBVclStylesPreview.Create(LpnPreview)
+      end
+      else
+      begin
+        //Use per-control styles
+        LVCLPreview := nil;
+        LVCLPreviewForm := TCBVCLPreviewForm.Create(LpnPreview);
+        LVCLPreviewForm.Caption := PREVIEW_THEME;
+        LVCLPreviewForm.SetCaptions(THEME_PREVIEW_VALUES);
+        LVCLPreviewForm.Parent := LpnPreview;
+        LVCLPreviewForm.CustomStyle := TStyleManager.Style[LStyleName];
+        LVCLPreviewForm.Align := alClient;
+      end;
       {$ELSE}
+      //Before 10.4 cannot use per-control styles
       LVCLPreview := TCBVclStylesPreview.Create(LpnPreview);
       {$ENDIF}
-      LVCLPreview.Caption := PREVIEW_THEME;
-      LVCLPreview.SetCaptions(THEME_PREVIEW_VALUES);
-      LVCLPreview.Parent := LpnPreview;
-      LVCLPreview.CustomStyle := TStyleManager.Style[LStyleNames.Strings[i]];
-      LVCLPreview.Align := alClient;
-
-      if SameText(LStyleNames.Strings[i], LStyleName)  then
+      if Assigned(LVCLPreview) then
       begin
-        FPreviousStyleName := LStyleNames.Strings[i];
-        FStyleName := LStyleNames.Strings[i];
+        LVCLPreview.Caption := PREVIEW_THEME;
+        LVCLPreview.SetCaptions(THEME_PREVIEW_VALUES);
+        LVCLPreview.Parent := LpnPreview;
+        LVCLPreview.CustomStyle := TStyleManager.Style[LStyleName];
+        LVCLPreview.Align := alClient;
+      end;
+
+      if SameText(LStyleName, LActiveStyleName)  then
+      begin
+        FPreviousStyleName := LStyleName;
+        FStyleName := LStyleName;
         LpnButton.Font.Style := [fsBold];
       end;
 
       {$IFDEF D10_4+}
-      LVCLPreview.FormShow(LVCLPreview);
+      if Assigned(LVCLPreviewForm) then
+        LVCLPreviewForm.FormShow(LVCLPreview);
       {$ENDIF}
     end;
 

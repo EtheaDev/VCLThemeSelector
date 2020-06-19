@@ -72,9 +72,9 @@ uses
   , Vcl.ToolWin
   , Vcl.GraphUtil
   ,  EditForm
-  , IconFontsUtils
   , IconFontsImageList //uses IconFontsImageList - download free at: https://github.com/EtheaDev/IconFontsImageList
   , SVGIconImageList //uses SVGIconImageList - download free at: https://github.com/EtheaDev/SVGIconImageList
+  , IconFontsUtils
   , FVCLThemeSelector
 {$IFDEF VCLSTYLEUTILS}
   //VCLStyles support
@@ -160,8 +160,8 @@ type
     CalendarPicker: TCalendarPicker;
     tsStandard: TTabSheet;
     Edit: TEdit;
-    HomeButton: TBitBtn;
-    LogButton: TBitBtn;
+    HomeButton: TButton;
+    LogButton: TButton;
     CheckListBox: TCheckListBox;
     ColorGrid: TColorGrid;
     RichEdit: TRichEdit;
@@ -198,7 +198,7 @@ type
     FontComboBox: TComboBox;
     FontSizeLabel: TLabel;
     acApplyFont: TAction;
-    SaveFontButton: TBitBtn;
+    SaveFontButton: TButton;
     tsIconFonts: TTabSheet;
     Label3: TLabel;
     IconFontsSizeLabel: TLabel;
@@ -283,6 +283,7 @@ type
     procedure acMessageExecute(Sender: TObject);
     procedure acAboutExecute(Sender: TObject);
     procedure IconsToggleSwitchClick(Sender: TObject);
+    procedure ActionListUpdate(Action: TBasicAction; var Handled: Boolean);
   private
     FActiveFont: TFont;
     FActiveStyleName: string;
@@ -294,6 +295,7 @@ type
     FScaleFactor: Single;
     {$ENDIF}
     FIconsType: TIconsType;
+    procedure UpdateButtons;
     procedure CreateAndFixFontComponents;
     procedure Log(const Msg: string);
     procedure AfterMenuClick;
@@ -382,6 +384,7 @@ procedure TFormMain.FormShow(Sender: TObject);
 begin
   FontTrackBarUpdate;
   IconFontsTrackBarUpdate;
+  UpdateButtons;
 end;
 
 procedure TFormMain.CreateAndFixFontComponents;
@@ -506,11 +509,13 @@ begin
   for I := 0 to pcSettings.PageCount-1 do
     pcSettings.Pages[I].TabVisible := False;
 
-  //Disable any StyleElements of all components contained into svSettings
   {$IFDEF D10_4+}
+  //Assign Windows10 Style to Settings Menu
   svSettings.StyleName := 'Windows10';
   {$ELSE}
-  ApplyStyleElements(svSettings, [seFont]);
+  //Disable any StyleElements of Settings Menu only for Windows10 Style
+  if FActiveStyleName = 'Windows10' then
+    ApplyStyleElements(svSettings, [seFont]);
   {$ENDIF}
 
   //Assign Fonts to Combobox
@@ -622,7 +627,11 @@ begin
     end
     else
     begin
-      UpdateIconFontsColorByStyle(IconFontsImageList, True);
+      //For "Windows10" style: use "Windows 10 blue" color for the icons
+      if FActiveStyleName = 'Windows10' then
+        IconFontsImageList.UpdateIconsAttributes(RGB(0, 120, 215), clBtnFace)
+      else
+        UpdateIconFontsColorByStyle(IconFontsImageList, True);
       catMenuItems.Font.Color := IconFontsImageList.FontColor;
       //Color for Bitmap Background
       DBImage.Color := TStyleManager.ActiveStyle.GetStyleColor(scGenericBackground);
@@ -630,8 +639,6 @@ begin
     catMenuItems.BackgroundGradientDirection := gdVertical;
     catMenuItems.RegularButtonColor := clNone;
     catMenuItems.SelectedButtonColor := clNone;
-    HomeButton.Action := actHome;
-    LogButton.Action := actLog;
   end;
 end;
 
@@ -646,6 +653,7 @@ begin
       catMenuItems.Images := IconFontsImageList;
       catSettings.Images := IconFontsImageList;
       catMenuSettings.Images := IconFontsImageListColored; //Colored icons
+      ActionList.Images := IconFontsImageList;
     end;
     itSVGIcons:
     begin
@@ -654,8 +662,10 @@ begin
       catMenuItems.Images := SVGIconImageList;
       catSettings.Images := SVGIconImageList;
       catMenuSettings.Images := SVGIconImageList;
+      ActionList.Images := SVGIconImageList;
     end;
   end;
+  UpdateButtons;
 end;
 
 procedure TFormMain.ShowSettingPage(TabSheet: TTabSheet;
@@ -852,6 +862,12 @@ begin
   AfterMenuClick;
 end;
 
+procedure TFormMain.ActionListUpdate(Action: TBasicAction;
+  var Handled: Boolean);
+begin
+  actHome.Enabled := not svSettings.Opened;
+end;
+
 procedure TFormMain.actChangeThemeExecute(Sender: TObject);
 begin
   //Show Theme selector
@@ -907,6 +923,17 @@ begin
     SV.Close;
   if svSettings.Opened and (ttsCloseSplitView.State = tssOn) then
     svSettings.Close;
+end;
+
+procedure TFormMain.UpdateButtons;
+begin
+  //Buttons with Actions must be reassigned to refresh Icon
+  HomeButton.Images := ActionList.Images;
+  LogButton.Images := ActionList.Images;
+  SaveFontButton.Images := ActionList.Images;
+  //HomeButton.Action := actHome;
+  //LogButton.Action := actLog;
+  //SaveFontButton.Action := acApplyFont;
 end;
 
 procedure TFormMain.UpdateDefaultAndSystemFonts;
