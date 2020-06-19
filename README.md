@@ -51,3 +51,25 @@ WARNING: to edit and compile the demo you must first download:
 
 **VCLThemeSelector** and **VCLThemeSelectorLauncher** are compatible from Delphi XE5 to 10.3, with some differences to High-DPI support.
 **ModernAppDemo** is compatible with Delphi 10.3, Delphi 10.2 and Delphi 10.1 (with 10.1 png stream format of pictures inside biolife.xml are incompatible: use an old biolife.xml file).
+
+## Release Notes ##
+19 Jun 2020
+- Fixed VCLThemeSelector for app in "Windows" Style for D10.4
+- Recompiled Demo with IconFontsImageList 2.0 (with GDI+ support)
+
+11 Jun 2020
+- Added SVGIconImageList
+- Demo: swith icons from Fonts to SVG
+
+09 Jun 2020
+- Updated Demo for Delphi 10.4
+- Added custom form "per-control styled" for D10.4
+
+17 May 2020
+- Changed "Material Design Desktop" Font used in Demo
+
+27 Apr 2020
+- Added VCLThemeSelectorLauncher 
+
+25 Apr 2020
+- First release of Selector and Demo App
