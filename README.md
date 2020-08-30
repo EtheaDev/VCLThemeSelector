@@ -53,6 +53,11 @@ WARNING: to edit and compile the demo you must first download:
 **ModernAppDemo** is compatible with Delphi 10.3, Delphi 10.2 and Delphi 10.1 (with 10.1 png stream format of pictures inside biolife.xml are incompatible: use an old biolife.xml file).
 
 ## Release Notes ##
+
+30 Aug 2020
+- Changed demo to use new IconsFontsVirtualImageList and SVGIconVirtualImageList components
+- Updated external project VCLStyleUtils
+
 19 Jun 2020
 - Fixed VCLThemeSelector for app in "Windows" Style for D10.4
 - Recompiled Demo with IconFontsImageList 2.0 (with GDI+ support)
