@@ -6,10 +6,10 @@
 
 With **VCLThemeSelector** you can easily add a modern and elegant Theme selector for your Delphi VCL app. The Form shows all the VCL Styles included in your application, then arrange them in defined Rows and Columns. You can specify to include or not 'Windows' not-styled option.
 
-### Preview (before Dephi 10.3)
+### Preview (from Delphi 10.1 to Dephi 10.3)
 ![https://github.com/EtheaDev/VCLThemeSelector/blob/master/Demo/Images/Preview3x3.jpg](https://github.com/EtheaDev/VCLThemeSelector/blob/master/Demo/Images/Preview3x3.jpg)
 
-### Preview (with Dephi 10.4 - PerControlStyles)
+### Preview (with Dephi 10.4 using Per-Control Styles)
 ![https://github.com/EtheaDev/VCLThemeSelector/blob/master/Demo/Images/PreviewD10_4.jpg](https://github.com/EtheaDev/VCLThemeSelector/blob/master/Demo/Images/PreviewD10_4.jpg)
 
 Use the **VCLThemeSelectorLauncher** demo present in Demo Folder to test it, and see how it's easy to use it, like in this example:
@@ -51,3 +51,25 @@ WARNING: to edit and compile the demo you must first download:
 
 **VCLThemeSelector** and **VCLThemeSelectorLauncher** are compatible from Delphi XE5 to 10.3, with some differences to High-DPI support.
 **ModernAppDemo** is compatible with Delphi 10.3, Delphi 10.2 and Delphi 10.1 (with 10.1 png stream format of pictures inside biolife.xml are incompatible: use an old biolife.xml file).
+
+## Release Notes ##
+19 Jun 2020
+- Fixed VCLThemeSelector for app in "Windows" Style for D10.4
+- Recompiled Demo with IconFontsImageList 2.0 (with GDI+ support)
+
+11 Jun 2020
+- Added SVGIconImageList
+- Demo: swith icons from Fonts to SVG
+
+09 Jun 2020
+- Updated Demo for Delphi 10.4
+- Added custom form "per-control styled" for D10.4
+
+17 May 2020
+- Changed "Material Design Desktop" Font used in Demo
+
+27 Apr 2020
+- Added VCLThemeSelectorLauncher 
+
+25 Apr 2020
+- First release of Selector and Demo App
