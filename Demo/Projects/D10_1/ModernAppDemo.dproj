@@ -47,9 +47,12 @@
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
         <DCC_DcuOutput>.\$(Platform)\$(Config)</DCC_DcuOutput>
         <DCC_ExeOutput>..\..\Bin\</DCC_ExeOutput>
-        <DCC_UnitSearchPath>..\..\..\Source;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+        <DCC_UnitSearchPath>..\..\..\Source;..\..\..\Ext\VCLStyleUtils\Common;..\..\..\Ext\VCLStyleUtils\DDetours\Source;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <VerInfo_Locale>1040</VerInfo_Locale>
-        <VerInfo_Keys>CompanyName=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductVersion=1.0.0.0;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName);FileDescription=$(MSBuildProjectName);ProductName=$(MSBuildProjectName)</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=Ethea S.r.l.;FileVersion=2.0.0.0;InternalName=;LegalCopyright=Copyright (c) 2020 - Ethea S.r.l.;LegalTrademarks=;OriginalFilename=;ProductVersion=2.0;Comments=;ProgramID=;FileDescription=;ProductName=</VerInfo_Keys>
+        <DCC_Define>VCLSTYLEUTILS;$(DCC_Define)</DCC_Define>
+        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <VerInfo_MajorVer>2</VerInfo_MajorVer>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
         <AppEnableHighDPI>true</AppEnableHighDPI>
@@ -110,6 +113,11 @@
             <Form>VCLThemeSelectorForm</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="..\..\Source\DImageCollections.pas">
+            <Form>ImageCollectionDataModule</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -128,13 +136,6 @@
         <BorlandProject>
             <Delphi.Personality>
                 <Excluded_Packages>
-                    <Excluded_Packages Name="C:\Users\Public\Documents\Embarcadero\Studio\18.0\Bpl\DCLgtRBExpD24.bpl">Gnostice ReportBuilder Export Interface</Excluded_Packages>
-                    <Excluded_Packages Name="C:\Users\Public\Documents\Embarcadero\Studio\18.0\Bpl\DclIOCore_D24.bpl">InstantObjects Design-Time Package (Delphi 10.1 Berlin)</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\HelpCtxDX101.bpl">File d:\program files (x86)\embarcadero\studio\18.0\bin\HelpCtxDX101.bpl not found</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dclDataSnapNativeServer240.bpl">Embarcadero DBExpress DataSnap Native Server Components</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k240.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
-                    <Excluded_Packages Name="D:\ETHEA\CS5\Bin\CodeSiteLoggingPkg_Design240.bpl">CodeSite Studio 5.3.2 - Logging Components</Excluded_Packages>
-                    <Excluded_Packages Name="D:\ETHEA\CS5\Bin\CodeSiteDBToolsPkg_Design240.bpl">CodeSite Studio 5.3.2 - DB Tools</Excluded_Packages>
                 </Excluded_Packages>
                 <Source>
                     <Source Name="MainSource">ModernAppDemo.dpr</Source>

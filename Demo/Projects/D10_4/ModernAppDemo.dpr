@@ -30,9 +30,11 @@ uses
   SysUtils,
   Vcl.Themes,
   Vcl.Styles,
+  MidasLib,
   uSplitView in '..\..\Source\uSplitView.pas' {FormMain},
   EditForm in '..\..\Source\EditForm.pas' {FmEdit},
-  FVCLThemeSelector in '..\..\..\Source\FVCLThemeSelector.pas' {VCLThemeSelectorForm};
+  FVCLThemeSelector in '..\..\..\Source\FVCLThemeSelector.pas' {VCLThemeSelectorForm},
+  DImageCollections in '..\..\Source\DImageCollections.pas' {ImageCollectionDataModule: TDataModule};
 
 {$R *.res}
 
@@ -40,6 +42,7 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.Title := 'Modern App and ThemeSelector Demo with HighDPI support - Copyright (c) Ethea S.r.l.';
+  Application.CreateForm(TImageCollectionDataModule, ImageCollectionDataModule);
   Application.CreateForm(TFormMain, FormMain);
   Application.Run;
 end.

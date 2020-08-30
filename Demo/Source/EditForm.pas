@@ -3,10 +3,28 @@ unit EditForm;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Mask, Vcl.DBCtrls,
-  Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.ComCtrls, Vcl.Menus, System.ImageList,
-  Vcl.ImgList;
+  Winapi.Windows
+  , Winapi.Messages
+  , System.SysUtils
+  , System.Variants
+  , System.Classes
+  , Vcl.Graphics
+  , Vcl.Controls
+  , Vcl.Forms
+  , Vcl.Dialogs
+  , Vcl.Mask
+  , Vcl.DBCtrls
+  , Vcl.StdCtrls
+  , Vcl.ExtCtrls
+  , Vcl.ComCtrls
+  , Vcl.Menus
+  , System.ImageList
+  , Vcl.ImgList
+  , SVGIconImageListBase      //If don't compile you must before download and installa SVGIconImageList components
+  , SVGIconVirtualImageList   //https://github.com/EtheaDev/SVGIconImageList
+  , IconFontsImageListBase    //If don't compile you must before download and installa IconFontsImageList components
+  , IconFontsVirtualImageList //https://github.com/EtheaDev/IconFontsImageList
+  , DImageCollections, Vcl.ToolWin;
 
 type
   TFmEdit = class(TForm)
@@ -34,10 +52,16 @@ type
     Exit1: TMenuItem;
     N1: TMenuItem;
     N2: TMenuItem;
+    IconFontsVirtualImageList: TIconFontsVirtualImageList;
+    SVGIconVirtualImageList: TSVGIconVirtualImageList;
+    ToolBar1: TToolBar;
+    ToolButton1: TToolButton;
+    ToolButton2: TToolButton;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormAfterMonitorDpiChanged(Sender: TObject; OldDPI,
       NewDPI: Integer);
     procedure FormShow(Sender: TObject);
+    procedure Exit1Click(Sender: TObject);
   private
     procedure UpdateFontAttributes;
   protected
@@ -50,6 +74,11 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TFmEdit.Exit1Click(Sender: TObject);
+begin
+  Close;
+end;
 
 procedure TFmEdit.FormAfterMonitorDpiChanged(Sender: TObject; OldDPI,
   NewDPI: Integer);
@@ -66,6 +95,10 @@ end;
 
 procedure TFmEdit.FormShow(Sender: TObject);
 begin
+  if ImageCollectionDataModule.IconsType = itIconFonts then
+    FmEdit.MainMenu.Images := IconFontsVirtualImageList
+  else
+    FmEdit.MainMenu.Images := SVGIconVirtualImageList;
   UpdateFontAttributes;
 end;
 

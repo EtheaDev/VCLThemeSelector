@@ -15,7 +15,7 @@
 // The Original Code is Vcl.Styles.FontAwesome.pas.
 //
 // The Initial Developer of the Original Code is Rodrigo Ruz V.
-// Portions created by Rodrigo Ruz V. are Copyright (C) 2012-2019 Rodrigo Ruz V.
+// Portions created by Rodrigo Ruz V. are Copyright (C) 2012-2020 Rodrigo Ruz V.
 // All Rights Reserved.
 //
 //**************************************************************************************************
@@ -29,8 +29,8 @@ interface
 {$ENDIF}
 
 uses
-  GDIPOBJ,
-  GDIPAPI,
+  Winapi.GDIPOBJ,
+  Winapi.GDIPAPI,
   Winapi.Windows,
   System.Classes,
   {$IFDEF WinXCtrls}
@@ -848,13 +848,13 @@ end;
 type
   TCustomActivityIndicatorShadow = class(TCustomControl)
   private
-//    FAnimate: Boolean;
-//    FIndicatorColor: TActivityIndicatorColor;
-//    FIndicatorSize: TActivityIndicatorSize;
-//    FIndicatorType: TActivityIndicatorType;
-//    FFrameDelay: Word;
-//    FFrameIndex: Integer;
-//    FTimer: TTimer;
+    FAnimate: Boolean;
+    FIndicatorColor: TActivityIndicatorColor;
+    FIndicatorSize: TActivityIndicatorSize;
+    FIndicatorType: TActivityIndicatorType;
+    FFrameDelay: Word;
+    FFrameIndex: Integer;
+    FTimer: TTimer;
     FFrameList: TImageList;
     FFrameCount: Integer;
     FFrameSize: Integer;
