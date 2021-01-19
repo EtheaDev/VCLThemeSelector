@@ -4,6 +4,8 @@
 
 ![Delphi 10.4 Sydney Support](/Demo/Images/SupportingDelphi.jpg)
 
+Related links: https://www.embarcadero.com/ - https://learndelphi.org/
+
 With **VCLThemeSelector** you can easily add a modern and elegant Theme selector for your Delphi VCL app. The Form shows all the VCL Styles included in your application, then arrange them in defined Rows and Columns. You can specify to include or not 'Windows' not-styled option.
 
 ### Preview (with Dephi 10.4 using Per-Control Styles)
