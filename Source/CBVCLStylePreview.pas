@@ -53,8 +53,9 @@ type
     FIcon: HICON;
     FCaption: TCaption;
     FRegion : HRGN;
+    FEditRequiredColor, FEditReadonlyColor: TColor;
     FMenu1Caption, FMenu2Caption, FMenu3Caption, FMenu4Caption: string;
-    FTextEditCaption: string;
+    FTextEditCaption, FRequiredEditCaption, FReadOnlyEditCaption: string;
     FButtonNormalCaption, FButtonHotCaption, FButtonPressedCaption, FButtonDisabledCaption: string;
     FScale: Double;
   protected
@@ -66,6 +67,7 @@ type
     {$ENDIF}
   public
     procedure SetCaptions(const ACaptions: string);
+    procedure SetEditColors(const ARequiredColor, AReadonlyColor: TColor);
     property Icon:HICON read FIcon Write FIcon;
     property CustomStyle: TCustomStyleServices read FCustomStyle Write FCustomStyle;
     property Caption : TCaption read FCaption write FCaption;
@@ -100,11 +102,15 @@ begin
   FMenu2Caption := 'Edit';
   FMenu3Caption := 'View';
   FMenu4Caption := 'Help';
-  FTextEditCaption := 'Text editor';
+  FTextEditCaption := 'Text edit';
+  FRequiredEditCaption := 'Required';
+  FReadOnlyEditCaption := 'ReadOnly';
   FButtonNormalCaption := 'Normal';
   FButtonHotCaption := 'Hot';
   FButtonPressedCaption := 'Pressed';
   FButtonDisabledCaption := 'Disabled';
+  FEditRequiredColor := clDefault;
+  FEditReadonlyColor := clDefault;
 end;
 
 destructor TCBVclStylesPreview.Destroy;
@@ -185,9 +191,38 @@ var
         ButtonRect.Top := ButtonRect.Top + 5;
         ButtonRect.Bottom := ButtonRect.Bottom + 5;
       end;
-      CustomStyle.DrawText(FBitmap.Canvas.Handle, LDetails, ACaption, ButtonRect, TTextFormatFlags(DT_VCENTER or DT_CENTER), ThemeTextColor);
+      CustomStyle.DrawText(FBitmap.Canvas.Handle, LDetails, ACaption, ButtonRect,
+        TTextFormatFlags(DT_VCENTER or DT_CENTER), ThemeTextColor);
     end;
 
+    procedure DrawEdit(const ACaption: string; const ALeft: Integer;
+      const AColor: TColor = clDefault);
+    var
+      LControlRect: TRect;
+    begin
+      //Draw Edit
+      LDetails := CustomStyle.GetElementDetails(teEditTextNormal);
+      ButtonRect.Left := Round(ALeft * FScale);
+      ButtonRect.Top := Round(ARect.Height - (105 * FScale));
+      ButtonRect.Width := Round(80 * FScale);
+      ButtonRect.Height := Round(25 * FScale);
+      CustomStyle.DrawElement(FBitmap.Canvas.Handle, LDetails, ButtonRect);
+      if AColor <> clDefault then
+      begin
+        FBitmap.Canvas.Brush.Color := AColor;
+        LControlRect := ButtonRect;
+        LControlRect.Left := LControlRect.Left + 2;
+        LControlRect.Right := LControlRect.Right - 2;
+        LControlRect.Top := LControlRect.Top + 2;
+        LControlRect.Bottom := LControlRect.Bottom - 2;
+        FBitmap.Canvas.FillRect(LControlRect);
+      end;
+      ButtonRect.Left := ButtonRect.Left + 5;
+      //Draw text into Edit
+      CustomStyle.GetElementColor(LDetails, ecTextColor, ThemeTextColor);
+      CustomStyle.DrawText(FBitmap.Canvas.Handle, LDetails, ACaption, ButtonRect,
+        TTextFormatFlags(DT_VCENTER or DT_LEFT), ThemeTextColor);
+    end;
 begin
   if FCustomStyle = nil then Exit;
 
@@ -315,17 +350,11 @@ begin
     end;
   *)
 
-    //Draw Edit
-    LDetails := CustomStyle.GetElementDetails(teEditTextNormal);
-    ButtonRect.Left := BorderRect.Left + 5;
-    ButtonRect.Top := Round(ARect.Height - (105 * FScale));
-    ButtonRect.Width := Round(160 * FScale);
-    ButtonRect.Height := Round(25 * FScale);
-    CustomStyle.DrawElement(FBitmap.Canvas.Handle, LDetails, ButtonRect);
-    //Draw text into Edit
-    CustomStyle.GetElementColor(LDetails, ecTextColor, ThemeTextColor);
-    ButtonRect.Left := ButtonRect.Left + 5;
-    CustomStyle.DrawText(FBitmap.Canvas.Handle, LDetails, FTextEditCaption, ButtonRect, TTextFormatFlags(DT_VCENTER or DT_LEFT), ThemeTextColor);
+    DrawEdit(FTextEditCaption, BorderRect.Left + 5, clDefault);
+    if FEditRequiredColor <> clDefault then
+      DrawEdit(FRequiredEditCaption, BorderRect.Left + 5 + 85, FEditRequiredColor);
+    if FEditReadonlyColor <> clDefault then
+      DrawEdit(FReadOnlyEditCaption, BorderRect.Left + 5 + 85 + 85, FEditReadonlyColor);
 
     //Draw Buttons
 
@@ -347,7 +376,11 @@ begin
   end;
 end;
 
-
+procedure TCBVclStylesPreview.SetEditColors(const ARequiredColor, AReadonlyColor: TColor);
+begin
+  FEditRequiredColor := ARequiredColor;
+  FEditReadOnlyColor := AReadonlyColor;
+end;
 
 procedure TCBVclStylesPreview.SetCaptions(const ACaptions: string);
 var
@@ -374,6 +407,10 @@ begin
       FButtonPressedCaption := LCaptions.Strings[7];
     if LCaptions.Count  > 8 then
       FButtonDisabledCaption := LCaptions.Strings[8];
+    if LCaptions.Count  > 9 then
+      FRequiredEditCaption := LCaptions.Strings[9];
+    if LCaptions.Count  > 10 then
+      FReadonlyEditCaption := LCaptions.Strings[10];
   finally
     LCaptions.Free;
   end;

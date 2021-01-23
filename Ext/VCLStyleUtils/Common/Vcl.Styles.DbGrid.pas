@@ -42,6 +42,7 @@ uses
   System.SysUtils,
   System.Classes,
   System.UITypes,
+  Vcl.ImgList,
   Vcl.Forms,
   Vcl.Styles,
   Vcl.Themes,
@@ -52,18 +53,18 @@ type
    TDbGridHelper = class helper for TCustomDBGrid
   private
     function GetTitleOffset: Byte;
-    function GetIndicators: TImageList;
+    function GetIndicators: TCustomImageList;
     function GetSelRow: Integer;
     procedure SetSelRow(const Value: Integer);
    public
     property TitleOffset : Byte read GetTitleOffset;
-    property Indicators: TImageList read GetIndicators;
+    property Indicators: TCustomImageList read GetIndicators;
     property SelRow: Integer read GetSelRow write SetSelRow;
    end;
 
 { TDbGridHelper }
 
-function TDbGridHelper.GetIndicators: TImageList;
+function TDbGridHelper.GetIndicators: TCustomImageList;
 begin
   with Self do
     Result := FIndicators;

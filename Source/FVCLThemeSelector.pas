@@ -26,8 +26,6 @@
 
 unit FVCLThemeSelector;
 
-{$Include VCLThemeSelector.inc}
-
 interface
 
 uses
@@ -42,7 +40,7 @@ uses
   , Vcl.Controls;
 
 const
-  VCLThemeSelectorVersion = '1.1.0';
+  VCLThemeSelectorVersion = '1.2.0';
   DEFAULT_MAXROWS = 3;
   DEFAULT_MAXCOLUMNS = 4;
 
@@ -50,6 +48,9 @@ resourcestring
   SELECT_THEME = 'Select Light or Dark theme';
   APPLY_THEME = 'Apply';
   CANCEL_THEME = 'Cancel';
+  LIGHT_THEMES = 'Light themes';
+  DARK_THEMES = 'Dark themes';
+
   PREVIEW_THEME = 'Preview';
   THEME_SELECTED = 'New Selected theme: %s';
   THEME_PREVIEW_VALUES =
@@ -62,22 +63,26 @@ resourcestring
     'Hot'+sLineBreak+
     'Pressed'+sLineBreak+
     'Disabled'+sLineBreak+
-    'Tab1'+sLineBreak+
-    'Tab2'+sLineBreak+
-    'Tab3';
+    'Required'+sLineBreak+
+    'Readonly';
 
 type
   TVCLThemeSelectorForm = class(TForm)
-    ScrollBox: TScrollBox;
+    LeftScrollBox: TScrollBox;
     paButtons: TPanel;
     ActionListAppereance: TActionList;
     acApplyStyle: TAction;
     acCancel: TAction;
-    fpClient: TFlowPanel;
+    LeftFlowPanel: TFlowPanel;
     StyleLabel: TPanel;
     paRight: TPanel;
     btApply: TButton;
     btCancel: TButton;
+    RightScrollBox: TScrollBox;
+    RightFlowPanel: TFlowPanel;
+    TopPanel: TPanel;
+    LightPanel: TPanel;
+    DarkPanel: TPanel;
     procedure SelectionClick(Sender: TObject);
     procedure acApplyStyleExecute(Sender: TObject);
     procedure acCancelExecute(Sender: TObject);
@@ -107,6 +112,19 @@ type
       const AMaxColumns: Integer = DEFAULT_MAXCOLUMNS);
   end;
 
+  //Class to register Theme attributes (like dark or light)
+  TThemeType = (ttLight, ttDark);
+  TThemeAttribute = class
+    StyleName: String;
+    ThemeType: TThemeType;
+    EditRequiredColor: TColor;
+    EditReadonlyColor: TColor;
+  end;
+
+//function to get Theme Attributes
+function GetStyleAttributes(const AStyleName: string;
+  out AThemeAttribute: TThemeAttribute): Boolean;
+
 //function to launch form
 function ShowVCLThemeSelector(var AStyleName: string;
   const AExcludeWindows: Boolean = False;
@@ -127,7 +145,7 @@ implementation
 
 uses
   Vcl.Themes
-  {$IFDEF D10_4+}
+  {$IF CompilerVersion > 33}
   , CBVCLStylePreviewForm
   {$ENDIF}
   , CBVCLStylePreview
@@ -135,7 +153,122 @@ uses
   , System.UITypes
   , System.SysUtils
   , System.Win.Registry
-  , System.Math;
+  , System.Math
+  , System.Generics.Collections;
+
+var
+  ThemeAttributes: TList<TThemeAttribute>;
+
+function GetStyleAttributes(const AStyleName: string;
+  out AThemeAttribute: TThemeAttribute): Boolean;
+var
+  LThemeAttribute: TThemeAttribute;
+begin
+  for LThemeAttribute in ThemeAttributes do
+  begin
+    if SameText(AStyleName, LThemeAttribute.StyleName) then
+    begin
+      AThemeAttribute := LThemeAttribute;
+      Exit(True);
+    end;
+  end;
+  Result := False;
+  AThemeAttribute := nil;
+end;
+
+procedure FreeThemesAttributes;
+var
+  LThemeAttribute: TThemeAttribute;
+begin
+  for LThemeAttribute in ThemeAttributes do
+    LThemeAttribute.Free;
+  ThemeAttributes.Free;
+end;
+
+procedure RegisterThemeAttributes(
+  const AVCLStyleName: string;
+  const AThemeType: TThemeType;
+  const AEditRequiredColor: TColor;
+  const AEditReadonlyColor: TColor);
+var
+  LThemeAttribute: TThemeAttribute;
+
+  procedure UpdateThemeAttributes;
+  begin
+    LThemeAttribute.StyleName := AVCLStyleName;
+    LThemeAttribute.ThemeType := AThemeType;
+    LThemeAttribute.EditRequiredColor := StyleServices.GetSystemColor(AEditRequiredColor);
+    LThemeAttribute.EditReadonlyColor := StyleServices.GetSystemColor(AEditReadonlyColor);
+  end;
+
+begin
+  for LThemeAttribute in ThemeAttributes do
+  begin
+    if SameText(LThemeAttribute.StyleName, AVCLStyleName) then
+    begin
+      UpdateThemeAttributes;
+      Exit; //Found: exit
+    end;
+  end;
+  //not found
+  LThemeAttribute := TThemeAttribute.Create;
+  ThemeAttributes.Add(LThemeAttribute);
+  UpdateThemeAttributes;
+end;
+
+procedure InitDefaultThemesAttributes;
+begin
+  ThemeAttributes := TList<TThemeAttribute>.Create;
+
+  if StyleServices.Enabled then
+  begin
+    //Non themed Windows Style
+    RegisterThemeAttributes('Windows',ttLight, clInfoBk, clWebLightgrey);
+
+    //High-DPI Themes (Delphi 10.4)
+    RegisterThemeAttributes('Aqua Light Slate'   ,ttLight, clWebLightYellow  , clWebLightgrey);
+    RegisterThemeAttributes('Copper'             ,ttLight, clWebLightCoral   , clWebLightgrey);
+    RegisterThemeAttributes('CopperDark'         ,ttDark , clWebDarkSlategray, clDkGray      );
+    RegisterThemeAttributes('Coral'              ,ttLight, clWebLightCoral   , clWebLightgrey);
+    RegisterThemeAttributes('Diamond'            ,ttLight, clWebLightYellow  , clWebLightgrey);
+    RegisterThemeAttributes('Emerald'            ,ttLight, clWebLightGreen   , clWebLightgrey);
+    RegisterThemeAttributes('Glow'               ,ttDark , clWebDarkSlategray, clWebDarkGray );
+    RegisterThemeAttributes('Iceberg Classico'   ,ttLight, clWebLightSkyBlue , clWebLightgrey);
+    RegisterThemeAttributes('Lavender Classico'  ,ttLight, clWebLightSteelBlue,clWebLightgrey);
+    RegisterThemeAttributes('Sky'                ,ttLight, clWebLightYellow  , clWebLightgrey);
+    RegisterThemeAttributes('Slate Classico'     ,ttLight, clWebLightYellow  , clWebLightgrey);
+    RegisterThemeAttributes('Sterling'           ,ttLight, clWebLightYellow  , clWebLightgrey);
+    RegisterThemeAttributes('Tablet Dark'        ,ttDark , clWebDarkSlategray, clWebDarkGray);
+    RegisterThemeAttributes('Tablet Light'       ,ttLight, clWebLightYellow  , clWebLightgrey);
+    RegisterThemeAttributes('Windows10'          ,ttLight, clWebLightYellow  , clWebAliceBlue);
+    RegisterThemeAttributes('Windows10 Blue'     ,ttDark,  clWebLightSkyBlue , clWebLightgrey);
+    RegisterThemeAttributes('Windows10 Dark'     ,ttDark,  clWebDarkBlue     , clWebDarkGray );
+    RegisterThemeAttributes('Windows10 Green'    ,ttDark,  clWebLightGreen   , clWebLightgrey);
+    RegisterThemeAttributes('Windows10 Purple'   ,ttDark,  clWebLightPink    , clWebLightgrey);
+    RegisterThemeAttributes('Windows10 SlateGray',ttDark,  clWebDarkSlategray, clDkGray      );
+    RegisterThemeAttributes('Glossy'             ,ttDark,  clWebDarkSlategray, clDkGray      );
+    RegisterThemeAttributes('Windows10 BlackPearl',ttDark, clWebFirebrick    , clDkGray      );
+    RegisterThemeAttributes('Windows10 Blue Whale',ttDark, clWebDarkSlategray, clDkGray      );
+    RegisterThemeAttributes('Windows10 Clear Day',ttLight, clWebLightYellow  , clWebLightgrey);
+    RegisterThemeAttributes('Windows10 Malibu'   ,ttLight, clWebLightYellow  , clWebLightgrey);
+
+    //Non High DPI Themes
+    RegisterThemeAttributes('Amakrits'           ,ttDark , clWebDarkSlategray, clDkGray      );
+    RegisterThemeAttributes('Amethyst Kamri'     ,ttLight, clWebLightYellow  , clWebLightgrey);
+    RegisterThemeAttributes('Auric'              ,ttDark , clWebDarkSlategray, clDkGray      );
+    RegisterThemeAttributes('Carbon'             ,ttDark , clWebDarkSlategray, clDkGray      );
+    RegisterThemeAttributes('Cyan Dusk'          ,ttLight, clWebLightYellow  , clWebLightgrey);
+    RegisterThemeAttributes('Charcoal Dark Slate',ttDark , clWebDarkSlategray, clDkGray      );
+    RegisterThemeAttributes('Luna'               ,ttLight, clWebLightYellow  , clWebLightgrey);
+    RegisterThemeAttributes('Material Oxford Blue',ttDark, clWebDarkSlategray, clDkGray      );
+    RegisterThemeAttributes('Onyx Blue'          ,ttDark , clWebDarkSlategray, clDkGray      );
+    RegisterThemeAttributes('Ruby Graphite'      ,ttDark , clWebDarkRed,       clDkGray      );
+    RegisterThemeAttributes('Sapphire Kamri'     ,ttLight, clWebLightYellow  , clWebLightgrey);
+    RegisterThemeAttributes('Smokey Quartz Kamri',ttLight, clWebLightYellow  , clWebLightgrey);
+    RegisterThemeAttributes('Turquoise Gray'     ,ttLight, clWebLightYellow  , clWebLightgrey);
+    RegisterThemeAttributes('Windows10 Blue Whale LE',ttDark,clWebLightYellow, clDkGray      );
+  end;
+end;
 
 procedure ReadAppStyleAndFontFromReg(const CompanyName, ApplicationName: string;
   out AAppStyle: string; const AFont: TFont);
@@ -258,7 +391,8 @@ end;
 
 constructor TVCLThemeSelectorForm.CreatePreview(
   AOwner: TComponent; const AExcludeWindows: Boolean;
-  const AMaxRows: Integer = DEFAULT_MAXROWS; const AMaxColumns: Integer = DEFAULT_MAXCOLUMNS);
+  const AMaxRows: Integer = DEFAULT_MAXROWS;
+  const AMaxColumns: Integer = DEFAULT_MAXCOLUMNS);
 begin
   FExcludeWindows := AExcludeWindows;
   FMaxRows := AMaxRows;
@@ -273,23 +407,27 @@ var
   LStyleNames: TStringList;
   LpnPreview: TPanel;
   LpnButton: TButton;
-  {$IFDEF D10_4+}
+  {$IF CompilerVersion > 33}
   LVCLPreviewForm: TCBVCLPreviewForm;
   {$ENDIF}
   LVCLPreview: TCBVclStylesPreview;
-  LCountStyle : Integer;
+  LCountStyle, LCountLight, LCountDark: Integer;
   LNumRows : integer;
   LCalcHeight, LCalcWidth : Integer;
   LHeight, LWidth : Integer;
   LMonitor: TMonitor;
   LMonitorMargin: Integer;
   LScrollBarWidth: Integer;
+  LThemeAttribute: TThemeAttribute;
+  LIsLight: Boolean;
 const
   MARGIN = 4;
 begin
   LActiveStyleName := TStyleManager.ActiveStyle.Name;
   LStyleNames := TStringList.Create;
   LCountStyle := 0;
+  LCountLight := 0;
+  LCountDark := 0;
   LpnPreview := nil;
   try
     for i := 0 to High(TStyleManager.StyleNames) do
@@ -302,8 +440,23 @@ begin
       if FExcludeWindows and (LStyleName = 'Windows') then
         Continue;
 
+      GetStyleAttributes(LStyleName, LThemeAttribute);
+      if Assigned(LThemeAttribute) then
+        LIsLight := LThemeAttribute.ThemeType = ttLight
+      else
+        LIsLight := True;
+      if LIsLight then
+      begin
+        LpnPreview := TPanel.Create(LeftFlowPanel);
+        Inc(LCountLight);
+      end
+      else
+      begin
+        LpnPreview := TPanel.Create(RightFlowPanel);
+        Inc(LCountDark);
+      end;
       Inc(LCountStyle);
-      LpnPreview := TPanel.Create(fpClient);
+
       //First assign size
       LpnPreview.Height := PREVIEW_HEIGHT;
       LpnPreview.Width := PREVIEW_WIDTH;
@@ -312,7 +465,10 @@ begin
       LpnPreview.Margins.Bottom := MARGIN;
       LpnPreview.Margins.Right := MARGIN;
       //Then parent the control, so it is scaled correctly
-      LpnPreview.Parent := fpClient;
+      if LIsLight then
+        LpnPreview.Parent := LeftFlowPanel
+      else
+        LpnPreview.Parent := RightFlowPanel;
       LpnPreview.Align := alLeft;
       LpnPreview.AlignWithMargins := True;
 
@@ -323,12 +479,12 @@ begin
       LpnButton.Caption :=  LStyleName;
       LpnButton.Cursor := crHandPoint;
 
-      {$IFDEF D10_4+}
+      {$IF CompilerVersion > 33}
       if TStyleManager.ActiveStyle.Name = 'Windows' then
       begin
         //If the application Style is "Windows" cannot use per-control styles
         LVCLPreviewForm := nil;
-        LVCLPreview := TCBVclStylesPreview.Create(LpnPreview)
+        LVCLPreview := TCBVclStylesPreview.Create(LpnPreview);
       end
       else
       begin
@@ -337,9 +493,23 @@ begin
         LVCLPreviewForm := TCBVCLPreviewForm.Create(LpnPreview);
         LVCLPreviewForm.Caption := PREVIEW_THEME;
         LVCLPreviewForm.SetCaptions(THEME_PREVIEW_VALUES);
-        LVCLPreviewForm.Parent := LpnPreview;
         LVCLPreviewForm.CustomStyle := TStyleManager.Style[LStyleName];
+        if Assigned(LThemeAttribute) then
+        begin
+          LVCLPreviewForm.FRequiredTextEdit.StyleElements := [seBorder];
+          LVCLPreviewForm.FRequiredTextEdit.Color := LThemeAttribute.EditRequiredColor;
+          LVCLPreviewForm.FRequiredTextEdit.Font.Color := TStyleManager.Style[LStyleName].GetSystemColor(clWindowText);
+          LVCLPreviewForm.FReadonlyTextEdit.StyleElements := [seBorder];
+          LVCLPreviewForm.FReadonlyTextEdit.Color := LThemeAttribute.EditReadonlyColor;
+          LVCLPreviewForm.FReadonlyTextEdit.Font.Color := TStyleManager.Style[LStyleName].GetSystemColor(clWindowText);
+        end;
+        LVCLPreviewForm.Parent := LpnPreview;
         LVCLPreviewForm.Align := alClient;
+        if LStyleName = 'Windows' then
+        begin
+          LVCLPreviewForm.StyleElements := [];
+          LVCLPreviewForm.TabControl.StyleElements := [];
+        end;
       end;
       {$ELSE}
       //Before 10.4 cannot use per-control styles
@@ -348,6 +518,8 @@ begin
       if Assigned(LVCLPreview) then
       begin
         LVCLPreview.Caption := PREVIEW_THEME;
+        LVCLPreview.SetEditColors(LThemeAttribute.EditRequiredColor,
+          LThemeAttribute.EditReadonlyColor);
         LVCLPreview.SetCaptions(THEME_PREVIEW_VALUES);
         LVCLPreview.Parent := LpnPreview;
         LVCLPreview.CustomStyle := TStyleManager.Style[LStyleName];
@@ -361,10 +533,16 @@ begin
         LpnButton.Font.Style := [fsBold];
       end;
 
-      {$IFDEF D10_4+}
+      {$IF CompilerVersion > 33}
       if Assigned(LVCLPreviewForm) then
         LVCLPreviewForm.FormShow(LVCLPreview);
       {$ENDIF}
+    end;
+
+    if LCountLight > LCountDark then
+    begin
+      RightScrollBox.Align := alRight;
+      LeftScrollBox.Align := alClient;
     end;
 
     if (LCountStyle mod FMaxColumns) <> 0 then
@@ -375,7 +553,7 @@ begin
     Self.Constraints.MaxHeight := Screen.Height;
     LHeight := (LpnPreview.Height+(LpnPreview.Margins.Top+LpnPreview.Margins.Bottom*2));
     LWidth := (LpnPreview.Width+(LpnPreview.Margins.Left+LpnPreview.Margins.Right*2));
-    LCalcHeight := (LHeight*Min(LNumRows, FMaxRows))+paButtons.Height;
+    LCalcHeight := (LHeight*Min(LNumRows, FMaxRows))+paButtons.Height + TopPanel.Height;
     LCalcWidth := (LWidth*FMaxColumns);
 
     LMonitor := Screen.MonitorFromWindow(Self.Handle);
@@ -387,14 +565,16 @@ begin
     begin
       //Show scrollbar
       LScrollBarWidth := GetSystemMetrics(SM_CXVSCROLL);
-      LCalcHeight := Min(LHeight * FMaxRows + paButtons.Height, LMonitor.Height - LMonitorMargin);
+      LCalcHeight := Min(LHeight * FMaxRows + paButtons.Height + TopPanel.Height,
+        LMonitor.Height - LMonitorMargin);
       Self.Constraints.MinHeight := LCalcHeight;
       Self.ClientHeight := LCalcHeight;
-      ScrollBox.VertScrollBar.Visible := True;
+      LeftScrollBox.VertScrollBar.Visible := True;
+      RightScrollBox.VertScrollBar.Visible := True;
       i := FMaxColumns;
       while True do
       begin
-        LCalcWidth := LWidth * i + LScrollBarWidth + 6;
+        LCalcWidth := LWidth * i + (LScrollBarWidth * 2) + 6;
         if LCalcWidth <= LMonitor.Width - LMonitorMargin then
           break
         else
@@ -405,7 +585,8 @@ begin
     end
     else
     begin
-      ScrollBox.VertScrollBar.Visible := False;
+      LeftScrollBox.VertScrollBar.Visible := False;
+      RightScrollBox.VertScrollBar.Visible := False;
       //Self.BorderStyle := bsDialog;
       Self.Constraints.MinHeight := LCalcHeight;
       Self.ClientHeight := LCalcHeight;
@@ -438,6 +619,8 @@ begin
   Caption := SELECT_THEME;
   acApplyStyle.Caption := APPLY_THEME;
   acCancel.Caption := CANCEL_THEME;
+  LightPanel.Caption := LIGHT_THEMES;
+  DarkPanel.Caption := DARK_THEMES;
 
   UpdateButtons;
   UpdateLabel;
@@ -463,7 +646,19 @@ end;
 procedure TVCLThemeSelectorForm.FormResize(Sender: TObject);
 begin
   inherited;
-  fpClient.Height := ClientRect.Bottom-ClientRect.Top-paButtons.Height;
+  LeftFlowPanel.Height := ClientRect.Bottom-ClientRect.Top-paButtons.Height;
+  RightFlowPanel.Height := LeftFlowPanel.Height;
+  LightPanel.Width := ClientWidth div 2 -1;
+  if RightScrollBox.Align = alClient then
+  begin
+    LeftScrollBox.Width := ClientWidth div 2;
+    LeftScrollBox.VertScrollBar.Range := RightScrollBox.VertScrollBar.Range;
+  end
+  else
+  begin
+    RightScrollBox.Width := ClientWidth div 2;
+    RightScrollBox.VertScrollBar.Range := LeftScrollBox.VertScrollBar.Range;
+  end;
 end;
 
 procedure TVCLThemeSelectorForm.Loaded;
@@ -492,11 +687,11 @@ begin
     LButton := TButton(Sender);
     FStyleName := LButton.Caption;
     LButton.Font.Style := [fsBold];
-    for I := 0 to fpClient.ComponentCount-1 do
+    for I := 0 to LeftFlowPanel.ComponentCount-1 do
     begin
-      if (fpClient.Components[I] is TPanel) then
+      if (LeftFlowPanel.Components[I] is TPanel) then
       begin
-        LPanel := TPanel(fpClient.Components[I]);
+        LPanel := TPanel(LeftFlowPanel.Components[I]);
         for J := 0 to LPanel.ComponentCount-1 do
         begin
           if (LPanel.Components[J] is TButton) and (LButton <> LPanel.Components[J]) then
@@ -530,8 +725,17 @@ begin
 
   n := Mouse.WheelScrollLines * 4; //Speed Up scrolling
   For i:= 1 to n Do
-    Scrollbox.Perform( msg, code, 0 );
-  Scrollbox.Perform( msg, SB_ENDSCROLL, 0 );
+  begin
+    LeftScrollBox.Perform( msg, code, 0 );
+    RightScrollBox.Perform( msg, code, 0 );
+  end;
+  LeftScrollBox.Perform( msg, SB_ENDSCROLL, 0 );
+  RightScrollBox.Perform( msg, SB_ENDSCROLL, 0 );
 end;
 
+initialization
+  InitDefaultThemesAttributes;
+
+finalization
+  FreeThemesAttributes;
 end.

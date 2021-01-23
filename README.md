@@ -6,10 +6,10 @@
 
 With **VCLThemeSelector** you can easily add a modern and elegant Theme selector for your Delphi VCL app. The Form shows all the VCL Styles included in your application, then arrange them in defined Rows and Columns. You can specify to include or not 'Windows' not-styled option.
 
-### Preview (from Delphi 10.1 to Dephi 10.3)
+### Preview (before Dephi 10.3)
 ![https://github.com/EtheaDev/VCLThemeSelector/blob/master/Demo/Images/Preview3x3.jpg](https://github.com/EtheaDev/VCLThemeSelector/blob/master/Demo/Images/Preview3x3.jpg)
 
-### Preview (with Dephi 10.4 using Per-Control Styles)
+### Preview (with Dephi 10.4 - PerControlStyles)
 ![https://github.com/EtheaDev/VCLThemeSelector/blob/master/Demo/Images/PreviewD10_4.jpg](https://github.com/EtheaDev/VCLThemeSelector/blob/master/Demo/Images/PreviewD10_4.jpg)
 
 Use the **VCLThemeSelectorLauncher** demo present in Demo Folder to test it, and see how it's easy to use it, like in this example:
@@ -36,10 +36,10 @@ License: the CBVCLStylePreview is based on VCLStylePreview (Vcl.Styles.Ext) from
 
 Also included in this repository you can find a full example of an HighDPI - VCL Themed enabled application that uses the VCLThemeSelector to change the Theme. You can run the demo from: Demo\Bin\ModernAppDemo.exe.
 
-### Demo from 10.1 to 10.3 (with Icon Fonts active)
+### Demo from 10.1 to 10.3 (with IconFontsImageList)
 ![https://github.com/EtheaDev/VCLThemeSelector/blob/master/Demo/Images/DemoPreview.jpg](https://github.com/EtheaDev/VCLThemeSelector/blob/master/Demo/Images/DemoPreview.jpg)
 
-### Demo with 10.4 (with PerControlStyle and SVG Icons active)
+### Demo with 10.4 (with PerControlStyle and SVGIconsImageList)
 ![https://github.com/EtheaDev/VCLThemeSelector/blob/master/Demo/Images/DemoPreviewD10_4.jpg](https://github.com/EtheaDev/VCLThemeSelector/blob/master/Demo/Images/DemoPreviewD10_4.jpg)
 
 License: this Demo is inspired by TSplitView demo (original software is Copyright (c) 2015 Embarcadero Technologies, Inc.) and is released under Apache 2.0 license.

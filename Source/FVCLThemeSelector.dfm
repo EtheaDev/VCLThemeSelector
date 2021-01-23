@@ -3,8 +3,8 @@ object VCLThemeSelectorForm: TVCLThemeSelectorForm
   Top = 0
   Hint = 'Select theme by clicking on the name'
   Caption = 'Select Light or Dark theme'
-  ClientHeight = 661
-  ClientWidth = 948
+  ClientHeight = 502
+  ClientWidth = 1065
   Color = clBtnFace
   ParentFont = True
   OldCreateOrder = True
@@ -17,8 +17,8 @@ object VCLThemeSelectorForm: TVCLThemeSelectorForm
   TextHeight = 13
   object paButtons: TPanel
     Left = 0
-    Top = 623
-    Width = 948
+    Top = 464
+    Width = 1065
     Height = 38
     Align = alBottom
     BevelOuter = bvNone
@@ -27,7 +27,7 @@ object VCLThemeSelectorForm: TVCLThemeSelectorForm
       AlignWithMargins = True
       Left = 3
       Top = 3
-      Width = 746
+      Width = 863
       Height = 32
       Align = alClient
       Alignment = taRightJustify
@@ -36,7 +36,7 @@ object VCLThemeSelectorForm: TVCLThemeSelectorForm
       TabOrder = 1
     end
     object paRight: TPanel
-      Left = 752
+      Left = 869
       Top = 0
       Width = 196
       Height = 38
@@ -44,8 +44,8 @@ object VCLThemeSelectorForm: TVCLThemeSelectorForm
       BevelOuter = bvNone
       TabOrder = 0
       object btApply: TButton
-        Left = 7
-        Top = 4
+        Left = 3
+        Top = 5
         Width = 88
         Height = 29
         Action = acApplyStyle
@@ -63,25 +63,74 @@ object VCLThemeSelectorForm: TVCLThemeSelectorForm
       end
     end
   end
-  object ScrollBox: TScrollBox
+  object LeftScrollBox: TScrollBox
     Left = 0
-    Top = 0
-    Width = 948
-    Height = 623
-    Align = alClient
+    Top = 25
+    Width = 537
+    Height = 439
+    Align = alLeft
     TabOrder = 1
     OnMouseWheel = ScrollBoxMouseWheel
-    object fpClient: TFlowPanel
+    object LeftFlowPanel: TFlowPanel
       Left = 0
       Top = 0
-      Width = 927
-      Height = 819
+      Width = 533
+      Height = 400
       Align = alTop
       AutoSize = True
       BevelOuter = bvNone
       BiDiMode = bdLeftToRight
       ParentBiDiMode = False
       TabOrder = 0
+    end
+  end
+  object RightScrollBox: TScrollBox
+    Left = 537
+    Top = 25
+    Width = 528
+    Height = 439
+    Align = alClient
+    TabOrder = 2
+    OnMouseWheel = ScrollBoxMouseWheel
+    object RightFlowPanel: TFlowPanel
+      Left = 0
+      Top = 0
+      Width = 524
+      Height = 400
+      Align = alTop
+      AutoSize = True
+      BevelOuter = bvNone
+      BiDiMode = bdLeftToRight
+      ParentBiDiMode = False
+      TabOrder = 0
+    end
+  end
+  object TopPanel: TPanel
+    Left = 0
+    Top = 0
+    Width = 1065
+    Height = 25
+    Align = alTop
+    TabOrder = 3
+    object LightPanel: TPanel
+      Left = 1
+      Top = 1
+      Width = 536
+      Height = 23
+      Align = alLeft
+      BevelOuter = bvLowered
+      Caption = 'Light Themes'
+      TabOrder = 0
+    end
+    object DarkPanel: TPanel
+      Left = 537
+      Top = 1
+      Width = 527
+      Height = 23
+      Align = alClient
+      BevelOuter = bvLowered
+      Caption = 'Dark Themes'
+      TabOrder = 1
     end
   end
   object ActionListAppereance: TActionList

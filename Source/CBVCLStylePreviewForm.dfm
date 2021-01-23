@@ -1,7 +1,7 @@
 object CBVCLPreviewForm: TCBVCLPreviewForm
   Left = 0
   Top = 0
-  ClientHeight = 106
+  ClientHeight = 92
   ClientWidth = 304
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -19,7 +19,7 @@ object CBVCLPreviewForm: TCBVCLPreviewForm
     Left = 0
     Top = 0
     Width = 304
-    Height = 106
+    Height = 92
     Align = alClient
     TabOrder = 0
     Tabs.Strings = (
@@ -27,22 +27,21 @@ object CBVCLPreviewForm: TCBVCLPreviewForm
       'Page2'
       'Page3')
     TabIndex = 0
-    ExplicitHeight = 33
-    object FTextEdit: TEdit
+    object FNormalTextEdit: TEdit
       Left = 8
       Top = 32
-      Width = 121
+      Width = 80
       Height = 21
       TabOrder = 0
-      Text = 'FTextEdit'
+      Text = 'Normal'
     end
     object FButtonNormal: TButton
       Left = 8
-      Top = 59
+      Top = 67
       Width = 75
       Height = 25
       Caption = 'Normal'
-      TabOrder = 1
+      TabOrder = 3
       OnMouseDown = FButtonNormalMouseDown
       OnMouseEnter = FButtonNormalMouseEnter
       OnMouseLeave = FButtonNormalMouseLeave
@@ -50,17 +49,43 @@ object CBVCLPreviewForm: TCBVCLPreviewForm
     end
     object FButtonDisabled: TButton
       Left = 89
-      Top = 59
+      Top = 67
       Width = 75
       Height = 25
       Caption = 'Disabled'
       Enabled = False
+      TabOrder = 4
+    end
+    object FRequiredTextEdit: TEdit
+      Left = 94
+      Top = 32
+      Width = 80
+      Height = 21
+      TabOrder = 1
+      Text = 'Required'
+    end
+    object FReadOnlyTextEdit: TEdit
+      Left = 182
+      Top = 32
+      Width = 80
+      Height = 21
       TabOrder = 2
+      Text = 'ReadOnly'
+    end
+    object CheckBox: TCheckBox
+      Left = 187
+      Top = 67
+      Width = 97
+      Height = 17
+      Caption = 'Check'
+      Checked = True
+      State = cbChecked
+      TabOrder = 5
     end
   end
   object MainMenu: TMainMenu
     Left = 216
-    Top = 24
+    Top = 32
     object FMenu1: TMenuItem
       Caption = 'File'
     end

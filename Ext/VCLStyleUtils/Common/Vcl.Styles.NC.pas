@@ -56,7 +56,7 @@ type
     FOwner: TNCControls;
     function GetItem(Index: Integer): TNCControl;
     procedure SetItem(Index: Integer; Value: TNCControl);
-    function Add: TNCControl;
+    //function Add: TNCControl;
   protected
     function GetOwner: TPersistent; override;
   public
@@ -297,6 +297,7 @@ uses
   Winapi.CommCtrl,
   System.SysUtils,
   System.Rtti,
+  System.Typinfo,
   Winapi.UxTheme,
   Vcl.Styles.Utils.Graphics,
   Vcl.Styles.FontAwesome,
@@ -2107,11 +2108,12 @@ begin
 end;
 
 { TListNCButtons }
+(*
 function TListNCControls.Add: TNCControl;
 begin
   Result := TNCControl(inherited Add);
 end;
-
+*)
 function RttiMethodInvokeEx(const MethodName: string; RttiType: TRttiType; Instance: TValue;
   const Args: array of TValue): TValue;
 var

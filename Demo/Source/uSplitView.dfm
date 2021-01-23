@@ -16,6 +16,7 @@ object FormMain: TFormMain
   ScreenSnap = True
   ShowHint = True
   OnAfterMonitorDpiChanged = FormAfterMonitorDpiChanged
+  OnBeforeMonitorDpiChanged = FormBeforeMonitorDpiChanged
   OnCreate = FormCreate
   OnShow = FormShow
   PixelsPerInch = 96
@@ -264,7 +265,6 @@ object FormMain: TFormMain
     object tsWindows10: TTabSheet
       Caption = 'Windows 10 controls'
       ImageIndex = 2
-      ExplicitHeight = 131
       object CalendarView: TCalendarView
         Left = 3
         Top = 16
@@ -335,10 +335,6 @@ object FormMain: TFormMain
     object tsDatabase: TTabSheet
       Caption = 'Database'
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object DBNavigator: TDBNavigator
         Left = 0
         Top = 0
@@ -902,10 +898,6 @@ object FormMain: TFormMain
         end
         object tsStyle: TTabSheet
           Caption = 'Menu'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           DesignSize = (
             292
             283)
@@ -958,10 +950,6 @@ object FormMain: TFormMain
         object tsIconFonts: TTabSheet
           Caption = 'Icons'
           ImageIndex = 4
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           DesignSize = (
             292
             283)
@@ -1005,10 +993,6 @@ object FormMain: TFormMain
         object tsAnimation: TTabSheet
           Caption = 'Animation'
           ImageIndex = 1
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           DesignSize = (
             292
             283)
@@ -1094,10 +1078,6 @@ object FormMain: TFormMain
         object tsLog: TTabSheet
           Caption = 'Log'
           ImageIndex = 2
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 0
-          ExplicitHeight = 0
           object lstLog: TListBox
             Left = 0
             Top = 0

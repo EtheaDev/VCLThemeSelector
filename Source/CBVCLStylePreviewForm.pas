@@ -19,9 +19,12 @@ type
     FMenu3: TMenuItem;
     FMenu4: TMenuItem;
     TabControl: TTabControl;
-    FTextEdit: TEdit;
+    FNormalTextEdit: TEdit;
     FButtonNormal: TButton;
     FButtonDisabled: TButton;
+    FRequiredTextEdit: TEdit;
+    FReadOnlyTextEdit: TEdit;
+    CheckBox: TCheckBox;
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FButtonNormalMouseEnter(Sender: TObject);
@@ -96,24 +99,28 @@ begin
     if LCaptions.Count  > 3 then
       FMenu4.Caption := LCaptions.Strings[3];
     if LCaptions.Count  > 4 then
-      FTextEdit.Text := LCaptions.Strings[4];
+      FNormalTextEdit.Text := LCaptions.Strings[4];
     if LCaptions.Count  > 5 then
+      FRequiredTextEdit.Text := LCaptions.Strings[5];
+    if LCaptions.Count  > 6 then
+      FReadOnlyTextEdit.Text := LCaptions.Strings[6];
+    if LCaptions.Count  > 7 then
     begin
-      FButtonNormalCaption := LCaptions.Strings[5];
+      FButtonNormalCaption := LCaptions.Strings[7];
       FButtonNormal.Caption := FButtonNormalCaption;
     end;
-    if LCaptions.Count  > 6 then
-      FButtonHotCaption := LCaptions.Strings[6];
-    if LCaptions.Count  > 7 then
-      FButtonPressedCaption := LCaptions.Strings[7];
     if LCaptions.Count  > 8 then
-      FButtonDisabled.Caption := LCaptions.Strings[8];
+      FButtonHotCaption := LCaptions.Strings[8];
     if LCaptions.Count  > 9 then
-      Tabcontrol.Tabs[0] := LCaptions.Strings[9];
+      FButtonPressedCaption := LCaptions.Strings[9];
     if LCaptions.Count  > 10 then
-      Tabcontrol.Tabs[1] := LCaptions.Strings[10];
+      FButtonDisabled.Caption := LCaptions.Strings[10];
     if LCaptions.Count  > 11 then
-      Tabcontrol.Tabs[2] := LCaptions.Strings[11];
+      Tabcontrol.Tabs[0] := LCaptions.Strings[11];
+    if LCaptions.Count  > 12 then
+      Tabcontrol.Tabs[1] := LCaptions.Strings[12];
+    if LCaptions.Count  > 13 then
+      Tabcontrol.Tabs[2] := LCaptions.Strings[13];
 
   finally
     LCaptions.Free;

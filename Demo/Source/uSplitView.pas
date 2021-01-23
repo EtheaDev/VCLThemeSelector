@@ -296,6 +296,8 @@ type
     procedure acExitExecute(Sender: TObject);
     procedure IconImageMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
+    procedure FormBeforeMonitorDpiChanged(Sender: TObject; OldDPI,
+      NewDPI: Integer);
   private
     FActiveFont: TFont;
     FActiveStyleName: string;
@@ -515,6 +517,7 @@ end;
 procedure TFormMain.FormAfterMonitorDpiChanged(Sender: TObject; OldDPI,
   NewDPI: Integer);
 begin
+  LockWindowUpdate(0);
   {$IFNDEF D10_3}
   IconFontsImageList.DPIChanged(Self, OldDPI, NewDPI);
   IconFontsImageListColored.DPIChanged(Self, OldDPI, NewDPI);
@@ -532,6 +535,12 @@ begin
   {$ENDIF}
 
   UpdateDefaultAndSystemFonts;
+end;
+
+procedure TFormMain.FormBeforeMonitorDpiChanged(Sender: TObject; OldDPI,
+  NewDPI: Integer);
+begin
+  LockWindowUpdate(Handle);
 end;
 
 procedure TFormMain.FormCreate(Sender: TObject);

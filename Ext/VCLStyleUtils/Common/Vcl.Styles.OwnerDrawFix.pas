@@ -43,6 +43,7 @@ type
     procedure ListViewMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
   end deprecated 'Use the Vcl.Styles.Hooks unit Instead';
 
+{$WARN SYMBOL_DEPRECATED OFF}
 var
   VclStylesOwnerDrawFix: TVclStylesOwnerDrawFix;
 
@@ -124,7 +125,6 @@ var
   LColor: TColor;
   ImageSize: Integer;
 begin
-  ImageSize := 0;
   LStyles := StyleServices;
   if not LStyles.GetElementColor(LStyles.GetElementDetails(ttItemNormal), ecTextColor, LColor) or (LColor = clNone) then
     LColor := LStyles.GetSystemColor(clWindowText);
