@@ -1,8 +1,8 @@
 object CBVCLPreviewForm: TCBVCLPreviewForm
   Left = 0
   Top = 0
-  ClientHeight = 92
-  ClientWidth = 304
+  ClientHeight = 122
+  ClientWidth = 354
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,8 +18,8 @@ object CBVCLPreviewForm: TCBVCLPreviewForm
   object TabControl: TTabControl
     Left = 0
     Top = 0
-    Width = 304
-    Height = 92
+    Width = 354
+    Height = 122
     Align = alClient
     TabOrder = 0
     Tabs.Strings = (
@@ -27,6 +27,8 @@ object CBVCLPreviewForm: TCBVCLPreviewForm
       'Page2'
       'Page3')
     TabIndex = 0
+    ExplicitWidth = 304
+    ExplicitHeight = 72
     object FNormalTextEdit: TEdit
       Left = 8
       Top = 32

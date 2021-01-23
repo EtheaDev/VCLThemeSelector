@@ -1,11 +1,50 @@
+{******************************************************************************}
+{                                                                              }
+{       CBVCLStylePreviewForm: Example Preview of a VCL Style                  }
+{       based on: VCLStylePreview Vcl.Styles.Ext                               }
+{       https://github.com/RRUZ/vcl-styles-utils/                              }
+{                                                                              }
+{       Copyright (c) 2020 (Ethea S.r.l.)                                      }
+{       Author: Carlo Barazzetta                                               }
+{                                                                              }
+{       https://github.com/EtheaDev/VCLThemeSelector                           }
+{                                                                              }
+{******************************************************************************}
+{                                                                              }
+{  Licensed under the Apache License, Version 2.0 (the "License");             }
+{  you may not use this file except in compliance with the License.            }
+{  You may obtain a copy of the License at                                     }
+{                                                                              }
+{      http://www.apache.org/licenses/LICENSE-2.0                              }
+{                                                                              }
+{  Unless required by applicable law or agreed to in writing, software         }
+{  distributed under the License is distributed on an "AS IS" BASIS,           }
+{  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.    }
+{  See the License for the specific language governing permissions and         }
+{  limitations under the License.                                              }
+{                                                                              }
+{******************************************************************************}
 unit CBVCLStylePreviewForm;
+
+{$Include VCLThemeSelector.inc}
 
 interface
 
-uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
-  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.StdCtrls,
-  Vcl.Themes, Vcl.ComCtrls;
+Uses
+  System.Classes,
+  System.Sysutils,
+  System.Generics.Collections,
+  System.Types,
+  Winapi.Windows,
+  Vcl.Styles,
+  Vcl.Themes,
+  Vcl.Forms,
+  vcl.Menus,
+  Vcl.Graphics,
+  Vcl.Controls,
+  Vcl.ExtCtrls,
+  Vcl.StdCtrls,
+  Vcl.ComCtrls;
 
 const
   PREVIEW_HEIGHT = 190; //At 96 DPI
@@ -90,37 +129,53 @@ begin
   LCaptions := TStringList.Create;
   LCaptions.Text := ACaptions;
   try
-    if LCaptions.Count  > 0 then
+    if LCaptions.Count  > 0 then //File
       FMenu1.Caption := LCaptions.Strings[0];
-    if LCaptions.Count  > 1 then
+
+    if LCaptions.Count  > 1 then //Edit
       FMenu2.Caption := LCaptions.Strings[1];
-    if LCaptions.Count  > 2 then
+
+    if LCaptions.Count  > 2 then //View
       FMenu3.Caption := LCaptions.Strings[2];
-    if LCaptions.Count  > 3 then
+
+    if LCaptions.Count  > 3 then //Help
       FMenu4.Caption := LCaptions.Strings[3];
-    if LCaptions.Count  > 4 then
+
+    if LCaptions.Count  > 4 then //Text editor
       FNormalTextEdit.Text := LCaptions.Strings[4];
-    if LCaptions.Count  > 5 then
-      FRequiredTextEdit.Text := LCaptions.Strings[5];
-    if LCaptions.Count  > 6 then
-      FReadOnlyTextEdit.Text := LCaptions.Strings[6];
-    if LCaptions.Count  > 7 then
+
+    if LCaptions.Count  > 5 then //Normal
     begin
-      FButtonNormalCaption := LCaptions.Strings[7];
+      FButtonNormalCaption := LCaptions.Strings[5];
       FButtonNormal.Caption := FButtonNormalCaption;
     end;
-    if LCaptions.Count  > 8 then
-      FButtonHotCaption := LCaptions.Strings[8];
-    if LCaptions.Count  > 9 then
-      FButtonPressedCaption := LCaptions.Strings[9];
-    if LCaptions.Count  > 10 then
-      FButtonDisabled.Caption := LCaptions.Strings[10];
-    if LCaptions.Count  > 11 then
-      Tabcontrol.Tabs[0] := LCaptions.Strings[11];
-    if LCaptions.Count  > 12 then
-      Tabcontrol.Tabs[1] := LCaptions.Strings[12];
-    if LCaptions.Count  > 13 then
-      Tabcontrol.Tabs[2] := LCaptions.Strings[13];
+
+    if LCaptions.Count  > 6 then //Hot
+      FButtonHotCaption := LCaptions.Strings[6];
+
+    if LCaptions.Count  > 7 then //Pressed
+      FButtonPressedCaption := LCaptions.Strings[7];
+
+    if LCaptions.Count  > 8 then //Disabled
+      FButtonDisabled.Caption := LCaptions.Strings[8];
+
+    if LCaptions.Count  > 9 then //Required
+      FRequiredTextEdit.Text := LCaptions.Strings[9];
+
+    if LCaptions.Count  > 10 then //Readonly
+      FReadOnlyTextEdit.Text := LCaptions.Strings[10];
+
+    if LCaptions.Count  > 11 then //Check
+      CheckBox.Caption := LCaptions.Strings[11];
+
+    if LCaptions.Count  > 12 then //Page 1
+      Tabcontrol.Tabs[0] := LCaptions.Strings[12];
+
+    if LCaptions.Count  > 13 then //Page 2
+      Tabcontrol.Tabs[1] := LCaptions.Strings[13];
+
+    if LCaptions.Count  > 11 then //Page 3
+      Tabcontrol.Tabs[2] := LCaptions.Strings[14];
 
   finally
     LCaptions.Free;

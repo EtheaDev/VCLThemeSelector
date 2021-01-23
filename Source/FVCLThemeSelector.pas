@@ -64,7 +64,11 @@ resourcestring
     'Pressed'+sLineBreak+
     'Disabled'+sLineBreak+
     'Required'+sLineBreak+
-    'Readonly';
+    'Readonly'+sLineBreak+
+    'Check'+sLineBreak+
+    'Page 1'+sLineBreak+
+    'Page 2'+sLineBreak+
+    'Page 3'+sLineBreak;
 
 type
   TVCLThemeSelectorForm = class(TForm)

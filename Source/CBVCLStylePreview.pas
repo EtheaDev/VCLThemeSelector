@@ -46,6 +46,7 @@ Uses
 const
   PREVIEW_HEIGHT = 190; //At 96 DPI
   PREVIEW_WIDTH = 300;  //At 96 DPI
+
 type
   TCBVclStylesPreview = class(TCustomControl)
   private
@@ -57,6 +58,7 @@ type
     FMenu1Caption, FMenu2Caption, FMenu3Caption, FMenu4Caption: string;
     FTextEditCaption, FRequiredEditCaption, FReadOnlyEditCaption: string;
     FButtonNormalCaption, FButtonHotCaption, FButtonPressedCaption, FButtonDisabledCaption: string;
+    FCheckBoxCaption: string;
     FScale: Double;
   protected
     procedure Paint; override;
@@ -109,6 +111,7 @@ begin
   FButtonHotCaption := 'Hot';
   FButtonPressedCaption := 'Pressed';
   FButtonDisabledCaption := 'Disabled';
+  FCheckBoxCaption := 'Check';
   FEditRequiredColor := clDefault;
   FEditReadonlyColor := clDefault;
 end;
@@ -128,7 +131,7 @@ var
   //i: Integer;
   FBitmap: TBitmap;
   LDetails, CaptionDetails, IconDetails: TThemedElementDetails;
-  IconRect, BorderRect, CaptionRect, ButtonRect , TextRect: TRect;
+  IconRect, BorderRect, CaptionRect, ButtonRect, TextRect: TRect;
   CaptionBitmap : TBitmap;
   ThemeTextColor: TColor;
   ARect, LRect: TRect;
@@ -191,8 +194,12 @@ var
         ButtonRect.Top := ButtonRect.Top + 5;
         ButtonRect.Bottom := ButtonRect.Bottom + 5;
       end;
-      CustomStyle.DrawText(FBitmap.Canvas.Handle, LDetails, ACaption, ButtonRect,
-        TTextFormatFlags(DT_VCENTER or DT_CENTER), ThemeTextColor);
+      if AButtonTheme = tbCheckBoxCheckedNormal then
+        CustomStyle.DrawText(FBitmap.Canvas.Handle, LDetails, ACaption, ButtonRect,
+          TTextFormatFlags(DT_VCENTER or DT_RIGHT), ThemeTextColor)
+      else
+        CustomStyle.DrawText(FBitmap.Canvas.Handle, LDetails, ACaption, ButtonRect,
+          TTextFormatFlags(DT_VCENTER or DT_CENTER), ThemeTextColor);
     end;
 
     procedure DrawEdit(const ACaption: string; const ALeft: Integer;
@@ -356,19 +363,20 @@ begin
     if FEditReadonlyColor <> clDefault then
       DrawEdit(FReadOnlyEditCaption, BorderRect.Left + 5 + 85 + 85, FEditReadonlyColor);
 
-    //Draw Buttons
-
-    //Draw Normal
+    //Draw Normal Button
     DrawButton(tbPushButtonNormal, FButtonNormalCaption, 0, 1);
 
-    //Draw Hot
+    //Draw Hot Button
     DrawButton(tbPushButtonHot, FButtonHotCaption, 80, 1);
 
-    //Draw Pressed
+    //Draw Pressed Button
     DrawButton(tbPushButtonPressed, FButtonPressedCaption, 0, 2);
 
-    //Draw Disabled
+    //Draw Disabled Button
     DrawButton(tbPushButtonDisabled, FButtonDisabledCaption, 80, 2);
+
+    //Draw CheckBox
+    DrawButton(tbCheckBoxCheckedNormal, FCheckBoxCaption, 160, 2);
 
     Canvas.Draw(0, 0, FBitmap);
   finally
@@ -389,28 +397,41 @@ begin
   LCaptions := TStringList.Create;
   LCaptions.Text := ACaptions;
   try
-    if LCaptions.Count  > 0 then
+    if LCaptions.Count  > 0 then //File
       FMenu1Caption := LCaptions.Strings[0];
-    if LCaptions.Count  > 1 then
+
+    if LCaptions.Count  > 1 then //Edit
       FMenu2Caption := LCaptions.Strings[1];
-    if LCaptions.Count  > 2 then
+
+    if LCaptions.Count  > 2 then //View
       FMenu3Caption := LCaptions.Strings[2];
-    if LCaptions.Count  > 3 then
+
+    if LCaptions.Count  > 3 then //Help
       FMenu4Caption := LCaptions.Strings[3];
-    if LCaptions.Count  > 4 then
+
+    if LCaptions.Count  > 4 then //Text editor
       FTextEditCaption := LCaptions.Strings[4];
-    if LCaptions.Count  > 5 then
+
+    if LCaptions.Count  > 5 then //Normal
       FButtonNormalCaption := LCaptions.Strings[5];
-    if LCaptions.Count  > 6 then
+
+    if LCaptions.Count  > 6 then //Hot
       FButtonHotCaption := LCaptions.Strings[6];
-    if LCaptions.Count  > 7 then
+
+    if LCaptions.Count  > 7 then //Pressed
       FButtonPressedCaption := LCaptions.Strings[7];
-    if LCaptions.Count  > 8 then
+
+    if LCaptions.Count  > 8 then //Disabled
       FButtonDisabledCaption := LCaptions.Strings[8];
-    if LCaptions.Count  > 9 then
+
+    if LCaptions.Count  > 9 then //Required
       FRequiredEditCaption := LCaptions.Strings[9];
-    if LCaptions.Count  > 10 then
+
+    if LCaptions.Count  > 10 then //Readonly
       FReadonlyEditCaption := LCaptions.Strings[10];
+
+    if LCaptions.Count  > 11 then //CheckBox
+      FCheckBoxCaption := LCaptions.Strings[11];
   finally
     LCaptions.Free;
   end;

@@ -939,7 +939,7 @@ procedure TFormMain.actChangeThemeExecute(Sender: TObject);
 begin
   //Show Theme selector
   if ShowVCLThemeSelector(FActiveStyleName,
-    False, 3, 3) then
+    False, 3, 4) then
     ActiveStyleName := FActiveStyleName;
 end;
 
