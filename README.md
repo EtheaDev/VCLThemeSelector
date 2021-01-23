@@ -38,16 +38,16 @@ License: the CBVCLStylePreview is based on VCLStylePreview (Vcl.Styles.Ext) from
 
 Also included in this repository you can find a full example of an HighDPI - VCL Themed enabled application that uses the VCLThemeSelector to change the Theme. You can run the demo from: Demo\Bin\ModernAppDemo.exe.
 
-### Demo from 10.1 to 10.3 (with IconFontsImageList)
+### Demo from 10.1 to 10.3 (with SVGIconsImageList)
 ![https://github.com/EtheaDev/VCLThemeSelector/blob/master/Demo/Images/DemoPreview.jpg](https://github.com/EtheaDev/VCLThemeSelector/blob/master/Demo/Images/DemoPreview.jpg)
 
-### Demo with 10.4 (with PerControlStyle and SVGIconsImageList)
+### Demo with 10.4 (with PerControlStyle and IconFontsImageList)
 ![https://github.com/EtheaDev/VCLThemeSelector/blob/master/Demo/Images/DemoPreviewD10_4.jpg](https://github.com/EtheaDev/VCLThemeSelector/blob/master/Demo/Images/DemoPreviewD10_4.jpg)
-
-License: this Demo is inspired by TSplitView demo (original software is Copyright (c) 2015 Embarcadero Technologies, Inc.) and is released under Apache 2.0 license.
 
 WARNING: to edit and compile the demo you must first download:
 [IconFontsImageList free components here...](https://github.com/EtheaDev/IconFontsImageList/) and [SVGIconImageList free components here...](https://github.com/EtheaDev/SVGIconImageList/)
+
+License: this Demo is inspired by TSplitView demo (original software is Copyright (c) 2015 Embarcadero Technologies, Inc.) and is released under Apache 2.0 license.
 
 ## Compatibility ##
 
