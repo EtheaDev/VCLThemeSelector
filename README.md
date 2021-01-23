@@ -4,6 +4,8 @@
 
 ![Delphi 10.4 Sydney Support](/Demo/Images/SupportingDelphi.jpg)
 
+Related links: https://www.embarcadero.com/ - https://learndelphi.org/
+
 With **VCLThemeSelector** you can easily add a modern and elegant Theme selector for your Delphi VCL app. The Form shows all the VCL Styles included in your application, then arrange them in defined Rows and Columns. You can specify to include or not 'Windows' not-styled option.
 
 ### Preview (before Dephi 10.3)
@@ -23,7 +25,7 @@ begin
   LStyleName := TStyleManager.ActiveStyle.Name;
   LExcludeWindows := False;
   LMaxRows := 3;
-  LMaxCols := 3;
+  LMaxCols := 4;
   if ShowVCLThemeSelector(LStyleName, LExcludeWindows, LMaxRows, LMaxCols) then
     TStyleManager.SetStyle(LStyleName);
 end;    
@@ -54,6 +56,16 @@ WARNING: to edit and compile the demo you must first download:
 
 ## Release Notes ##
 
+23 Jan 2021
+- Changed preview to separate Light and Dark Themes
+- Added support for info about Themes: 
+  TThemeAttribute = class
+    StyleName: String;
+    ThemeType: TThemeType;
+    EditRequiredColor: TColor;
+    EditReadonlyColor: TColor;
+  end;
+  
 30 Aug 2020
 - Changed demo to use new IconsFontsVirtualImageList and SVGIconVirtualImageList components
 - Updated external project VCLStyleUtils
