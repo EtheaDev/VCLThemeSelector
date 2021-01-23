@@ -1,6 +1,6 @@
 # VCLThemeSelector [![License](https://img.shields.io/badge/License-Apache%202.0-yellowgreen.svg)](https://opensource.org/licenses/Apache-2.0)
 
-**Easy and elegant preview/selection of Theme (Light/Dark/Other) for VCL apps plus HighDPI demo**
+**Easy and elegant preview/selection of Theme (Light or Dark) for VCL apps plus HighDPI demo**
 
 ![Delphi 10.4 Sydney Support](/Demo/Images/SupportingDelphi.jpg)
 
