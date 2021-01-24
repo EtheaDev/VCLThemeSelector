@@ -56,7 +56,7 @@ License: this Demo is inspired by TSplitView demo (original software is Copyrigh
 
 ## Release Notes ##
 
-23 Jan 2021
+24 Jan 2021
 - Changed preview to separate Light and Dark Themes
 - Added support for info about Themes: 
   TThemeAttribute = class
