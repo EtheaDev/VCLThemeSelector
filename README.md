@@ -8,10 +8,10 @@ Related links: https://www.embarcadero.com/ - https://learndelphi.org/
 
 With **VCLThemeSelector** you can easily add a modern and elegant Theme selector for your Delphi VCL app. The Form shows all the VCL Styles included in your application, then arrange them in defined Rows and Columns. You can specify to include or not 'Windows' not-styled option.
 
-### Preview (before Dephi 10.3)
+### Preview (before Delphi 10.3)
 ![https://github.com/EtheaDev/VCLThemeSelector/blob/master/Demo/Images/PreviewD10_3.jpg](https://github.com/EtheaDev/VCLThemeSelector/blob/master/Demo/Images/PreviewD10_3.jpg)
 
-### Preview (with Dephi 10.4 - PerControlStyles)
+### Preview (with Delphi 10.4 - PerControlStyles)
 ![https://github.com/EtheaDev/VCLThemeSelector/blob/master/Demo/Images/PreviewD10_4.jpg](https://github.com/EtheaDev/VCLThemeSelector/blob/master/Demo/Images/PreviewD10_4.jpg)
 
 Use the **VCLThemeSelectorLauncher** demo present in Demo Folder to test it, and see how it's easy to use it, like in this example:
