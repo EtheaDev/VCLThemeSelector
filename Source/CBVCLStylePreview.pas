@@ -185,7 +185,10 @@ var
       LDetails := CustomStyle.GetElementDetails(AButtonTheme);
       ButtonRect.Left := Round(BorderRect.Left + 5 + (ALeft * FScale));
       ButtonRect.Top := Round(ARect.Height - (45 * FScale) - ((2 - ALine) * FScale * 30));
-      ButtonRect.Width := Round(75 * FScale);
+      if AButtonTheme = tbCheckBoxCheckedNormal then
+        ButtonRect.Width := Round(25 * FScale)
+      else
+        ButtonRect.Width := Round(75 * FScale);
       ButtonRect.Height := Round(25 * FScale);
       CustomStyle.DrawElement(FBitmap.Canvas.Handle, LDetails, ButtonRect);
       CustomStyle.GetElementColor(LDetails, ecTextColor, ThemeTextColor);
@@ -195,8 +198,11 @@ var
         ButtonRect.Bottom := ButtonRect.Bottom + 5;
       end;
       if AButtonTheme = tbCheckBoxCheckedNormal then
+      begin
+        ButtonRect.Left := ButtonRect.Left + Round(25 * FScale);
         CustomStyle.DrawText(FBitmap.Canvas.Handle, LDetails, ACaption, ButtonRect,
-          TTextFormatFlags(DT_VCENTER or DT_RIGHT), ThemeTextColor)
+          TTextFormatFlags(DT_VCENTER or DT_LEFT), ThemeTextColor)
+      end
       else
         CustomStyle.DrawText(FBitmap.Canvas.Handle, LDetails, ACaption, ButtonRect,
           TTextFormatFlags(DT_VCENTER or DT_CENTER), ThemeTextColor);

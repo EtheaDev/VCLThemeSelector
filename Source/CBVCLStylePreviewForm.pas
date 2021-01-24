@@ -174,7 +174,7 @@ begin
     if LCaptions.Count  > 13 then //Page 2
       Tabcontrol.Tabs[1] := LCaptions.Strings[13];
 
-    if LCaptions.Count  > 11 then //Page 3
+    if LCaptions.Count  > 14 then //Page 3
       Tabcontrol.Tabs[2] := LCaptions.Strings[14];
 
   finally

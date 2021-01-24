@@ -18,8 +18,8 @@ object CBVCLPreviewForm: TCBVCLPreviewForm
   object TabControl: TTabControl
     Left = 0
     Top = 0
-    Width = 354
-    Height = 122
+    Width = 304
+    Height = 72
     Align = alClient
     TabOrder = 0
     Tabs.Strings = (
@@ -27,8 +27,6 @@ object CBVCLPreviewForm: TCBVCLPreviewForm
       'Page2'
       'Page3')
     TabIndex = 0
-    ExplicitWidth = 304
-    ExplicitHeight = 72
     object FNormalTextEdit: TEdit
       Left = 8
       Top = 32
