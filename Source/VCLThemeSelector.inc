@@ -24,3 +24,12 @@
   {$DEFINE D10_4+}
 {$ENDIF}
 
+// Delphi 11.0
+{$IFDEF VER350}
+  {$DEFINE D10_1+}
+  {$DEFINE D10_2+}
+  {$DEFINE D10_3+}
+  {$DEFINE D10_4+}
+  {$DEFINE D11_0+}
+{$ENDIF}
+

@@ -1,6 +1,7 @@
 object CBVCLPreviewForm: TCBVCLPreviewForm
   Left = 0
   Top = 0
+  BorderIcons = [biSystemMenu]
   ClientHeight = 122
   ClientWidth = 354
   Color = clBtnFace
@@ -10,7 +11,7 @@ object CBVCLPreviewForm: TCBVCLPreviewForm
   Font.Name = 'Tahoma'
   Font.Style = []
   Menu = MainMenu
-  OldCreateOrder = True
+  OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
   OnShow = FormShow
   PixelsPerInch = 96
@@ -18,8 +19,8 @@ object CBVCLPreviewForm: TCBVCLPreviewForm
   object TabControl: TTabControl
     Left = 0
     Top = 0
-    Width = 304
-    Height = 72
+    Width = 354
+    Height = 122
     Align = alClient
     TabOrder = 0
     Tabs.Strings = (

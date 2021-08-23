@@ -178,6 +178,7 @@ begin
   end;
   Result := False;
   AThemeAttribute := nil;
+  raise Exception.CreateFmt('Attributes for Style "%s" not found',[AStyleName]);
 end;
 
 procedure FreeThemesAttributes;
@@ -255,7 +256,7 @@ begin
     RegisterThemeAttributes('Windows10 Blue Whale',ttDark, clWebDarkSlategray, clDkGray      );
     RegisterThemeAttributes('Windows10 Clear Day',ttLight, clWebLightYellow  , clWebLightgrey);
     RegisterThemeAttributes('Windows10 Malibu'   ,ttLight, clWebLightYellow  , clWebLightgrey);
-
+    RegisterThemeAttributes('Flat UI Light'      ,ttLight, clWebLightYellow  , clWebLightgrey);
     //Non High DPI Themes
     RegisterThemeAttributes('Amakrits'           ,ttDark , clWebDarkSlategray, clDkGray      );
     RegisterThemeAttributes('Amethyst Kamri'     ,ttLight, clWebLightYellow  , clWebLightgrey);
@@ -440,9 +441,6 @@ begin
     for i := 0 to LStyleNames.Count -1 do
     begin
       LStyleName := LStyleNames.Strings[i];
-      //Jump Windows Style if requested
-      if FExcludeWindows and (LStyleName = 'Windows') then
-        Continue;
 
       GetStyleAttributes(LStyleName, LThemeAttribute);
       if Assigned(LThemeAttribute) then
@@ -460,6 +458,10 @@ begin
         Inc(LCountDark);
       end;
       Inc(LCountStyle);
+
+      //Jump Windows Style if requested
+      if FExcludeWindows and (LStyleName = 'Windows') then
+        Continue;
 
       //First assign size
       LpnPreview.Height := PREVIEW_HEIGHT;

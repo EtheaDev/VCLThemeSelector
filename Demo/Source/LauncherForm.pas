@@ -36,7 +36,8 @@ uses
   , Vcl.StdCtrls
   , Vcl.ExtCtrls
   , Vcl.Themes
-  , Vcl.Imaging.pngimage;
+  , Vcl.Imaging.pngimage
+  , Vcl.Mask;
 
 const
   COMPANY_NAME = 'Ethea';

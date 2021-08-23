@@ -72,6 +72,7 @@ type
       Shift: TShiftState; X, Y: Integer);
     procedure FButtonNormalMouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
+    procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
   private
     FButtonNormalCaption: string;
     FButtonHotCaption: string;
@@ -109,6 +110,12 @@ procedure TCBVCLPreviewForm.FButtonNormalMouseUp(Sender: TObject;
   Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
 begin
   FButtonNormal.Caption := FButtonHotCaption;
+end;
+
+procedure TCBVCLPreviewForm.FormCloseQuery(Sender: TObject;
+  var CanClose: Boolean);
+begin
+  CanClose := False;
 end;
 
 procedure TCBVCLPreviewForm.FormCreate(Sender: TObject);

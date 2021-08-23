@@ -30,6 +30,7 @@ uses
   SysUtils,
   Vcl.Themes,
   Vcl.Styles,
+  MidasLib,
   uSplitView in '..\..\Source\uSplitView.pas' {FormMain},
   EditForm in '..\..\Source\EditForm.pas' {FmEdit},
   FVCLThemeSelector in '..\..\..\Source\FVCLThemeSelector.pas' {VCLThemeSelectorForm},
