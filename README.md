@@ -26,7 +26,7 @@ begin
   LExcludeWindows := False;
   LMaxRows := 3;
   LMaxCols := 4;
-  if ShowVCLThemeSelector(LStyleName, LExcludeWindows, LMaxRows, LMaxCols) then
+  if ShowVCLThemeSelector(LStyleName, LExcludeWindows, LMaxCols, LMaxRows) then
     TStyleManager.SetStyle(LStyleName);
 end;    
 ```
