@@ -2,7 +2,7 @@
 {                                                                              }
 {       VCLThemeSelector: Form for Preview and Selection of VCL Style          }
 {                                                                              }
-{       Copyright (c) 2020 (Ethea S.r.l.)                                      }
+{       Copyright (c) 2020, 2021 (Ethea S.r.l.)                                }
 {       Author: Carlo Barazzetta                                               }
 {       Contributor: Nicola Tambascia                                          }
 {                                                                              }
@@ -40,7 +40,7 @@ uses
   , Vcl.Controls;
 
 const
-  VCLThemeSelectorVersion = '1.2.0';
+  VCLThemeSelectorVersion = '1.3.0';
   DEFAULT_MAXROWS = 3;
   DEFAULT_MAXCOLUMNS = 4;
 
@@ -151,7 +151,7 @@ uses
   Vcl.Themes
   {$IF CompilerVersion > 33}
   , CBVCLStylePreviewForm
-  {$ENDIF}
+  {$IFEND}
   , CBVCLStylePreview
   , Winapi.Messages
   , System.UITypes
@@ -257,6 +257,8 @@ begin
     RegisterThemeAttributes('Windows10 Clear Day',ttLight, clWebLightYellow  , clWebLightgrey);
     RegisterThemeAttributes('Windows10 Malibu'   ,ttLight, clWebLightYellow  , clWebLightgrey);
     RegisterThemeAttributes('Flat UI Light'      ,ttLight, clWebLightYellow  , clWebLightgrey);
+    RegisterThemeAttributes('Windows11 Light'    ,ttLight, clWebLightYellow  , clWebAliceBlue);
+    RegisterThemeAttributes('Windows11 Dark'     ,ttDark,  clWebDarkBlue     , clWebDarkGray );
     //Non High DPI Themes
     RegisterThemeAttributes('Amakrits'           ,ttDark , clWebDarkSlategray, clDkGray      );
     RegisterThemeAttributes('Amethyst Kamri'     ,ttLight, clWebLightYellow  , clWebLightgrey);
@@ -412,9 +414,9 @@ var
   LStyleNames: TStringList;
   LpnPreview: TPanel;
   LpnButton: TButton;
-  {$IF CompilerVersion > 33}
+  {$IF CompilerVersion >= 34}
   LVCLPreviewForm: TCBVCLPreviewForm;
-  {$ENDIF}
+  {$IFEND}
   LVCLPreview: TCBVclStylesPreview;
   LCountStyle, LCountLight, LCountDark: Integer;
   LNumRows : integer;
@@ -485,7 +487,7 @@ begin
       LpnButton.Caption :=  LStyleName;
       LpnButton.Cursor := crHandPoint;
 
-      {$IF CompilerVersion > 33}
+      {$IF CompilerVersion >= 34}
       if TStyleManager.ActiveStyle.Name = 'Windows' then
       begin
         //If the application Style is "Windows" cannot use per-control styles
@@ -520,7 +522,7 @@ begin
       {$ELSE}
       //Before 10.4 cannot use per-control styles
       LVCLPreview := TCBVclStylesPreview.Create(LpnPreview);
-      {$ENDIF}
+      {$IFEND}
       if Assigned(LVCLPreview) then
       begin
         LVCLPreview.Caption := PREVIEW_THEME;
@@ -539,10 +541,10 @@ begin
         LpnButton.Font.Style := [fsBold];
       end;
 
-      {$IF CompilerVersion > 33}
+      {$IF CompilerVersion >= 34}
       if Assigned(LVCLPreviewForm) then
         LVCLPreviewForm.FormShow(LVCLPreview);
-      {$ENDIF}
+      {$IFEND}
     end;
 
     if LCountLight > LCountDark then

@@ -1,18 +1,9 @@
-//-----------------------------------------------------------------------------
-// Original software is Copyright (c) 2015 Embarcadero Technologies, Inc.
-// You may only use this software if you are an authorized licensee
-// of an Embarcadero developer tools product.
-// This software is considered a Redistributable as defined under
-// the software license agreement that comes with the Embarcadero Products
-// and is subject to that software license agreement.
-
-//-----------------------------------------------------------------------------
 {******************************************************************************}
 {  ModernAppDemo by Carlo Barazzetta                                           }
 {  A full example of an HighDPI - VCL Themed enabled application               }
 {  See how to select the application Theme using VCLThemeSelector Form         }
 {                                                                              }
-{       Copyright (c) 2020 (Ethea S.r.l.)                                      }
+{       Copyright (c) 2020, 2021 (Ethea S.r.l.)                                }
 {       Author: Carlo Barazzetta                                               }
 {       https://github.com/EtheaDev/VCLThemeSelector                           }
 {                                                                              }
@@ -29,6 +20,14 @@
 {  limitations under the License.                                              }
 {                                                                              }
 {******************************************************************************}
+//-----------------------------------------------------------------------------
+// Original software is Copyright (c) 2015 Embarcadero Technologies, Inc.
+// You may only use this software if you are an authorized licensee
+// of an Embarcadero developer tools product.
+// This software is considered a Redistributable as defined under
+// the software license agreement that comes with the Embarcadero Products
+// and is subject to that software license agreement.
+//-----------------------------------------------------------------------------
 
 unit uSplitView;
 

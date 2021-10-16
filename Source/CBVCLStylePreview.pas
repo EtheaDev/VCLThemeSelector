@@ -26,8 +26,6 @@
 {******************************************************************************}
 unit CBVCLStylePreview;
 
-{$Include VCLThemeSelector.inc}
-
 interface
 
 Uses
@@ -62,11 +60,11 @@ type
     FScale: Double;
   protected
     procedure Paint; override;
-    {$IFDEF D10_1+}
+    {$IF CompilerVersion >= 31}
     procedure ChangeScale(M, D: Integer; isDpiChange: Boolean); override;
     {$ELSE}
     procedure ChangeScale(M, D: Integer); override;
-    {$ENDIF}
+    {$IFEND}
   public
     procedure SetCaptions(const ACaptions: string);
     procedure SetEditColors(const ARequiredColor, AReadonlyColor: TColor);
@@ -81,11 +79,11 @@ implementation
 
 { TVclStylePreview }
 
-{$IFDEF D10_1+}
+{$IF CompilerVersion >= 31}
 procedure TCBVclStylesPreview.ChangeScale(M, D: Integer; isDpiChange: Boolean);
 {$ELSE}
 procedure TCBVclStylesPreview.ChangeScale(M, D: Integer);
-{$ENDIF}
+{$IFEND}
 begin
   inherited;
   FScale := FScale * (M / D);

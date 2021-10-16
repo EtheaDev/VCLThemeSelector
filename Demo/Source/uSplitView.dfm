@@ -11,7 +11,6 @@ object FormMain: TFormMain
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
-  OldCreateOrder = False
   Position = poScreenCenter
   ScreenSnap = True
   ShowHint = True
@@ -127,7 +126,7 @@ object FormMain: TFormMain
         Top = 59
         Width = 223
         Height = 100
-        ItemHeight = 13
+        ItemHeight = 20
         Items.Strings = (
           'First'
           'Second'

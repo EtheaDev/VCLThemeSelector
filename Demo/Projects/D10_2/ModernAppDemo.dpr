@@ -1,14 +1,12 @@
-//---------------------------------------------------------------------------
-// Original software is Copyright (c) 2015 Embarcadero Technologies, Inc.
-// You may only use this software if you are an authorized licensee
-// of an Embarcadero developer tools product.
-// This software is considered a Redistributable as defined under
-// the software license agreement that comes with the Embarcadero Products
-// and is subject to that software license agreement.
-//---------------------------------------------------------------------------
 {******************************************************************************}
 {  ModernAppDemo by Carlo Barazzetta                                           }
-{                                                                              ]
+{  A full example of an HighDPI - VCL Themed enabled application               }
+{  See how to select the application Theme using VCLThemeSelector Form         }
+{                                                                              }
+{       Copyright (c) 2020, 2021 (Ethea S.r.l.)                                }
+{       Author: Carlo Barazzetta                                               }
+{       https://github.com/EtheaDev/VCLThemeSelector                           }
+{                                                                              }
 {  Licensed under the Apache License, Version 2.0 (the "License");             }
 {  you may not use this file except in compliance with the License.            }
 {  You may obtain a copy of the License at                                     }
@@ -22,12 +20,11 @@
 {  limitations under the License.                                              }
 {                                                                              }
 {******************************************************************************}
-
 program ModernAppDemo;
 
 uses
-  Forms,
-  SysUtils,
+  Vcl.Forms,
+  System.SysUtils,
   Vcl.Themes,
   Vcl.Styles,
   MidasLib,
