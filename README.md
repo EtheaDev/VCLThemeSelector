@@ -8,11 +8,11 @@ Related links: https://www.embarcadero.com/ - https://learndelphi.org/
 
 With **VCLThemeSelector** you can easily add a modern and elegant Theme selector for your Delphi VCL app. The Form shows all the VCL Styles included in your application, then arrange them in defined Rows and Columns. You can specify to include or not 'Windows' not-styled option.
 
-### Preview (before Delphi 10.3)
-![/Demo/Images/PreviewD10_3.jpg](/Demo/Images/PreviewD10_3.jpg)
-
-### Preview (with Delphi 10.4 - PerControlStyles)
+### Preview (with Delphi 10.4/11.0 - PerControlStyles)
 ![/Demo/Images/PreviewD10_4.jpg](/Demo/Images/PreviewD10_4.jpg)
+
+### Preview (before Delphi 10.3 - Without PerControlStyle)
+![/Demo/Images/PreviewD10_3.jpg](/Demo/Images/PreviewD10_3.jpg)
 
 Use the **VCLThemeSelectorLauncher** demo present in Demo Folder to test it, and see how it's easy to use it, like in this example:
 
@@ -26,7 +26,7 @@ begin
   LExcludeWindows := False;
   LMaxRows := 3;
   LMaxCols := 4;
-  if ShowVCLThemeSelector(LStyleName, LExcludeWindows, LMaxCols, LMaxRows) then
+  if ShowVCLThemeSelector(LStyleName, LExcludeWindows, LMaxRows, LMaxCols) then
     TStyleManager.SetStyle(LStyleName);
 end;    
 ```
@@ -37,6 +37,12 @@ License: the CBVCLStylePreview is based on VCLStylePreview (Vcl.Styles.Ext) from
 ## High-DPI Delphi App full example ##
 
 Also included in this repository you can find a full example of an HighDPI - VCL Themed enabled application that uses the VCLThemeSelector to change the Theme. You can run the demo from: Demo\Bin\ModernAppDemo.exe.
+
+### Preview ( Delphi 11.0 and Windows 11 Dark Style)
+![/Demo/Images/DemoPreviewD11_Dark.jpg](/Demo/Images/DemoPreviewD11_Dark.jpg)
+
+### Preview ( Delphi 11.0 and Windows 11 Light Style)
+![/Demo/Images/DemoPreview_D11_Light.jpg](/Demo/Images/DemoPreview_D11_Light.jpg)
 
 ### Demo from 10.1 to 10.3 (with SVGIconsImageList)
 ![/Demo/Images/DemoPreview.jpg](/Demo/Images/DemoPreview.jpg)
@@ -55,6 +61,13 @@ License: this Demo is inspired by TSplitView demo (original software is Copyrigh
 **ModernAppDemo** is compatible with Delphi 10.3, Delphi 10.2 and Delphi 10.1 (with 10.1 png stream format of pictures inside biolife.xml are incompatible: use an old biolife.xml file).
 
 ## Release Notes ##
+
+16 Oct 2021
+- Added New Windows11 Light and Dark Themes to Modern Demo (Delphi 11)
+- Added New Windows11 Light and Dark Themes to Launcher (Delphi 11)
+
+23 Aug 2021
+- Added support for Delphi 11
 
 24 Jan 2021
 - Changed preview to separate Light and Dark Themes
