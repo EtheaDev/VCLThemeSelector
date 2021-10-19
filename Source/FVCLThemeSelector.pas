@@ -40,7 +40,7 @@ uses
   , Vcl.Controls;
 
 const
-  VCLThemeSelectorVersion = '1.3.0';
+  VCLThemeSelectorVersion = '1.3.1';
   DEFAULT_MAXROWS = 3;
   DEFAULT_MAXCOLUMNS = 4;
 
@@ -257,8 +257,8 @@ begin
     RegisterThemeAttributes('Windows10 Clear Day',ttLight, clWebLightYellow  , clWebLightgrey);
     RegisterThemeAttributes('Windows10 Malibu'   ,ttLight, clWebLightYellow  , clWebLightgrey);
     RegisterThemeAttributes('Flat UI Light'      ,ttLight, clWebLightYellow  , clWebLightgrey);
-    RegisterThemeAttributes('Windows11 Light'    ,ttLight, clWebLightYellow  , clWebAliceBlue);
-    RegisterThemeAttributes('Windows11 Dark'     ,ttDark,  clWebDarkBlue     , clWebDarkGray );
+    RegisterThemeAttributes('Windows11 Modern Light',ttLight, clWebLightYellow  , clWebAliceBlue);
+    RegisterThemeAttributes('Windows11 Modern Dark' ,ttDark,  clWebDarkBlue     , clWebDarkGray );
     //Non High DPI Themes
     RegisterThemeAttributes('Amakrits'           ,ttDark , clWebDarkSlategray, clDkGray      );
     RegisterThemeAttributes('Amethyst Kamri'     ,ttLight, clWebLightYellow  , clWebLightgrey);

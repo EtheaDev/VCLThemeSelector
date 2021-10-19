@@ -1,7 +1,7 @@
 object FormMain: TFormMain
   Left = 0
   Top = 0
-  Caption = 'TSplitView'
+  Caption = 'Modern App Demo'
   ClientHeight = 669
   ClientWidth = 1034
   Color = clBtnFace

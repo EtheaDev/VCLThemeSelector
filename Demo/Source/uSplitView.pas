@@ -656,7 +656,11 @@ var
 begin
   if Value <> '' then
   begin
-    TStyleManager.SetStyle(Value);
+    try
+      TStyleManager.SetStyle(Value);
+    except
+      WriteAppStyleToReg(COMPANY_NAME, ExtractFileName(Application.ExeName), 'Windows');
+    end;
     WriteAppStyleToReg(COMPANY_NAME, ExtractFileName(Application.ExeName), Value);
     FActiveStyleName := Value;
     if FActiveStyleName = 'Windows' then

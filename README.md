@@ -38,10 +38,10 @@ License: the CBVCLStylePreview is based on VCLStylePreview (Vcl.Styles.Ext) from
 
 Also included in this repository you can find a full example of an HighDPI - VCL Themed enabled application that uses the VCLThemeSelector to change the Theme. You can run the demo from: Demo\Bin\ModernAppDemo.exe.
 
-### Preview ( Delphi 11.0 and Windows 11 Dark Style)
+### Preview ( Delphi 11.0 and Windows 11 Modern Dark Style)
 ![/Demo/Images/DemoPreviewD11_Dark.jpg](/Demo/Images/DemoPreviewD11_Dark.jpg)
 
-### Preview ( Delphi 11.0 and Windows 11 Light Style)
+### Preview ( Delphi 11.0 and Windows 11 Modern Light Style)
 ![/Demo/Images/DemoPreview_D11_Light.jpg](/Demo/Images/DemoPreview_D11_Light.jpg)
 
 ### Demo from 10.1 to 10.3 (with SVGIconsImageList)
@@ -61,6 +61,10 @@ License: this Demo is inspired by TSplitView demo (original software is Copyrigh
 **ModernAppDemo** is compatible with Delphi 10.3, Delphi 10.2 and Delphi 10.1 (with 10.1 png stream format of pictures inside biolife.xml are incompatible: use an old biolife.xml file).
 
 ## Release Notes ##
+
+19 Oct 2021
+- Replaced "Windows11 Light" and "Windows11 Dark" Styles with "Windows11 Modern Light" and "Windows11 Modern Dark"
+- Updated demos to use new Windows 11 Styles available from Get-It
 
 16 Oct 2021
 - Added New Windows11 Light and Dark Themes to Modern Demo (Delphi 11)
