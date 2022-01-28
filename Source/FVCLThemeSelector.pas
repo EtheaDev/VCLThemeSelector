@@ -2,7 +2,7 @@
 {                                                                              }
 {       VCLThemeSelector: Form for Preview and Selection of VCL Style          }
 {                                                                              }
-{       Copyright (c) 2020, 2021 (Ethea S.r.l.)                                }
+{       Copyright (c) 2020-2022 (Ethea S.r.l.)                                 }
 {       Author: Carlo Barazzetta                                               }
 {       Contributor: Nicola Tambascia                                          }
 {                                                                              }
@@ -37,7 +37,8 @@ uses
   , Vcl.Forms
   , Vcl.StdCtrls
   , Vcl.Graphics
-  , Vcl.Controls;
+  , Vcl.Controls
+  , Vcl.DBCtrls;
 
 const
   VCLThemeSelectorVersion = '1.3.1';
@@ -45,6 +46,32 @@ const
   DEFAULT_MAXCOLUMNS = 4;
 
 resourcestring
+{$IFDEF LANGUAGE_ITA}
+  SELECT_THEME = 'Seleziona il tema chiaro o scuro';
+  APPLY_THEME = 'Applica';
+  CANCEL_THEME = 'Annulla';
+  LIGHT_THEMES = 'Temi chiari';
+  DARK_THEMES = 'Temi scuri';
+
+  PREVIEW_THEME = 'Anteprima';
+  THEME_SELECTED = 'Nuovo tema selezionato: %s';
+  THEME_PREVIEW_VALUES =
+    'File'+sLineBreak+
+    'Modifica'+sLineBreak+
+    'Visualizza'+sLineBreak+
+    'Help'+sLineBreak+
+    'Editor di testo'+sLineBreak+
+    'Normale'+sLineBreak+
+    'Caldo'+sLineBreak+
+    'Premuto'+sLineBreak+
+    'Disabilitato'+sLineBreak+
+    'Obbligatorio'+sLineBreak+
+    'Sola lettura'+sLineBreak+
+    'Spunta'+sLineBreak+
+    'Pag. 1'+sLineBreak+
+    'Pag. 2'+sLineBreak+
+    'Pag. 3'+sLineBreak;
+{$ELSE}
   SELECT_THEME = 'Select Light or Dark theme';
   APPLY_THEME = 'Apply';
   CANCEL_THEME = 'Cancel';
@@ -69,6 +96,7 @@ resourcestring
     'Page 1'+sLineBreak+
     'Page 2'+sLineBreak+
     'Page 3'+sLineBreak;
+{$ENDIF}
 
 type
   TVCLThemeSelectorForm = class(TForm)
@@ -142,6 +170,13 @@ procedure ReadAppStyleAndFontFromReg(const CompanyName, ApplicationName: string;
   out AAppStyle: string; const AFont: TFont);
 procedure WriteAppStyleAndFontToReg(const CompanyName, ApplicationName: string;
   const AAppStyle: string; const AFont: TFont);
+procedure SetEditorStyleAttributes(const AEditControl: TDBEdit);
+procedure SetRequiredEditStyleAttributes(const AEdit: TCustomEdit);
+
+//To add new styles used from your application that are not managed by default
+procedure RegisterThemeAttributes(const AVCLStyleName: string;
+  const AThemeType: TThemeType; const AEditRequiredColor: TColor;
+  const AEditReadonlyColor: TColor);
 
 implementation
 
@@ -149,6 +184,7 @@ implementation
 
 uses
   Vcl.Themes
+  , System.TypInfo
   {$IF CompilerVersion > 33}
   , CBVCLStylePreviewForm
   {$IFEND}
@@ -178,7 +214,8 @@ begin
   end;
   Result := False;
   AThemeAttribute := nil;
-  raise Exception.CreateFmt('Attributes for Style "%s" not found',[AStyleName]);
+  raise Exception.CreateFmt('Attributes for Style "%s" not found!'+sLineBreak+
+    'please call RegisterThemeAttributes in an initialization section to add your custom style',[AStyleName]);
 end;
 
 procedure FreeThemesAttributes;
@@ -297,6 +334,8 @@ begin
     begin
       if FRegistry.ValueExists('FontName') then
         AFont.Name := FRegistry.ReadString('FontName');
+      if FRegistry.ValueExists('PixelsPerInch') then
+        AFont.PixelsPerInch := FRegistry.ReadInteger('PixelsPerInch');
       if FRegistry.ValueExists('FontHeight') then
         AFont.Height := FRegistry.ReadInteger('FontHeight');
       if FRegistry.ValueExists('FontColor') then
@@ -323,6 +362,7 @@ begin
     begin
       FRegistry.WriteString('FontName',AFont.Name);
       FRegistry.WriteInteger('FontHeight',AFont.Height);
+      FRegistry.WriteInteger('PixelsPerInch',AFont.PixelsPerInch);
       FRegistry.WriteInteger('FontColor',AFont.Color);
       FRegistry.WriteBool('FontBold',fsBold in AFont.Style);
       FRegistry.WriteBool('FontItalic',fsItalic in AFont.Style);
@@ -370,6 +410,89 @@ begin
     Screen.Cursor := crDefault;
   End;
 end;
+
+procedure SetEditorStyleAttributes(const AEditControl: TDBEdit);
+var
+  LActiveStyleName: string;
+  LThemeAttribute: TThemeAttribute;
+  LDetails: TThemedElementDetails;
+  LFontColor: TColor;
+begin
+  AEditControl.StyleElements := [seBorder];
+
+  //Retrieve info from my LThemeAttribute structure
+  LActiveStyleName := TStyleManager.ActiveStyle.Name;
+  if GetStyleAttributes(LActiveStyleName, LThemeAttribute) then
+  begin
+    if AEditControl.ReadOnly then
+      AEditControl.Color := LThemeAttribute.EditReadonlyColor
+    else
+      AEditControl.Color := LThemeAttribute.EditRequiredColor;
+  end
+  else
+  begin
+    AEditControl.Color := clWindow;
+  end;
+
+  if StyleServices.Enabled then
+  begin
+    LDetails := StyleServices.GetElementDetails(teEditTextNormal);
+    StyleServices.GetElementColor(LDetails, ecTextColor, LFontColor);
+  end
+  else
+    LFontColor := clDefault;
+
+  AEditControl.Font.Color := LFontColor;
+end;
+
+procedure SetRequiredEditStyleAttributes(const AEdit: TCustomEdit);
+var
+  LActiveStyleName: string;
+  LThemeAttribute: TThemeAttribute;
+  LDetails: TThemedElementDetails;
+  LFontColor: TColor;
+  LFont: TFont;
+  LReadOnly: Boolean;
+begin
+  AEdit.StyleElements := [seBorder];
+
+  //Recupero le informazioni dalla mia struttura LThemeAttribute
+  LActiveStyleName := TStyleManager.ActiveStyle.Name;
+  if IsPublishedProp(AEdit, 'Color') then
+  begin
+    if GetStyleAttributes(LActiveStyleName, LThemeAttribute) then
+    begin
+      if IsPublishedProp(AEdit, 'ReadOnly') then
+        LReadOnly := Boolean(GetOrdProp(AEdit, 'ReadOnly'))
+      else
+        LReadOnly := AEdit.ReadOnly;
+
+      //Imposto il colore del componente di Edit tramite RTTI
+      if LReadOnly then
+        SetOrdProp(AEdit, 'Color', LThemeAttribute.EditReadonlyColor)
+      else
+        SetOrdProp(AEdit, 'Color', LThemeAttribute.EditRequiredColor);
+    end
+    else
+      SetOrdProp(AEdit, 'Color', clWindow);
+  end;
+
+  if StyleServices.Enabled and (LActiveStyleName <> 'Windows') then
+  begin
+    LDetails := StyleServices.GetElementDetails(teEditTextNormal);
+    StyleServices.GetElementColor(LDetails, ecTextColor, LFontColor);
+  end
+  else
+    LFontColor := clWindowText;
+
+  if IsPublishedProp(AEdit, 'Font') then
+  begin
+    LFont := GetObjectProp(AEdit, 'Font', TFont) as TFont;
+    LFont.Color := LFontColor;
+  end;
+end;
+
+{ TVCLThemeSelectorForm }
 
 procedure TVCLThemeSelectorForm.acApplyStyleExecute(Sender: TObject);
 begin

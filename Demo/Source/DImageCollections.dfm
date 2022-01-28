@@ -1,7 +1,7 @@
 object ImageCollectionDataModule: TImageCollectionDataModule
+  OldCreateOrder = True
   Height = 302
   Width = 584
-  PixelsPerInch = 144
   object SVGIconImageCollection: TSVGIconImageCollection
     SVGIconItems = <
       item

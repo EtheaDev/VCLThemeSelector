@@ -7,13 +7,14 @@ object VCLThemeSelectorForm: TVCLThemeSelectorForm
   ClientWidth = 1065
   Color = clBtnFace
   ParentFont = True
+  OldCreateOrder = True
   Position = poScreenCenter
   ShowHint = True
   OnAfterMonitorDpiChanged = FormAfterMonitorDpiChanged
   OnCreate = FormCreate
   OnResize = FormResize
   PixelsPerInch = 96
-  TextHeight = 25
+  TextHeight = 13
   object paButtons: TPanel
     Left = 0
     Top = 464

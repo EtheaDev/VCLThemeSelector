@@ -2,7 +2,7 @@
 {  VCLThemeSelector Launcher by Carlo Barazzetta                               }
 {  A simple example to launch VCLThemeSelector                                 }
 {                                                                              }
-{       Copyright (c) 2020, 2021 (Ethea S.r.l.)                                }
+{       Copyright (c) 2020-2022 (Ethea S.r.l.)                                 }
 {       Author: Carlo Barazzetta                                               }
 {       https://github.com/EtheaDev/VCLThemeSelector                           }
 {                                                                              }
@@ -112,5 +112,11 @@ begin
 
   inherited;
 end;
+
+initialization
+  //Example: how to add a new style not present into VCLThemeSelectorLauncher.InitDefaultThemesAttributes
+  //download 'Radiant VCL Premium Style' from GetIt Package Manager and add to the
+  //appearance section of this application
+  RegisterThemeAttributes('Radiant', ttLight, clWebLightYellow, clWebLightgrey);
 
 end.
