@@ -106,7 +106,6 @@ object FormMain: TFormMain
         Height = 25
         Action = actHome
         Anchors = [akRight, akBottom]
-        ImageName = 'home'
         Images = SVGIconImageList
         TabOrder = 13
       end
@@ -117,7 +116,6 @@ object FormMain: TFormMain
         Height = 25
         Action = actLog
         Anchors = [akRight, akBottom]
-        ImageName = 'find'
         Images = SVGIconImageList
         TabOrder = 14
       end
@@ -126,7 +124,7 @@ object FormMain: TFormMain
         Top = 59
         Width = 223
         Height = 100
-        ItemHeight = 20
+        ItemHeight = 13
         Items.Strings = (
           'First'
           'Second'
@@ -145,6 +143,7 @@ object FormMain: TFormMain
         Font.Style = []
         ParentFont = False
         TabOrder = 4
+        Zoom = 100
       end
       object SpinEdit: TSpinEdit
         Left = 8
@@ -238,6 +237,7 @@ object FormMain: TFormMain
         Font.Name = 'Tahoma'
         Font.Style = []
         TabOrder = 11
+        Zoom = 100
       end
       object DateTimePicker: TDateTimePicker
         Left = 343
@@ -594,7 +594,6 @@ object FormMain: TFormMain
         Top = 0
         Action = actMenu
         AutoSize = True
-        ImageName = 'menu'
       end
     end
     object ToolBar: TToolBar
@@ -619,19 +618,16 @@ object FormMain: TFormMain
         Left = 0
         Top = 0
         Action = actHome
-        ImageName = 'home'
       end
       object ToolButton3: TToolButton
         Left = 36
         Top = 0
         Action = actChangeTheme
-        ImageName = 'palette'
       end
       object ToolButton4: TToolButton
         Left = 72
         Top = 0
         Action = actSettings
-        ImageName = 'settings'
       end
     end
   end
@@ -673,15 +669,12 @@ object FormMain: TFormMain
           Items = <
             item
               Action = actHome
-              ImageName = 'home'
             end
             item
               Action = actChangeTheme
-              ImageName = 'palette'
             end
             item
               Action = actShowChildForm
-              ImageName = 'layers'
             end>
           TextColor = clHighlightText
         end
@@ -692,19 +685,15 @@ object FormMain: TFormMain
           Items = <
             item
               Action = acErrorMessage
-              ImageName = 'error'
             end
             item
               Action = acConfirmMessage
-              ImageName = 'warning'
             end
             item
               Action = acWarningMessage
-              ImageName = 'alert'
             end
             item
               Action = acInfoMessage
-              ImageName = 'information'
             end>
           TextColor = clHighlightText
         end
@@ -715,19 +704,15 @@ object FormMain: TFormMain
           Items = <
             item
               Action = actLog
-              ImageName = 'find'
             end
             item
               Action = actSettings
-              ImageName = 'settings'
             end
             item
               Action = acAbout
-              ImageName = 'help'
             end
             item
               Action = acExit
-              ImageName = 'exit'
             end>
           TextColor = clHighlightText
         end>
@@ -759,15 +744,12 @@ object FormMain: TFormMain
           Items = <
             item
               Action = actHome
-              ImageName = 'home'
             end
             item
               Action = actChangeTheme
-              ImageName = 'palette'
             end
             item
               Action = actSettings
-              ImageName = 'settings'
             end>
           TextColor = clHighlightText
         end>
@@ -814,24 +796,19 @@ object FormMain: TFormMain
           Items = <
             item
               Action = acFont
-              ImageName = 'font'
             end
             item
               Action = actViewOptions
-              ImageName = 'dashboard'
             end
             item
               Action = acIconFonts
               Caption = 'Icons'
-              ImageName = 'picture'
             end
             item
               Action = actAnimate
-              ImageName = 'play'
             end
             item
               Action = actLog
-              ImageName = 'find'
             end>
         end>
       Color = clBtnFace
@@ -913,7 +890,6 @@ object FormMain: TFormMain
             Height = 25
             Action = acApplyFont
             Anchors = [akLeft, akBottom]
-            ImageName = 'check'
             Images = SVGIconImageList
             TabOrder = 2
           end
@@ -1133,7 +1109,6 @@ object FormMain: TFormMain
             Items = <
               item
                 Action = actBack
-                ImageName = 'arrow-left'
               end>
           end>
         GradientDirection = gdVertical

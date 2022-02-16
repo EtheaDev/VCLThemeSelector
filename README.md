@@ -1,8 +1,8 @@
-# VCLThemeSelector [![License](https://img.shields.io/badge/License-Apache%202.0-yellowgreen.svg)](https://opensource.org/licenses/Apache-2.0)
+﻿# VCLThemeSelector [![License](https://img.shields.io/badge/License-Apache%202.0-yellowgreen.svg)](https://opensource.org/licenses/Apache-2.0)
 
 **Easy and elegant preview/selection of Theme (Light or Dark) for VCL apps plus HighDPI demo**
 
-![Delphi 10.4 Sydney Support](/Demo/Images/SupportingDelphi.jpg)
+![Delphi 11 Alexandria Support](/Demo/Images/SupportingDelphi.jpg)
 
 Related links: https://www.embarcadero.com/ - https://learndelphi.org/
 
@@ -57,10 +57,17 @@ License: this Demo is inspired by TSplitView demo (original software is Copyrigh
 
 ## Compatibility ##
 
-**VCLThemeSelector** and **VCLThemeSelectorLauncher** are compatible from Delphi XE5 to 10.3, with some differences to High-DPI support.
-**ModernAppDemo** is compatible with Delphi 10.3, Delphi 10.2 and Delphi 10.1 (with 10.1 png stream format of pictures inside biolife.xml are incompatible: use an old biolife.xml file).
+**VCLThemeSelector** and **VCLThemeSelectorLauncher** are compatible from Delphi XE5 to 11, with some differences to High-DPI support.
+
+**ModernAppDemo** is compatible with Delphi Delphi 11, 10.4, 10.3, 10.2 and 10.1 (notice: 10.1 png stream format of pictures inside biolife.xml are incompatible: use an old biolife.xml file).
 
 ## Release Notes ##
+
+16 Feb 2022
+- Added italian translation
+- SetEditorStyleAttributes to assign required/readonly attributes to edit controls
+- Added pixelsperinch when storing font
+- Added RegisterThemeAttributes to interface to add personal Styles
 
 19 Oct 2021
 - Replaced "Windows11 Light" and "Windows11 Dark" Styles with "Windows11 Modern Light" and "Windows11 Modern Dark"
