@@ -18,7 +18,6 @@ object FormMain: TFormMain
   OnBeforeMonitorDpiChanged = FormBeforeMonitorDpiChanged
   OnCreate = FormCreate
   OnShow = FormShow
-  PixelsPerInch = 96
   TextHeight = 13
   object splSettings: TSplitter
     Left = 1031
@@ -143,7 +142,6 @@ object FormMain: TFormMain
         Font.Style = []
         ParentFont = False
         TabOrder = 4
-        Zoom = 100
       end
       object SpinEdit: TSpinEdit
         Left = 8
@@ -237,7 +235,6 @@ object FormMain: TFormMain
         Font.Name = 'Tahoma'
         Font.Style = []
         TabOrder = 11
-        Zoom = 100
       end
       object DateTimePicker: TDateTimePicker
         Left = 343
@@ -588,7 +585,7 @@ object FormMain: TFormMain
       ParentColor = False
       TabOrder = 0
       Transparent = True
-      object ToolButton1: TToolButton
+      object MenuToolButton: TToolButton
         AlignWithMargins = True
         Left = 0
         Top = 0
@@ -614,17 +611,17 @@ object FormMain: TFormMain
       ParentColor = False
       TabOrder = 1
       Transparent = True
-      object ToolButton2: TToolButton
+      object HomeToolButton: TToolButton
         Left = 0
         Top = 0
         Action = actHome
       end
-      object ToolButton3: TToolButton
+      object ThemeToolButton: TToolButton
         Left = 36
         Top = 0
         Action = actChangeTheme
       end
-      object ToolButton4: TToolButton
+      object SettingsToolButton: TToolButton
         Left = 72
         Top = 0
         Action = actSettings
@@ -835,7 +832,7 @@ object FormMain: TFormMain
         Width = 300
         Height = 311
         Margins.Top = 60
-        ActivePage = tsFont
+        ActivePage = tsIconFonts
         Align = alClient
         TabOrder = 0
         object tsFont: TTabSheet
@@ -980,10 +977,11 @@ object FormMain: TFormMain
           object IconsToggleSwitch: TToggleSwitch
             Left = 14
             Top = 106
-            Width = 104
+            Width = 112
             Height = 20
+            State = tssOn
             StateCaptions.CaptionOn = 'SVG Icons'
-            StateCaptions.CaptionOff = 'SVG Icons'
+            StateCaptions.CaptionOff = 'Fonts Icons'
             TabOrder = 1
             OnClick = IconsToggleSwitchClick
           end

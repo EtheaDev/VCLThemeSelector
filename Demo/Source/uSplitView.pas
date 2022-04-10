@@ -179,11 +179,11 @@ type
     DBRichEdit: TDBRichEdit;
     Label1: TLabel;
     MenuButtonToolbar: TToolBar;
-    ToolButton1: TToolButton;
+    MenuToolButton: TToolButton;
     ToolBar: TToolBar;
-    ToolButton2: TToolButton;
-    ToolButton3: TToolButton;
-    ToolButton4: TToolButton;
+    HomeToolButton: TToolButton;
+    ThemeToolButton: TToolButton;
+    SettingsToolButton: TToolButton;
     DateTimePicker: TDateTimePicker;
     ClientDataSetSpeciesNo: TFloatField;
     ClientDataSetCategory: TStringField;
@@ -441,6 +441,8 @@ begin
   IconFontsImageList.Size := IconFontsTrackBar.Position;
   IconFontsImageListColored.Size := IconFontsTrackBar.Position;
   SVGIconImageList.Size := IconFontsTrackBar.Position;
+  SV.CompactWidth := IconFontsTrackBar.Position * 2;
+  SV.OpenedWidth := IconFontsTrackBar.Position * 8;
   IconFontsTrackBarUpdate;
 end;
 
