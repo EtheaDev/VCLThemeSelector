@@ -212,7 +212,6 @@ begin
       Exit(True);
     end;
   end;
-  Result := False;
   AThemeAttribute := nil;
   raise Exception.CreateFmt('Attributes for Style "%s" not found!'+sLineBreak+
     'please call RegisterThemeAttributes in an initialization section to add your custom style',[AStyleName]);
@@ -300,6 +299,7 @@ begin
     RegisterThemeAttributes('Material Oxford Blue SE' ,ttDark,  clWebDarkBlue      , clWebDarkGray );
     RegisterThemeAttributes('Puerto Rico'             ,ttLight, clWebLightYellow   , clWebLightgrey);
     RegisterThemeAttributes('Wedgewood Light'         ,ttLight, clWebLightYellow   , clWebAliceBlue);
+
     //Non High DPI Themes
     RegisterThemeAttributes('Amakrits'                ,ttDark , clWebDarkSlategray , clDkGray      );
     RegisterThemeAttributes('Amethyst Kamri'          ,ttLight, clWebLightYellow   , clWebLightgrey);
@@ -308,13 +308,13 @@ begin
     RegisterThemeAttributes('Cyan Dusk'               ,ttLight, clWebLightYellow   , clWebLightgrey);
     RegisterThemeAttributes('Charcoal Dark Slate'     ,ttDark , clWebDarkSlategray , clDkGray      );
     RegisterThemeAttributes('Luna'                    ,ttLight, clWebLightYellow   , clWebLightgrey);
-    RegisterThemeAttributes('Material Oxford Blue'    ,ttDark, clWebDarkSlategray  , clDkGray      );
+    RegisterThemeAttributes('Material Oxford Blue'    ,ttDark,  clWebDarkSlategray , clDkGray      );
     RegisterThemeAttributes('Onyx Blue'               ,ttDark , clWebDarkSlategray , clDkGray      );
     RegisterThemeAttributes('Ruby Graphite'           ,ttDark , clWebDarkRed       , clDkGray      );
     RegisterThemeAttributes('Sapphire Kamri'          ,ttLight, clWebLightYellow   , clWebLightgrey);
     RegisterThemeAttributes('Smokey Quartz Kamri'     ,ttLight, clWebLightYellow   , clWebLightgrey);
     RegisterThemeAttributes('Turquoise Gray'          ,ttLight, clWebLightYellow   , clWebLightgrey);
-    RegisterThemeAttributes('Windows10 Blue Whale LE' ,ttDark,clWebLightYellow     , clDkGray      );
+    RegisterThemeAttributes('Windows10 Blue Whale LE' ,ttDark,  clWebLightYellow   , clDkGray      );
   end;
 end;
 

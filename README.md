@@ -2,17 +2,17 @@
 
 **Easy and elegant preview/selection of Theme (Light or Dark) for VCL apps plus HighDPI demo**
 
-![Delphi 11 Alexandria Support](/Demo/Images/SupportingDelphi.jpg)
+![Delphi 11 Alexandria Support](./Demo/Images/SupportingDelphi.jpg)
 
 Related links: https://www.embarcadero.com/ - https://learndelphi.org/
 
 With **VCLThemeSelector** you can easily add a modern and elegant Theme selector for your Delphi VCL app. The Form shows all the VCL Styles included in your application, then arrange them in defined Rows and Columns. You can specify to include or not 'Windows' not-styled option.
 
 ### Preview (with Delphi 10.4/11 - PerControlStyles)
-![/Demo/Images/PreviewD10_4.jpg](/Demo/Images/PreviewD10_4.jpg)
+![/Demo/Images/PreviewD10_4.jpg](./Demo/Images/PreviewD10_4.jpg)
 
 ### Preview (before Delphi 10.3 - Without PerControlStyle)
-![/Demo/Images/PreviewD10_3.jpg](/Demo/Images/PreviewD10_3.jpg)
+![/Demo/Images/PreviewD10_3.jpg](./Demo/Images/PreviewD10_3.jpg)
 
 Use the **VCLThemeSelectorLauncher** demo present in Demo Folder to test it, and see how it's easy to use it, like in this example:
 
@@ -39,16 +39,16 @@ License: the CBVCLStylePreview is based on VCLStylePreview (Vcl.Styles.Ext) from
 Also included in this repository you can find a full example of an HighDPI - VCL Themed enabled application that uses the VCLThemeSelector to change the Theme. You can run the demo from: Demo\Bin\ModernAppDemo.exe.
 
 ### Preview ( Delphi 11.0 and Windows 11 Modern Dark Style)
-![/Demo/Images/DemoPreviewD11_Dark.jpg](/Demo/Images/DemoPreviewD11_Dark.jpg)
+![/Demo/Images/DemoPreviewD11_Dark.jpg](./Demo/Images/DemoPreviewD11_Dark.jpg)
 
 ### Preview ( Delphi 11.0 and Windows 11 Modern Light Style)
 ![/Demo/Images/DemoPreview_D11_Light.jpg](/Demo/Images/DemoPreview_D11_Light.jpg)
 
 ### Demo from 10.1 to 10.3 (with SVGIconsImageList)
-![/Demo/Images/DemoPreview.jpg](/Demo/Images/DemoPreview.jpg)
+![/Demo/Images/DemoPreview.jpg](./Demo/Images/DemoPreview.jpg)
 
 ### Demo with 10.4 (with PerControlStyle and IconFontsImageList)
-![/Demo/Images/DemoPreviewD10_4.jpg](/Demo/Images/DemoPreviewD10_4.jpg)
+![/Demo/Images/DemoPreviewD10_4.jpg](./Demo/Images/DemoPreviewD10_4.jpg)
 
 WARNING: to edit and compile the demo you must first download:
 [IconFontsImageList free components here...](https://github.com/EtheaDev/IconFontsImageList/) and [SVGIconImageList free components here...](https://github.com/EtheaDev/SVGIconImageList/)
@@ -62,6 +62,9 @@ License: this Demo is inspired by TSplitView demo (original software is Copyrigh
 **ModernAppDemo** is compatible with Delphi Delphi 11, 10.4, 10.3, 10.2 and 10.1 (notice: 10.1 png stream format of pictures inside biolife.xml are incompatible: use an old biolife.xml file).
 
 ## Release Notes ##
+
+15 Sep 2022
+- Built with Delphi 11.2
 
 10 Apr 2022
 - Built with Delphi 11.1
