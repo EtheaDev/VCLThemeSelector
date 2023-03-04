@@ -5,6 +5,7 @@ object CBVCLPreviewForm: TCBVCLPreviewForm
   ClientHeight = 122
   ClientWidth = 354
   Color = clBtnFace
+  DoubleBuffered = True
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -14,7 +15,6 @@ object CBVCLPreviewForm: TCBVCLPreviewForm
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
   OnShow = FormShow
-  PixelsPerInch = 96
   TextHeight = 13
   object TabControl: TTabControl
     Left = 0
@@ -28,6 +28,8 @@ object CBVCLPreviewForm: TCBVCLPreviewForm
       'Page2'
       'Page3')
     TabIndex = 0
+    ExplicitWidth = 350
+    ExplicitHeight = 121
     object FNormalTextEdit: TEdit
       Left = 8
       Top = 32
@@ -38,7 +40,7 @@ object CBVCLPreviewForm: TCBVCLPreviewForm
     end
     object FButtonNormal: TButton
       Left = 8
-      Top = 67
+      Top = 60
       Width = 75
       Height = 25
       Caption = 'Normal'
@@ -49,8 +51,8 @@ object CBVCLPreviewForm: TCBVCLPreviewForm
       OnMouseUp = FButtonNormalMouseUp
     end
     object FButtonDisabled: TButton
-      Left = 89
-      Top = 67
+      Left = 94
+      Top = 60
       Width = 75
       Height = 25
       Caption = 'Disabled'
@@ -74,14 +76,25 @@ object CBVCLPreviewForm: TCBVCLPreviewForm
       Text = 'ReadOnly'
     end
     object CheckBox: TCheckBox
-      Left = 187
-      Top = 67
+      Left = 182
+      Top = 60
       Width = 97
       Height = 17
       Caption = 'Check'
       Checked = True
       State = cbChecked
       TabOrder = 5
+    end
+    object ScrollBar: TScrollBar
+      Left = 4
+      Top = 101
+      Width = 346
+      Height = 17
+      Align = alBottom
+      PageSize = 0
+      TabOrder = 6
+      ExplicitTop = 100
+      ExplicitWidth = 342
     end
   end
   object MainMenu: TMainMenu

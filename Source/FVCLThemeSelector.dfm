@@ -3,26 +3,26 @@ object VCLThemeSelectorForm: TVCLThemeSelectorForm
   Top = 0
   Hint = 'Select theme by clicking on the name'
   Caption = 'Select Light or Dark theme'
-  ClientHeight = 502
-  ClientWidth = 1065
+  ClientHeight = 501
+  ClientWidth = 1061
   Color = clBtnFace
   ParentFont = True
-  OldCreateOrder = True
   Position = poScreenCenter
   ShowHint = True
   OnAfterMonitorDpiChanged = FormAfterMonitorDpiChanged
   OnCreate = FormCreate
   OnResize = FormResize
-  PixelsPerInch = 96
-  TextHeight = 13
+  TextHeight = 15
   object paButtons: TPanel
     Left = 0
-    Top = 464
-    Width = 1065
+    Top = 463
+    Width = 1061
     Height = 38
     Align = alBottom
     BevelOuter = bvNone
     TabOrder = 0
+    ExplicitTop = 464
+    ExplicitWidth = 1065
     object StyleLabel: TPanel
       AlignWithMargins = True
       Left = 3
@@ -67,10 +67,11 @@ object VCLThemeSelectorForm: TVCLThemeSelectorForm
     Left = 0
     Top = 25
     Width = 537
-    Height = 439
+    Height = 438
     Align = alLeft
     TabOrder = 1
     OnMouseWheel = ScrollBoxMouseWheel
+    ExplicitHeight = 439
     object LeftFlowPanel: TFlowPanel
       Left = 0
       Top = 0
@@ -87,11 +88,13 @@ object VCLThemeSelectorForm: TVCLThemeSelectorForm
   object RightScrollBox: TScrollBox
     Left = 537
     Top = 25
-    Width = 528
-    Height = 439
+    Width = 524
+    Height = 438
     Align = alClient
     TabOrder = 2
     OnMouseWheel = ScrollBoxMouseWheel
+    ExplicitWidth = 528
+    ExplicitHeight = 439
     object RightFlowPanel: TFlowPanel
       Left = 0
       Top = 0
@@ -108,10 +111,11 @@ object VCLThemeSelectorForm: TVCLThemeSelectorForm
   object TopPanel: TPanel
     Left = 0
     Top = 0
-    Width = 1065
+    Width = 1061
     Height = 25
     Align = alTop
     TabOrder = 3
+    ExplicitWidth = 1065
     object LightPanel: TPanel
       Left = 1
       Top = 1

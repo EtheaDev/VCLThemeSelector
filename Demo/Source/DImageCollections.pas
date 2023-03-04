@@ -3,7 +3,7 @@
 {  A full example of an HighDPI - VCL Themed enabled application               }
 {  See how to select the application Theme using VCLThemeSelector Form         }
 {                                                                              }
-{       Copyright (c) 2020-2022 (Ethea S.r.l.)                                 }
+{       Copyright (c) 2020-2023 (Ethea S.r.l.)                                 }
 {       Author: Carlo Barazzetta                                               }
 {       https://github.com/EtheaDev/VCLThemeSelector                           }
 {                                                                              }
@@ -26,8 +26,8 @@ interface
 
 uses
   System.SysUtils, System.Classes, IconFontsImageCollection,
-  //Vcl.BaseImageCollection, //If you are compiling with a versione older than 10.3 remove this line
-  SVGIconImageCollection, Vcl.BaseImageCollection;
+  Vcl.BaseImageCollection, //If you are compiling with a versione older than 10.3 remove this line
+  SVGIconImageCollection;
 
 type
   TIconsType = (itIconFonts, itSVGIcons);

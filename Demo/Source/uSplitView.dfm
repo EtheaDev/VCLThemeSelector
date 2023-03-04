@@ -11,6 +11,7 @@ object FormMain: TFormMain
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
+  OldCreateOrder = True
   Position = poScreenCenter
   ScreenSnap = True
   ShowHint = True
@@ -18,6 +19,7 @@ object FormMain: TFormMain
   OnBeforeMonitorDpiChanged = FormBeforeMonitorDpiChanged
   OnCreate = FormCreate
   OnShow = FormShow
+  PixelsPerInch = 96
   TextHeight = 13
   object splSettings: TSplitter
     Left = 1031
@@ -142,6 +144,7 @@ object FormMain: TFormMain
         Font.Style = []
         ParentFont = False
         TabOrder = 4
+        Zoom = 100
       end
       object SpinEdit: TSpinEdit
         Left = 8
@@ -235,6 +238,7 @@ object FormMain: TFormMain
         Font.Name = 'Tahoma'
         Font.Style = []
         TabOrder = 11
+        Zoom = 100
       end
       object DateTimePicker: TDateTimePicker
         Left = 343
@@ -1295,7 +1299,6 @@ object FormMain: TFormMain
   object SVGIconImageList: TSVGIconVirtualImageList
     Size = 24
     ImageCollection = ImageCollectionDataModule.SVGIconImageCollection
-    Scaled = True
     Left = 624
     Top = 576
   end

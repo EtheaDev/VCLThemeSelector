@@ -63,6 +63,10 @@ License: this Demo is inspired by TSplitView demo (original software is Copyrigh
 
 ## Release Notes ##
 
+04 Mar 2023
+- Built with Delphi 11.3
+- More VCL Styles supported
+
 15 Sep 2022
 - Built with Delphi 11.2
 

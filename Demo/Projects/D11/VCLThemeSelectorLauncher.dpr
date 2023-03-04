@@ -2,7 +2,7 @@
 {  VCLThemeSelector Launcher by Carlo Barazzetta                               }
 {  A simple example to launch VCLThemeSelector                                 }
 {                                                                              }
-{       Copyright (c) 2020, 2021 (Ethea S.r.l.)                                }
+{       Copyright (c) 2020-2023 (Ethea S.r.l.)                                 }
 {       Author: Carlo Barazzetta                                               }
 {       https://github.com/EtheaDev/VCLThemeSelector                           }
 {                                                                              }

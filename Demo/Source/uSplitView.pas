@@ -3,7 +3,7 @@
 {  A full example of an HighDPI - VCL Themed enabled application               }
 {  See how to select the application Theme using VCLThemeSelector Form         }
 {                                                                              }
-{       Copyright (c) 2020-2022 (Ethea S.r.l.)                                 }
+{       Copyright (c) 2020-2023 (Ethea S.r.l.)                                 }
 {       Author: Carlo Barazzetta                                               }
 {       https://github.com/EtheaDev/VCLThemeSelector                           }
 {                                                                              }
@@ -115,6 +115,9 @@ uses
 
 {$IFDEF D10_2+}
   , Vcl.WinXPickers
+{$ENDIF}
+  {$IFDEF D10_4+}
+  , Vcl.NumberBox
 {$ENDIF}
   ;
 
@@ -307,8 +310,12 @@ type
     {$IFNDEF D10_3+}
     FScaleFactor: Single;
     {$ENDIF}
+    {$IFDEF D10_4+}
+    NumberBox: TNumberBox;
+    {$ENDIF}
     procedure UpdateButtons;
-    procedure CreateAndFixFontComponents;
+    procedure CreateComponents;
+    procedure FixFontComponents;
     procedure Log(const Msg: string);
     procedure AfterMenuClick;
     procedure ShowSettingPage(TabSheet: TTabSheet; AutoOpen: Boolean = False);
@@ -398,7 +405,7 @@ begin
   UpdateButtons;
 end;
 
-procedure TFormMain.CreateAndFixFontComponents;
+procedure TFormMain.FixFontComponents;
 begin
   CalendarView.ParentFont := True;
   CalendarView.HeaderInfo.Font.Assign(Font);
@@ -407,23 +414,44 @@ begin
   CalendarPicker.ParentFont := True;
 
 {$IFDEF D10_2+}
+  TimePicker.Font.Name := Font.Name;
+  DatePicker.Font.Name := Font.Name;
+{$ENDIF}
+end;
+
+procedure TFormMain.CreateComponents;
+begin
+{$IFDEF D10_2+}
   TimePicker := TTimePicker.Create(Self);
-  TimePicker.Left := 3;
+  TimePicker.Left := 2;
   TimePicker.Top := 367;
+  TimePicker.Hint := 'TimePicker';
   TimePicker.Parent := tsWindows10;
-  TimePicker.Font.Assign(Font);
 
   DatePicker := TDatePicker.Create(Self);
   DatePicker.Left := 2;
   DatePicker.Top := 423;
+  DatePicker.Hint := 'DatePicker';
   DatePicker.Parent := tsWindows10;
-  DatePicker.Font.Assign(Font);
+{$ENDIF}
+
+{$IFDEF D10_4+}
+  NumberBox := TNumberBox.Create(Self);
+  NumberBox.Left := 2;
+  NumberBox.Width := 200;
+  NumberBox.Top := 470;
+  NumberBox.Hint := 'NumberBox';
+  NumberBox.SpinButtonOptions.Placement := nbspInline;
+  NumberBox.NegativeValueColor := clRed;
+  NumberBox.parent := tsWindows10;
+  NumberBox.ParentFont := True;
 {$ENDIF}
 end;
 
 procedure TFormMain.FontComboBoxSelect(Sender: TObject);
 begin
   Font.Name := FontComboBox.Text;
+  FixFontComponents;
   UpdateDefaultAndSystemFonts;
 end;
 
@@ -624,9 +652,7 @@ begin
   ClientDataSet.Edit;
   FileOpenDialog.DefaultFolder := ExtractFilePath(ClientDataSet.FileName);
   if FileOpenDialog.Execute then
-  begin
     ClientDataSetGraphic.LoadFromFile(FileOpenDialog.FileName);
-  end;
 end;
 
 destructor TFormMain.Destroy;
@@ -1049,7 +1075,8 @@ begin
   Font.Assign(FActiveFont);
 
   //Create and Fix components for ParentFont
-  CreateAndFixFontComponents;
+  CreateComponents;
+  FixFontComponents;
 
   inherited;
 

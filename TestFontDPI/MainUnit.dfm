@@ -6,11 +6,9 @@ object MainForm: TMainForm
   ClientWidth = 588
   Color = clBtnFace
   ParentFont = True
-  OldCreateOrder = False
   OnAfterMonitorDpiChanged = FormAfterMonitorDpiChanged
   OnShow = FormShow
-  PixelsPerInch = 96
-  TextHeight = 13
+  TextHeight = 15
   object Label1: TLabel
     Left = 0
     Top = 0
@@ -30,6 +28,8 @@ object MainForm: TMainForm
     Align = alBottom
     BevelOuter = bvLowered
     TabOrder = 0
+    ExplicitTop = 257
+    ExplicitWidth = 584
     DesignSize = (
       588
       41)
@@ -37,7 +37,7 @@ object MainForm: TMainForm
       Left = 8
       Top = 8
       Width = 281
-      Height = 21
+      Height = 23
       TabOrder = 0
       Text = 'Edit1'
     end
@@ -49,6 +49,7 @@ object MainForm: TMainForm
       Action = acOpenChildForm
       Anchors = [akTop, akRight]
       TabOrder = 1
+      ExplicitLeft = 444
     end
   end
   object ActionList: TActionList

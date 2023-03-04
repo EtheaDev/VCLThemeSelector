@@ -9,7 +9,7 @@ object Launcher: TLauncher
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
-  Font.Name = 'Tahoma'
+  Font.Name = 'Segoe UI'
   Font.Style = []
   OldCreateOrder = False
   Position = poScreenCenter
@@ -937,14 +937,15 @@ object Launcher: TLauncher
     Left = 184
     Top = 80
     Width = 145
-    Height = 18
+    Height = 28
     Alignment = taCenter
     AutoSize = False
-    Caption = 'Copyright (c) Ethea S.r.l.'
+    Caption = 'Copyright '#169' 2020 - 2023 Ethea S.r.l.'
+    WordWrap = True
   end
   object Label2: TLabel
     Left = 184
-    Top = 105
+    Top = 112
     Width = 145
     Height = 18
     Alignment = taCenter
@@ -973,7 +974,7 @@ object Launcher: TLauncher
     Top = 48
     Width = 65
     Height = 21
-    EditLabel.Width = 46
+    EditLabel.Width = 49
     EditLabel.Height = 13
     EditLabel.Caption = 'MaxRows'
     TabOrder = 2
@@ -984,7 +985,7 @@ object Launcher: TLauncher
     Top = 91
     Width = 65
     Height = 21
-    EditLabel.Width = 40
+    EditLabel.Width = 43
     EditLabel.Height = 13
     EditLabel.Caption = 'MaxCols'
     TabOrder = 3

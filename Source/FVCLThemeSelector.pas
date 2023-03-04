@@ -2,7 +2,7 @@
 {                                                                              }
 {       VCLThemeSelector: Form for Preview and Selection of VCL Style          }
 {                                                                              }
-{       Copyright (c) 2020-2022 (Ethea S.r.l.)                                 }
+{       Copyright (c) 2020-2023 (Ethea S.r.l.)                                 }
 {       Author: Carlo Barazzetta                                               }
 {       Contributor: Nicola Tambascia                                          }
 {                                                                              }
@@ -41,7 +41,7 @@ uses
   , Vcl.DBCtrls;
 
 const
-  VCLThemeSelectorVersion = '1.3.1';
+  VCLThemeSelectorVersion = '1.3.2';
   DEFAULT_MAXROWS = 3;
   DEFAULT_MAXCOLUMNS = 4;
 
@@ -266,7 +266,7 @@ begin
     //Non themed Windows Style
     RegisterThemeAttributes('Windows'                 ,ttLight, clInfoBk           , clWebLightgrey);
 
-    //High-DPI Themes (Delphi 10.4)
+    //High-DPI Themes (from Delphi 10.4)
     RegisterThemeAttributes('Aqua Light Slate'        ,ttLight, clWebLightYellow   , clWebLightgrey);
     RegisterThemeAttributes('Copper'                  ,ttLight, clWebLightCoral    , clWebLightgrey);
     RegisterThemeAttributes('CopperDark'              ,ttDark , clWebDarkSlategray , clDkGray      );
@@ -279,6 +279,7 @@ begin
     RegisterThemeAttributes('Sky'                     ,ttLight, clWebLightYellow   , clWebLightgrey);
     RegisterThemeAttributes('Slate Classico'          ,ttLight, clWebLightYellow   , clWebLightgrey);
     RegisterThemeAttributes('Sterling'                ,ttLight, clWebLightYellow   , clWebLightgrey);
+    RegisterThemeAttributes('TabletDark'              ,ttDark , clWebDarkSlategray , clWebDarkGray );
     RegisterThemeAttributes('Tablet Dark'             ,ttDark , clWebDarkSlategray , clWebDarkGray );
     RegisterThemeAttributes('Tablet Light'            ,ttLight, clWebLightYellow   , clWebLightgrey);
     RegisterThemeAttributes('Windows10'               ,ttLight, clWebLightYellow   , clWebAliceBlue);
@@ -288,19 +289,45 @@ begin
     RegisterThemeAttributes('Windows10 Purple'        ,ttDark,  clWebLightPink     , clWebLightgrey);
     RegisterThemeAttributes('Windows10 SlateGray'     ,ttDark,  clWebDarkSlategray , clDkGray      );
     RegisterThemeAttributes('Glossy'                  ,ttDark,  clWebDarkSlategray , clDkGray      );
-    RegisterThemeAttributes('Windows10 BlackPearl'    ,ttDark, clWebFirebrick      , clDkGray      );
-    RegisterThemeAttributes('Windows10 Blue Whale'    ,ttDark, clWebDarkSlategray  , clDkGray      );
+    RegisterThemeAttributes('Windows10 BlackPearl'    ,ttDark,  clWebFirebrick     , clDkGray      );
+    RegisterThemeAttributes('Windows10 Blue Whale'    ,ttDark,  clWebDarkSlategray , clDkGray      );
     RegisterThemeAttributes('Windows10 Clear Day'     ,ttLight, clWebLightYellow   , clWebLightgrey);
     RegisterThemeAttributes('Windows10 Malibu'        ,ttLight, clWebLightYellow   , clWebLightgrey);
+    RegisterThemeAttributes('Windows10 Charcoal'      ,ttDark,  clWebLightYellow   , clWebLightgrey);
     RegisterThemeAttributes('Flat UI Light'           ,ttLight, clWebLightYellow   , clWebLightgrey);
     RegisterThemeAttributes('Windows11 Modern Light'  ,ttLight, clWebLightYellow   , clWebAliceBlue);
     RegisterThemeAttributes('Windows11 Modern Dark'   ,ttDark,  clWebDarkBlue      , clWebDarkGray );
+    RegisterThemeAttributes('Windows11 MineShaft'     ,ttDark,  clWebDarkBlue      , clWebDarkGray );
+    RegisterThemeAttributes('Windows11 Polar Dark'    ,ttDark,  clWebDarkBlue      , clWebDarkGray );
+    RegisterThemeAttributes('Windows11 Polar Light'   ,ttLight, clWebLightYellow   , clWebAliceBlue);
+    RegisterThemeAttributes('Windows11 White Smoke'   ,ttLight, clWebLightYellow   , clWebAliceBlue);
     RegisterThemeAttributes('Material Oxford Blue'    ,ttDark,  clWebLightSkyBlue  , clWebLightgrey);
     RegisterThemeAttributes('Material Oxford Blue SE' ,ttDark,  clWebDarkBlue      , clWebDarkGray );
     RegisterThemeAttributes('Puerto Rico'             ,ttLight, clWebLightYellow   , clWebLightgrey);
     RegisterThemeAttributes('Wedgewood Light'         ,ttLight, clWebLightYellow   , clWebAliceBlue);
+    RegisterThemeAttributes('Calypso'                 ,ttDark,  clWebLightSkyBlue  , clWebAqua     );
+    RegisterThemeAttributes('Calypso SE'              ,ttDark,  clWebLightSkyBlue  , clWebAqua     );
+    RegisterThemeAttributes('Calypso LE'              ,ttDark,  clWebLightSkyBlue  , clWebAqua     );
+    RegisterThemeAttributes('Calypso SLE'             ,ttDark,  clWebLightSkyBlue  , clWebAqua     );
+    RegisterThemeAttributes('Jet'                     ,ttDark,  clWebDarkSlategray , clDkGray      );;
+    RegisterThemeAttributes('Lucky Point'             ,ttDark,  clWebDarkBlue      , clWebDarkGray );
+    RegisterThemeAttributes('Material Patterns Blue'  ,ttLight, clWebLightYellow   , clWebLightgrey);
+    RegisterThemeAttributes('Stellar'                 ,ttDark,  clWebLightYellow   , clWebLightgrey);
+    RegisterThemeAttributes('Stellar Dark'            ,ttDark , clWebDarkBlue      , clWebDarkGray );
+    RegisterThemeAttributes('Vapor'                   ,ttDark , clWebDarkSlategray , clWebDarkGray );
+    RegisterThemeAttributes('Zircon'                  ,ttLight, clWebLightYellow   , clWebLightgrey);
+    RegisterThemeAttributes('Zircon SE'               ,ttLight, clWebLightYellow   , clWebLightgrey);
+    RegisterThemeAttributes('Radiant'                 ,ttLight, clWebLightGreen    , clWebLightgrey);
 
     //Non High DPI Themes
+    RegisterThemeAttributes('Aqua Graphite'           ,ttDark , clWebDarkSlategray , clDkGray      );
+    RegisterThemeAttributes('Cobalt XEMedia'          ,ttDark , clWebDarkBlue      , clWebDarkGray );
+    RegisterThemeAttributes('Emerald Light Slate'     ,ttLight, clWebLightGreen    , clWebLightgrey);
+    RegisterThemeAttributes('Golden Graphite'         ,ttDark , clWebDarkOrange    , clWebDarkSalmon);
+    RegisterThemeAttributes('Cyan Night'              ,ttLight, clWebLightYellow   , clWebLightgrey);
+    RegisterThemeAttributes('Light'                   ,ttLight, clWebLightSteelBlue, clWebLightgrey);
+    RegisterThemeAttributes('Obsidian'                ,ttDark , clWebYellow        , clWebDarkKhaki);
+    RegisterThemeAttributes('Silver'                  ,ttLight, clWebYellow        , clWebDarkKhaki);
     RegisterThemeAttributes('Amakrits'                ,ttDark , clWebDarkSlategray , clDkGray      );
     RegisterThemeAttributes('Amethyst Kamri'          ,ttLight, clWebLightYellow   , clWebLightgrey);
     RegisterThemeAttributes('Auric'                   ,ttDark , clWebDarkSlategray , clDkGray      );
@@ -315,6 +342,10 @@ begin
     RegisterThemeAttributes('Smokey Quartz Kamri'     ,ttLight, clWebLightYellow   , clWebLightgrey);
     RegisterThemeAttributes('Turquoise Gray'          ,ttLight, clWebLightYellow   , clWebLightgrey);
     RegisterThemeAttributes('Windows10 Blue Whale LE' ,ttDark,  clWebLightYellow   , clDkGray      );
+    RegisterThemeAttributes('Metropolis UI Black'     ,ttDark,  clWebLightYellow   , clDkGray      );
+    RegisterThemeAttributes('Metropolis UI Blue'      ,ttDark , clWebDarkSlategray , clDkGray      );
+    RegisterThemeAttributes('Metropolis UI Dark'      ,ttDark,  clWebLightYellow   , clDkGray      );
+    RegisterThemeAttributes('Metropolis UI Green'     ,ttDark,  clWebLightGreen    , clWebLightgrey);
   end;
 end;
 

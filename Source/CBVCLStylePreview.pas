@@ -4,7 +4,7 @@
 {       based on: VCLStylePreview Vcl.Styles.Ext                               }
 {       https://github.com/RRUZ/vcl-styles-utils/                              }
 {                                                                              }
-{       Copyright (c) 2020-2022 (Ethea S.r.l.)                                 }
+{       Copyright (c) 2020-2023 (Ethea S.r.l.)                                 }
 {       Author: Carlo Barazzetta                                               }
 {                                                                              }
 {       https://github.com/EtheaDev/VCLThemeSelector                           }
