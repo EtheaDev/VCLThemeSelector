@@ -38,7 +38,7 @@ License: the CBVCLStylePreview is based on VCLStylePreview (Vcl.Styles.Ext) from
 
 Also included in this repository you can find a full example of an HighDPI - VCL Themed enabled application that uses the VCLThemeSelector to change the Theme. You can run the demo from: Demo\Bin\ModernAppDemo.exe.
 
-### Preview ( Delphi 11.0 and Windows 11 Modern Dark Style)
+### Preview ( Delphi 11.3 and Windows 11 Modern Dark Style)
 ![/Demo/Images/DemoPreviewD11_Dark.jpg](./Demo/Images/DemoPreviewD11_Dark.jpg)
 
 ### Preview ( Delphi 11.0 and Windows 11 Modern Light Style)
