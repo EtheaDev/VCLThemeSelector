@@ -48,7 +48,7 @@ type
     ExcludeWindowsCkeckBox: TCheckBox;
     MaxRowsEdit: TLabeledEdit;
     MaxColsEdit: TLabeledEdit;
-    Image1: TImage;
+    EtheaImage: TImage;
     Label1: TLabel;
     Label2: TLabel;
     procedure ChangeThemeButtonClick(Sender: TObject);

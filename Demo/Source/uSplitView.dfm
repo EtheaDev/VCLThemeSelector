@@ -11,7 +11,6 @@ object FormMain: TFormMain
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
-  OldCreateOrder = True
   Position = poScreenCenter
   ScreenSnap = True
   ShowHint = True
@@ -19,7 +18,6 @@ object FormMain: TFormMain
   OnBeforeMonitorDpiChanged = FormBeforeMonitorDpiChanged
   OnCreate = FormCreate
   OnShow = FormShow
-  PixelsPerInch = 96
   TextHeight = 13
   object splSettings: TSplitter
     Left = 1031
@@ -29,9 +27,6 @@ object FormMain: TFormMain
     AutoSnap = False
     Beveled = True
     MinSize = 45
-    ExplicitLeft = 208
-    ExplicitTop = 57
-    ExplicitHeight = 682
   end
   object splSplit: TSplitter
     Left = 200
@@ -40,9 +35,6 @@ object FormMain: TFormMain
     AutoSnap = False
     Beveled = True
     MinSize = 45
-    ExplicitLeft = 344
-    ExplicitTop = 296
-    ExplicitHeight = 100
   end
   object PageControl: TPageControl
     Left = 203
@@ -125,7 +117,7 @@ object FormMain: TFormMain
         Top = 59
         Width = 223
         Height = 100
-        ItemHeight = 13
+        ItemHeight = 17
         Items.Strings = (
           'First'
           'Second'
@@ -144,7 +136,6 @@ object FormMain: TFormMain
         Font.Style = []
         ParentFont = False
         TabOrder = 4
-        Zoom = 100
       end
       object SpinEdit: TSpinEdit
         Left = 8
@@ -238,7 +229,6 @@ object FormMain: TFormMain
         Font.Name = 'Tahoma'
         Font.Style = []
         TabOrder = 11
-        Zoom = 100
       end
       object DateTimePicker: TDateTimePicker
         Left = 343
@@ -562,29 +552,24 @@ object FormMain: TFormMain
     TabOrder = 0
     object lblTitle: TLabel
       AlignWithMargins = True
-      Left = 40
+      Left = 47
       Top = 3
       Width = 121
       Height = 36
       Align = alLeft
       Caption = 'TSplitView Demonstration'
       Layout = tlCenter
-      ExplicitHeight = 13
     end
     object MenuButtonToolbar: TToolBar
       AlignWithMargins = True
       Left = 3
       Top = 3
-      Width = 31
+      Width = 38
       Height = 36
       Align = alLeft
-      AutoSize = True
       ButtonHeight = 36
       ButtonWidth = 36
       Color = clYellow
-      DrawingStyle = dsGradient
-      GradientEndColor = clHighlight
-      GradientStartColor = clHighlight
       Images = SVGIconImageList
       ParentColor = False
       TabOrder = 0
@@ -599,18 +584,14 @@ object FormMain: TFormMain
     end
     object ToolBar: TToolBar
       AlignWithMargins = True
-      Left = 923
+      Left = 916
       Top = 3
-      Width = 108
+      Width = 115
       Height = 36
       Align = alRight
-      AutoSize = True
       ButtonHeight = 36
       ButtonWidth = 36
       Color = clYellow
-      DrawingStyle = dsGradient
-      GradientEndColor = clHighlight
-      GradientStartColor = clHighlight
       Images = SVGIconImageList
       ParentColor = False
       TabOrder = 1
@@ -638,7 +619,7 @@ object FormMain: TFormMain
     Width = 200
     Height = 627
     CloseStyle = svcCompact
-    CompactWidth = 48
+    CompactWidth = 44
     OpenedWidth = 200
     ParentBackground = True
     ParentColor = True
@@ -836,7 +817,7 @@ object FormMain: TFormMain
         Width = 300
         Height = 311
         Margins.Top = 60
-        ActivePage = tsIconFonts
+        ActivePage = tsFont
         Align = alClient
         TabOrder = 0
         object tsFont: TTabSheet
@@ -1297,8 +1278,116 @@ object FormMain: TFormMain
     Top = 424
   end
   object SVGIconImageList: TSVGIconVirtualImageList
-    Size = 24
+    Images = <
+      item
+        CollectionIndex = 0
+        CollectionName = 'menu'
+        Name = 'menu'
+      end
+      item
+        CollectionIndex = 1
+        CollectionName = 'settings'
+        Name = 'settings'
+      end
+      item
+        CollectionIndex = 2
+        CollectionName = 'calculator'
+        Name = 'calculator'
+      end
+      item
+        CollectionIndex = 3
+        CollectionName = 'layers'
+        Name = 'layers'
+      end
+      item
+        CollectionIndex = 4
+        CollectionName = 'checkbox'
+        Name = 'checkbox'
+      end
+      item
+        CollectionIndex = 5
+        CollectionName = 'home'
+        Name = 'home'
+      end
+      item
+        CollectionIndex = 6
+        CollectionName = 'battery-40'
+        Name = 'battery-40'
+      end
+      item
+        CollectionIndex = 7
+        CollectionName = 'palette'
+        Name = 'palette'
+      end
+      item
+        CollectionIndex = 8
+        CollectionName = 'arrow-left'
+        Name = 'arrow-left'
+      end
+      item
+        CollectionIndex = 9
+        CollectionName = 'play'
+        Name = 'play'
+      end
+      item
+        CollectionIndex = 10
+        CollectionName = 'find'
+        Name = 'find'
+      end
+      item
+        CollectionIndex = 11
+        CollectionName = 'font'
+        Name = 'font'
+      end
+      item
+        CollectionIndex = 12
+        CollectionName = 'dashboard'
+        Name = 'dashboard'
+      end
+      item
+        CollectionIndex = 13
+        CollectionName = 'check'
+        Name = 'check'
+      end
+      item
+        CollectionIndex = 14
+        CollectionName = 'picture'
+        Name = 'picture'
+      end
+      item
+        CollectionIndex = 15
+        CollectionName = 'alert'
+        Name = 'alert'
+      end
+      item
+        CollectionIndex = 16
+        CollectionName = 'error'
+        Name = 'error'
+      end
+      item
+        CollectionIndex = 17
+        CollectionName = 'information'
+        Name = 'information'
+      end
+      item
+        CollectionIndex = 18
+        CollectionName = 'warning'
+        Name = 'warning'
+      end
+      item
+        CollectionIndex = 19
+        CollectionName = 'help'
+        Name = 'help'
+      end
+      item
+        CollectionIndex = 20
+        CollectionName = 'exit'
+        Name = 'exit'
+      end>
     ImageCollection = ImageCollectionDataModule.SVGIconImageCollection
+    Width = 24
+    Height = 24
+    Size = 24
     Left = 624
     Top = 576
   end

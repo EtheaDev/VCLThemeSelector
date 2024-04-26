@@ -119,6 +119,11 @@ uses
   {$IFDEF D10_4+}
   , Vcl.NumberBox
 {$ENDIF}
+  {$IFDEF STYLEDCOMPONENTS}
+  , Vcl.StyledComponentsHooks
+  , Vcl.StyledCategoryButtons
+  , Vcl.ButtonStylesAttributes
+  {$ENDIF}
   ;
 
 const
@@ -346,7 +351,9 @@ implementation
 
 uses
   Vcl.Themes
-  , System.UITypes;
+  , System.UITypes
+  , DemoAbout
+  ;
 
 {$R *.dfm}
 
@@ -576,7 +583,12 @@ procedure TFormMain.FormCreate(Sender: TObject);
 var
   I: Integer;
 begin
-  Caption := Application.Title;
+  Caption := Application.Title + ' - Copyright (c) Ethea S.r.l.';
+
+  {$IFDEF STYLEDCOMPONENTS}
+  (catMenuItems as TStyledCategoryButtons).StyleRoundedCorners :=
+    [rcTopRight, rcBottomRight];
+  {$ENDIF}
 
   //Hide Tabs
   for I := 0 to pcSettings.PageCount-1 do
@@ -889,8 +901,7 @@ end;
 
 procedure TFormMain.acAboutExecute(Sender: TObject);
 begin
-  TaskMessageDlg('About this Application',
-    Application.Title, mtInformation, [mbOK], 2000);
+  ShowAboutForm(Application.Title);
 end;
 
 procedure TFormMain.acApplyFontExecute(Sender: TObject);

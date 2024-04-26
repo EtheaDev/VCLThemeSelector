@@ -46,7 +46,11 @@ uses
   , SVGIconVirtualImageList   //https://github.com/EtheaDev/SVGIconImageList
   , IconFontsImageListBase    //If don't compile you must before download and installa IconFontsImageList components
   , IconFontsVirtualImageList //https://github.com/EtheaDev/IconFontsImageList
-  , DImageCollections, Vcl.ToolWin;
+  , DImageCollections, Vcl.ToolWin
+  {$IFDEF STYLEDCOMPONENTS}
+  , Vcl.StyledComponentsHooks
+  {$ENDIF}
+  ;
 
 type
   TFmEdit = class(TForm)

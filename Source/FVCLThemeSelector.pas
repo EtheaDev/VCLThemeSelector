@@ -2,7 +2,7 @@
 {                                                                              }
 {       VCLThemeSelector: Form for Preview and Selection of VCL Style          }
 {                                                                              }
-{       Copyright (c) 2020-2023 (Ethea S.r.l.)                                 }
+{       Copyright (c) 2020-2024 (Ethea S.r.l.)                                 }
 {       Author: Carlo Barazzetta                                               }
 {       Contributor: Nicola Tambascia                                          }
 {                                                                              }

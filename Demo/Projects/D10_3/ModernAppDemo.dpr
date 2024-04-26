@@ -3,7 +3,7 @@
 {  A full example of an HighDPI - VCL Themed enabled application               }
 {  See how to select the application Theme using VCLThemeSelector Form         }
 {                                                                              }
-{       Copyright (c) 2020, 2023 (Ethea S.r.l.)                                }
+{       Copyright (c) 2020, 2024 (Ethea S.r.l.)                                }
 {       Author: Carlo Barazzetta                                               }
 {       https://github.com/EtheaDev/VCLThemeSelector                           }
 {                                                                              }
@@ -28,17 +28,37 @@ uses
   Vcl.Themes,
   Vcl.Styles,
   MidasLib,
+  {$IFDEF STYLEDCOMPONENTS}
+  Vcl.StyledButton,
+  Vcl.ButtonStylesAttributes,
+  Vcl.StyledDbNavigator,
+  Vcl.StyledToolbar,
+  Vcl.StyledButtonGroup,
+  Vcl.StyledCategoryButtons,
+  {$ENDIF}
   uSplitView in '..\..\Source\uSplitView.pas' {FormMain},
   EditForm in '..\..\Source\EditForm.pas' {FmEdit},
   FVCLThemeSelector in '..\..\..\Source\FVCLThemeSelector.pas' {VCLThemeSelectorForm},
-  DImageCollections in '..\..\Source\DImageCollections.pas' {ImageCollectionDataModule: TDataModule};
+  DImageCollections in '..\..\Source\DImageCollections.pas' {ImageCollectionDataModule: TDataModule},
+  DemoAbout in '..\..\Source\DemoAbout.pas' {FrmAbout};
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.Title := 'Modern App and ThemeSelector Demo with HighDPI support - Copyright (c) Ethea S.r.l.';
+  Application.Title := 'Modern App and ThemeSelector Demo with HighDPI support';
+  //Uses System Style for border / shadow of Forms
+  TStyleManager.FormBorderStyle := TStyleManager.TFormBorderStyle.fbsSystemStyle;
+
+  {$IFDEF STYLEDCOMPONENTS}
+  TStyledButton.RegisterDefaultRenderingStyle(btRounded);
+  TStyledDbNavigator.RegisterDefaultRenderingStyle(btRounded);
+  TStyledButtonGroup.RegisterDefaultRenderingStyle(btRounded);
+  TStyledCategoryButtons.RegisterDefaultRenderingStyle(btRounded);
+  TStyledToolbar.RegisterDefaultRenderingStyle(btRoundRect);
+  {$ENDIF}
+
   Application.CreateForm(TImageCollectionDataModule, ImageCollectionDataModule);
   Application.CreateForm(TFormMain, FormMain);
   Application.Run;

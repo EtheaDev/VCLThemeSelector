@@ -33,3 +33,13 @@
   {$DEFINE D11_0+}
 {$ENDIF}
 
+// Delphi 12.0
+{$IFDEF VER360}
+  {$DEFINE D10_1+}
+  {$DEFINE D10_2+}
+  {$DEFINE D10_3+}
+  {$DEFINE D10_4+}
+  {$DEFINE D11_0+}
+  {$DEFINE D12_0+}
+{$ENDIF}
+

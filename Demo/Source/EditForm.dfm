@@ -11,8 +11,7 @@ object FmEdit: TFmEdit
   OnAfterMonitorDpiChanged = FormAfterMonitorDpiChanged
   OnClose = FormClose
   OnShow = FormShow
-  PixelsPerInch = 96
-  TextHeight = 25
+  TextHeight = 15
   object PageControl1: TPageControl
     Left = 0
     Top = 29
@@ -26,15 +25,15 @@ object FmEdit: TFmEdit
       object Label1: TLabel
         Left = 8
         Top = 7
-        Width = 47
-        Height = 25
+        Width = 32
+        Height = 15
         Caption = 'Name'
       end
       object Label2: TLabel
         Left = 271
         Top = 7
-        Width = 70
-        Height = 25
+        Width = 47
+        Height = 15
         Caption = 'Surname'
       end
       object NameEdit: TEdit
@@ -60,8 +59,8 @@ object FmEdit: TFmEdit
         Top = 72
         Width = 257
         Height = 33
-        EditLabel.Width = 96
-        EditLabel.Height = 25
+        EditLabel.Width = 64
+        EditLabel.Height = 15
         EditLabel.Caption = 'Labeled Edit'
         TabOrder = 2
         Text = 'Text'
@@ -221,9 +220,10 @@ object FmEdit: TFmEdit
     Top = 152
   end
   object SVGIconVirtualImageList: TSVGIconVirtualImageList
-    Size = 24
     ImageCollection = ImageCollectionDataModule.SVGIconImageCollection
-    Scaled = True
+    Width = 24
+    Height = 24
+    Size = 24
     Left = 416
     Top = 208
   end

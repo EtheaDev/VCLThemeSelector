@@ -21,13 +21,11 @@ object VCLThemeSelectorForm: TVCLThemeSelectorForm
     Align = alBottom
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitTop = 464
-    ExplicitWidth = 1065
     object StyleLabel: TPanel
       AlignWithMargins = True
       Left = 3
       Top = 3
-      Width = 863
+      Width = 859
       Height = 32
       Align = alClient
       Alignment = taRightJustify
@@ -36,7 +34,7 @@ object VCLThemeSelectorForm: TVCLThemeSelectorForm
       TabOrder = 1
     end
     object paRight: TPanel
-      Left = 869
+      Left = 865
       Top = 0
       Width = 196
       Height = 38
@@ -71,7 +69,6 @@ object VCLThemeSelectorForm: TVCLThemeSelectorForm
     Align = alLeft
     TabOrder = 1
     OnMouseWheel = ScrollBoxMouseWheel
-    ExplicitHeight = 439
     object LeftFlowPanel: TFlowPanel
       Left = 0
       Top = 0
@@ -93,12 +90,10 @@ object VCLThemeSelectorForm: TVCLThemeSelectorForm
     Align = alClient
     TabOrder = 2
     OnMouseWheel = ScrollBoxMouseWheel
-    ExplicitWidth = 528
-    ExplicitHeight = 439
     object RightFlowPanel: TFlowPanel
       Left = 0
       Top = 0
-      Width = 524
+      Width = 520
       Height = 400
       Align = alTop
       AutoSize = True
@@ -115,7 +110,6 @@ object VCLThemeSelectorForm: TVCLThemeSelectorForm
     Height = 25
     Align = alTop
     TabOrder = 3
-    ExplicitWidth = 1065
     object LightPanel: TPanel
       Left = 1
       Top = 1
@@ -129,7 +123,7 @@ object VCLThemeSelectorForm: TVCLThemeSelectorForm
     object DarkPanel: TPanel
       Left = 537
       Top = 1
-      Width = 527
+      Width = 523
       Height = 23
       Align = alClient
       BevelOuter = bvLowered
