@@ -297,6 +297,10 @@ begin
     RegisterThemeAttributes('Flat UI Light'           ,ttLight, clWebLightYellow   , clWebLightgrey);
     RegisterThemeAttributes('Windows11 Modern Light'  ,ttLight, clWebLightYellow   , clWebAliceBlue);
     RegisterThemeAttributes('Windows11 Modern Dark'   ,ttDark,  clWebDarkBlue      , clWebDarkGray );
+    RegisterThemeAttributes('Windows11 Impressive Dark',ttDark,  clWebDarkBlue      , clWebDarkGray );
+    RegisterThemeAttributes('Windows11 Impressive Dark SE',ttDark,  clWebDarkBlue      , clWebDarkGray );
+    RegisterThemeAttributes('Windows11 Impressive Light',ttLight, clWebLightYellow   , clWebAliceBlue);
+    RegisterThemeAttributes('Windows11 Impressive Light SE',ttLight, clWebLightYellow   , clWebAliceBlue);
     RegisterThemeAttributes('Windows11 MineShaft'     ,ttDark,  clWebDarkBlue      , clWebDarkGray );
     RegisterThemeAttributes('Windows11 Polar Dark'    ,ttDark,  clWebDarkBlue      , clWebDarkGray );
     RegisterThemeAttributes('Windows11 Polar Light'   ,ttLight, clWebLightYellow   , clWebAliceBlue);
@@ -311,7 +315,7 @@ begin
     RegisterThemeAttributes('Calypso SLE'             ,ttDark,  clWebLightSkyBlue  , clWebAqua     );
     RegisterThemeAttributes('Jet'                     ,ttDark,  clWebDarkSlategray , clDkGray      );;
     RegisterThemeAttributes('Lucky Point'             ,ttDark,  clWebDarkBlue      , clWebDarkGray );
-    RegisterThemeAttributes('Material Patterns Blue'  ,ttLight, clWebLightYellow   , clWebLightgrey);
+    RegisterThemeAttributes('Material Pattens Blue'   ,ttLight, clWebLightYellow   , clWebLightgrey);
     RegisterThemeAttributes('Stellar'                 ,ttDark,  clWebLightYellow   , clWebLightgrey);
     RegisterThemeAttributes('Stellar Dark'            ,ttDark , clWebDarkBlue      , clWebDarkGray );
     RegisterThemeAttributes('Vapor'                   ,ttDark , clWebDarkSlategray , clWebDarkGray );
@@ -369,8 +373,6 @@ begin
     begin
       if FRegistry.ValueExists('FontName') then
         AFont.Name := FRegistry.ReadString('FontName');
-      if FRegistry.ValueExists('PixelsPerInch') then
-        AFont.PixelsPerInch := FRegistry.ReadInteger('PixelsPerInch');
       if FRegistry.ValueExists('FontHeight') then
         AFont.Height := FRegistry.ReadInteger('FontHeight');
       if FRegistry.ValueExists('FontColor') then
@@ -397,7 +399,6 @@ begin
     begin
       FRegistry.WriteString('FontName',AFont.Name);
       FRegistry.WriteInteger('FontHeight',AFont.Height);
-      FRegistry.WriteInteger('PixelsPerInch',AFont.PixelsPerInch);
       FRegistry.WriteInteger('FontColor',AFont.Color);
       FRegistry.WriteBool('FontBold',fsBold in AFont.Style);
       FRegistry.WriteBool('FontItalic',fsItalic in AFont.Style);
@@ -417,7 +418,7 @@ begin
   ReadAppStyleAndFontFromReg(CompanyName, ApplicationName, Result, LFont);
 end;
 
-procedure WriteAppStyleToReg(const CompanyName, ApplicationName, AppStyle : string);
+procedure WriteAppStyleToReg(const CompanyName, ApplicationName, AppStyle: string);
 begin
   WriteAppStyleAndFontToReg(CompanyName, ApplicationName, AppStyle, nil);
 end;
@@ -491,7 +492,7 @@ var
 begin
   AEdit.StyleElements := [seBorder];
 
-  //Recupero le informazioni dalla mia struttura LThemeAttribute
+  //Retrieve info for Style from my structure LThemeAttribute
   LActiveStyleName := TStyleManager.ActiveStyle.Name;
   if IsPublishedProp(AEdit, 'Color') then
   begin
@@ -502,7 +503,7 @@ begin
       else
         LReadOnly := AEdit.ReadOnly;
 
-      //Imposto il colore del componente di Edit tramite RTTI
+      //Set the Edit Component Color using RTTI
       if LReadOnly then
         SetOrdProp(AEdit, 'Color', LThemeAttribute.EditReadonlyColor)
       else

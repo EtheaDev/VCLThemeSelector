@@ -9,7 +9,6 @@ object VCLThemeSelectorForm: TVCLThemeSelectorForm
   ParentFont = True
   Position = poScreenCenter
   ShowHint = True
-  OnAfterMonitorDpiChanged = FormAfterMonitorDpiChanged
   OnCreate = FormCreate
   OnResize = FormResize
   TextHeight = 15

@@ -5,7 +5,6 @@ object FormMain: TFormMain
   ClientHeight = 669
   ClientWidth = 1034
   Color = clBtnFace
-  DoubleBuffered = True
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -390,7 +389,9 @@ object FormMain: TFormMain
         Width = 520
         Height = 438
         Align = alClient
+        DoubleBuffered = True
         ParentColor = True
+        ParentDoubleBuffered = False
         TabOrder = 2
         DesignSize = (
           520
@@ -623,7 +624,6 @@ object FormMain: TFormMain
     OpenedWidth = 200
     ParentBackground = True
     ParentColor = True
-    ParentDoubleBuffered = True
     Placement = svpLeft
     TabOrder = 1
     OnClosed = SVClosed
@@ -699,10 +699,8 @@ object FormMain: TFormMain
           TextColor = clHighlightText
         end>
       Color = clHighlight
-      DoubleBuffered = True
       HotButtonColor = 12500670
       Images = SVGIconImageList
-      ParentDoubleBuffered = False
       RegularButtonColor = clNone
       SelectedButtonColor = clNone
       TabOrder = 0
@@ -754,7 +752,6 @@ object FormMain: TFormMain
     Color = 15000804
     CompactWidth = 44
     OpenedWidth = 300
-    ParentDoubleBuffered = True
     Placement = svpRight
     TabOrder = 2
     OnClosed = svSettingsClosed

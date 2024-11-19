@@ -683,19 +683,19 @@ object Launcher: TLauncher
   end
   object Label1: TLabel
     Left = 184
-    Top = 80
+    Top = 78
     Width = 145
-    Height = 28
+    Height = 43
     Alignment = taCenter
     AutoSize = False
-    Caption = 'Copyright '#169' 2020 - 2023 Ethea S.r.l.'
+    Caption = 'Copyright '#169' 2020 - 2024 Ethea S.r.l.'
     WordWrap = True
   end
   object Label2: TLabel
     Left = 184
-    Top = 112
+    Top = 127
     Width = 145
-    Height = 18
+    Height = 28
     Alignment = taCenter
     AutoSize = False
     Caption = 'License: Apache 2.0'

@@ -70,6 +70,10 @@ this Demo is inspired by TSplitView demo (original software is Copyright (c) 201
 
 ## Release Notes ##
 
+20 Nov 2024
+- Added support for Delphi 12.2
+- Fixed Font Loading fron Registry in DemoApp
+
 26 Apr 2024
 - Added support for Delphi 12.1
 - Added StyledComponents integration

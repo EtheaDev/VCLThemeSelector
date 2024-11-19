@@ -110,7 +110,7 @@ uses
   , Vcl.Styles.Hooks
   , Vcl.Styles.Utils.Forms
   , Vcl.Styles.Utils.ComCtrls
-  , Vcl.Styles.Utils.StdCtrls
+  , Vcl.Styles.Utils.StdCtrls, Vcl.VirtualImageList
 {$ENDIF}
 
 {$IFDEF D10_2+}
@@ -333,6 +333,8 @@ type
     procedure FixSplitViewResize(ASplitView: TSplitView; const OldDPI, NewDPI: Integer);
     {$ENDIF}
     procedure UpdateIconsByType;
+    function GetFontHeightAt96Dpi: Integer;
+    procedure SetFontHeightAt96Dpi(const Value: Integer);
   protected
     procedure Loaded; override;
     {$IFNDEF D10_3+}
@@ -342,6 +344,7 @@ type
     procedure ScaleForPPI(NewPPI: Integer); override;
     destructor Destroy; override;
     property ActiveStyleName: string read FActiveStyleName write SetActiveStyleName;
+    property FontHeightAt96Dpi: Integer read GetFontHeightAt96Dpi write SetFontHeightAt96Dpi;
   end;
 
 var
@@ -412,6 +415,17 @@ begin
   UpdateButtons;
 end;
 
+function TFormMain.GetFontHeightAt96Dpi: Integer;
+begin
+  Result := MulDiv(-Font.Height, 96, Font.PixelsPerInch);
+end;
+
+procedure TFormMain.SetFontHeightAt96Dpi(const Value: Integer);
+begin
+  Font.Height := - MulDiv(Abs(Value), Font.PixelsPerInch, 96);
+  FontTrackBar.Position := Abs(Value);
+end;
+
 procedure TFormMain.FixFontComponents;
 begin
   CalendarView.ParentFont := True;
@@ -464,9 +478,7 @@ end;
 
 procedure TFormMain.FontTrackBarChange(Sender: TObject);
 begin
-  //ScaleFactor is available only from Delphi 10.3, FScaleFactor is calculated
-  Font.Height := MulDiv(-FontTrackBar.Position,
-    Round(100*{$IFDEF D10_3+}ScaleFactor{$ELSE}FScaleFactor{$ENDIF}), 100);
+  FontHeightAt96Dpi := FontTrackBar.Position;
   FontTrackBarUpdate;
   UpdateDefaultAndSystemFonts;
 end;
@@ -699,7 +711,8 @@ begin
     try
       TStyleManager.SetStyle(Value);
     except
-      WriteAppStyleToReg(COMPANY_NAME, ExtractFileName(Application.ExeName), 'Windows');
+      WriteAppStyleToReg(COMPANY_NAME,
+        ExtractFileName(Application.ExeName), 'Windows');
     end;
     WriteAppStyleToReg(COMPANY_NAME, ExtractFileName(Application.ExeName), Value);
     FActiveStyleName := Value;
@@ -1064,35 +1077,30 @@ begin
 end;
 
 procedure TFormMain.Loaded;
-var
-  LFontHeight: Integer;
 begin
   {$IFNDEF D10_3+}
   FScaleFactor := 1;
   {$ENDIF}
 
   FActiveFont := TFont.Create;
-
   //Acquire system font and size (eg. for windows 10 Segoe UI and 14 at 96 DPI)
   //but without using Assign!
   Font.Name := Screen.IconFont.Name;
   //If you want to use system font Height:
   Font.Height := Muldiv(Screen.IconFont.Height, 96, Screen.IconFont.PixelsPerInch);
+  FActiveFont.Assign(Font);
+
+  inherited; //Cause changing Font Height
 
   //Check for Font stored into Registry (user preferences)
   ReadAppStyleAndFontFromReg(COMPANY_NAME,
     ExtractFileName(Application.ExeName), FActiveStyleName, FActiveFont);
-  LFontHeight := FActiveFont.Height;
-  Font.Assign(FActiveFont);
-
   //Create and Fix components for ParentFont
   CreateComponents;
   FixFontComponents;
 
-  inherited;
-
-  //Update Trackbar position with Width loaded before resize of Font
-  FontTrackBar.Position := - LFontHeight;
+  //Reassign Font values reads from Registry (stored as 96 Dpi)
+  FontHeightAt96Dpi := - FActiveFont.Height;
 
   //For ParentFont on Child Forms
   UpdateDefaultAndSystemFonts;

@@ -30,7 +30,7 @@
   {$DEFINE D10_2+}
   {$DEFINE D10_3+}
   {$DEFINE D10_4+}
-  {$DEFINE D11_0+}
+  {$DEFINE D11+}
 {$ENDIF}
 
 // Delphi 12.0
@@ -39,7 +39,7 @@
   {$DEFINE D10_2+}
   {$DEFINE D10_3+}
   {$DEFINE D10_4+}
-  {$DEFINE D11_0+}
-  {$DEFINE D12_0+}
+  {$DEFINE D11+}
+  {$DEFINE D12+}
 {$ENDIF}
 
