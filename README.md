@@ -64,9 +64,9 @@ this Demo is inspired by TSplitView demo (original software is Copyright (c) 201
 
 ## Compatibility ##
 
-**VCLThemeSelector** and **VCLThemeSelectorLauncher** are compatible from Delphi XE5 to 12, with some differences to High-DPI support.
+**VCLThemeSelector** and **VCLThemeSelectorLauncher** are compatible from Delphi XE5 to Delphi 13, with some differences to High-DPI support.
 
-**ModernAppDemo** is compatible with Delphi Delphi 12, 11, 10.4, 10.3, 10.2 and 10.1 (notice: 10.1 png stream format of pictures inside biolife.xml are incompatible: use an old biolife.xml file).
+**ModernAppDemo** is compatible with Delphi Delphi 13, 12, 11, 10.4, 10.3, 10.2 and 10.1 (notice: 10.1 png stream format of pictures inside biolife.xml are incompatible: use an old biolife.xml file).
 
 ## Release Notes ##
 
