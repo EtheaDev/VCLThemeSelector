@@ -3,13 +3,13 @@ object CBVCLPreviewForm: TCBVCLPreviewForm
   Top = 0
   BorderIcons = [biSystemMenu]
   ClientHeight = 122
-  ClientWidth = 354
+  ClientWidth = 277
   Color = clBtnFace
   DoubleBuffered = True
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
-  Font.Name = 'Tahoma'
+  Font.Name = 'Segoe UI'
   Font.Style = []
   Menu = MainMenu
   OnCloseQuery = FormCloseQuery
@@ -19,7 +19,7 @@ object CBVCLPreviewForm: TCBVCLPreviewForm
   object TabControl: TTabControl
     Left = 0
     Top = 0
-    Width = 354
+    Width = 277
     Height = 122
     Align = alClient
     TabOrder = 0
@@ -28,8 +28,6 @@ object CBVCLPreviewForm: TCBVCLPreviewForm
       'Page2'
       'Page3')
     TabIndex = 0
-    ExplicitWidth = 350
-    ExplicitHeight = 121
     object FNormalTextEdit: TEdit
       Left = 8
       Top = 32
@@ -39,9 +37,9 @@ object CBVCLPreviewForm: TCBVCLPreviewForm
       Text = 'Normal'
     end
     object FButtonNormal: TButton
-      Left = 8
-      Top = 60
-      Width = 75
+      Left = 94
+      Top = 59
+      Width = 80
       Height = 25
       Caption = 'Normal'
       TabOrder = 3
@@ -51,9 +49,9 @@ object CBVCLPreviewForm: TCBVCLPreviewForm
       OnMouseUp = FButtonNormalMouseUp
     end
     object FButtonDisabled: TButton
-      Left = 94
-      Top = 60
-      Width = 75
+      Left = 182
+      Top = 59
+      Width = 80
       Height = 25
       Caption = 'Disabled'
       Enabled = False
@@ -76,9 +74,9 @@ object CBVCLPreviewForm: TCBVCLPreviewForm
       Text = 'ReadOnly'
     end
     object CheckBox: TCheckBox
-      Left = 182
-      Top = 60
-      Width = 97
+      Left = 8
+      Top = 63
+      Width = 80
       Height = 17
       Caption = 'Check'
       Checked = True
@@ -88,13 +86,11 @@ object CBVCLPreviewForm: TCBVCLPreviewForm
     object ScrollBar: TScrollBar
       Left = 4
       Top = 101
-      Width = 346
+      Width = 269
       Height = 17
       Align = alBottom
       PageSize = 0
       TabOrder = 6
-      ExplicitTop = 100
-      ExplicitWidth = 342
     end
   end
   object MainMenu: TMainMenu

@@ -2,7 +2,7 @@
 {  VCLThemeSelector Launcher by Carlo Barazzetta                               }
 {  A simple example to launch VCLThemeSelector                                 }
 {                                                                              }
-{       Copyright (c) 2020-2023 (Ethea S.r.l.)                                 }
+{       Copyright (c) 2020-2025 (Ethea S.r.l.)                                 }
 {       Author: Carlo Barazzetta                                               }
 {       https://github.com/EtheaDev/VCLThemeSelector                           }
 {                                                                              }
@@ -52,6 +52,7 @@ type
     Label1: TLabel;
     Label2: TLabel;
     procedure ChangeThemeButtonClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     procedure TrySetStyle(const AStyleName: string);
   protected
@@ -94,6 +95,11 @@ begin
     TrySetStyle(LStyleName);
     WriteAppStyleToReg(COMPANY_NAME, ExtractFileName(Application.ExeName), LStyleName);
   end;
+end;
+
+procedure TLauncher.FormCreate(Sender: TObject);
+begin
+  Caption := Application.Title;
 end;
 
 procedure TLauncher.Loaded;

@@ -779,6 +779,7 @@ procedure TVCLThemeSelectorForm.FormAfterMonitorDpiChanged(Sender: TObject;
 begin
   if ParentFont and (Application.MainForm.Monitor.Handle <> Self.Monitor.Handle) then
     Font.Height := MulDiv(Font.Height, NewDPI, OldDPI);
+  UpdateButtons;
 end;
 
 procedure TVCLThemeSelectorForm.FormCreate(Sender: TObject);

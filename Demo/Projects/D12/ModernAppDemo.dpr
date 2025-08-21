@@ -47,7 +47,7 @@ uses
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.Title := 'Modern App and ThemeSelector Demo with HighDPI support';
+  Application.Title := 'Modern App and ThemeSelector Demo with HighDPI support - Delphi 12';
   //Uses System Style for border / shadow of Forms
   TStyleManager.FormBorderStyle := TStyleManager.TFormBorderStyle.fbsSystemStyle;
 

@@ -43,3 +43,14 @@
   {$DEFINE D12+}
 {$ENDIF}
 
+// Delphi 13.0
+{$IFDEF VER370}
+  {$DEFINE D10_1+}
+  {$DEFINE D10_2+}
+  {$DEFINE D10_3+}
+  {$DEFINE D10_4+}
+  {$DEFINE D11+}
+  {$DEFINE D12+}
+  {$DEFINE D13+}
+{$ENDIF}
+

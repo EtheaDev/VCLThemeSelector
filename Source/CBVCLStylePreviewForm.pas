@@ -46,10 +46,6 @@ Uses
   Vcl.StdCtrls,
   Vcl.ComCtrls;
 
-const
-  PREVIEW_HEIGHT = 190; //At 96 DPI
-  PREVIEW_WIDTH = 300;  //At 96 DPI
-
 type
   TCBVCLPreviewForm = class(TForm)
     MainMenu: TMainMenu;

@@ -6,7 +6,7 @@ Related links: https://www.embarcadero.com/ - https://learndelphi.org/
 
 With **VCLThemeSelector** you can easily add a modern and elegant Theme selector for your Delphi VCL app. The Form shows all the VCL Styles included in your application, then arrange them in defined Rows and Columns. You can specify to include or not 'Windows' not-styled option.
 
-### Preview (from Delphi 10.4 to Delphi 12 - using PerControlStyles)
+### Preview (from Delphi 10.4 to Delphi 13 - using PerControlStyles)
 ![/Demo/Images/PreviewD10_4.jpg](./Demo/Images/PreviewD10_4.jpg)
 
 ### Preview (before Delphi 10.3 - Without PerControlStyle)
@@ -69,6 +69,11 @@ this Demo is inspired by TSplitView demo (original software is Copyright (c) 201
 **ModernAppDemo** is compatible with Delphi Delphi 12, 11, 10.4, 10.3, 10.2 and 10.1 (notice: 10.1 png stream format of pictures inside biolife.xml are incompatible: use an old biolife.xml file).
 
 ## Release Notes ##
+
+21 Aug 2025
+- Added support for Delphi 12.3
+- Added support for Delphi 13
+- Fixed Preview for DXE6
 
 20 Nov 2024
 - Added support for Delphi 12.2

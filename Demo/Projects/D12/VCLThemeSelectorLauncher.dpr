@@ -2,7 +2,7 @@
 {  VCLThemeSelector Launcher by Carlo Barazzetta                               }
 {  A simple example to launch VCLThemeSelector                                 }
 {                                                                              }
-{       Copyright (c) 2020-2023 (Ethea S.r.l.)                                 }
+{       Copyright (c) 2020-2025 (Ethea S.r.l.)                                 }
 {       Author: Carlo Barazzetta                                               }
 {       https://github.com/EtheaDev/VCLThemeSelector                           }
 {                                                                              }
@@ -34,7 +34,7 @@ uses
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.Title := 'VCLThemeSelector Launcher';
+  Application.Title := 'VCLThemeSelector Launcher - Delphi 12';
   Application.CreateForm(TLauncher, Launcher);
   Application.Run;
 end.

@@ -1,6 +1,6 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
-        <ProjectGuid>{3A641B72-3BED-4F5E-9822-B594FF4EBCDC}</ProjectGuid>
+        <ProjectGuid>{6305D1CF-5712-4B17-9101-F7BA3D5FFD2C}</ProjectGuid>
         <ProjectVersion>19.5</ProjectVersion>
         <FrameworkType>VCL</FrameworkType>
         <MainSource>ModernAppDemo.dpr</MainSource>

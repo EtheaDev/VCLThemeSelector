@@ -11,9 +11,8 @@ object Launcher: TLauncher
   Font.Height = -11
   Font.Name = 'Segoe UI'
   Font.Style = []
-  OldCreateOrder = False
   Position = poScreenCenter
-  PixelsPerInch = 96
+  OnCreate = FormCreate
   TextHeight = 13
   object EtheaImage: TImage
     Left = 184
@@ -688,7 +687,7 @@ object Launcher: TLauncher
     Height = 43
     Alignment = taCenter
     AutoSize = False
-    Caption = 'Copyright '#169' 2020 - 2024 Ethea S.r.l.'
+    Caption = 'Copyright '#169' 2020 - 2025 Ethea S.r.l.'
     WordWrap = True
   end
   object Label2: TLabel
@@ -702,7 +701,7 @@ object Launcher: TLauncher
   end
   object ChangeThemeButton: TButton
     Left = 8
-    Top = 129
+    Top = 134
     Width = 105
     Height = 31
     Caption = 'Change Theme...'

@@ -3,7 +3,7 @@
 {  A full example of an HighDPI - VCL Themed enabled application               }
 {  See how to select the application Theme using VCLThemeSelector Form         }
 {                                                                              }
-{       Copyright (c) 2020, 2024 (Ethea S.r.l.)                                }
+{       Copyright (c) 2020, 2025 (Ethea S.r.l.)                                }
 {       Author: Carlo Barazzetta                                               }
 {       https://github.com/EtheaDev/VCLThemeSelector                           }
 {                                                                              }
@@ -47,7 +47,7 @@ uses
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.Title := 'Modern App and ThemeSelector Demo with HighDPI support';
+  Application.Title := 'Modern App and ThemeSelector Demo with HighDPI support - Delphi 10.4';
   //Uses System Style for border / shadow of Forms
   TStyleManager.FormBorderStyle := TStyleManager.TFormBorderStyle.fbsSystemStyle;
 
