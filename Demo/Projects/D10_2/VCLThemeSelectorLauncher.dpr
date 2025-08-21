@@ -23,9 +23,10 @@ program VCLThemeSelectorLauncher;
 
 uses
   Vcl.Forms,
-  LauncherForm in '..\..\Source\LauncherForm.pas' {Launcher},
+  System.SysUtils,
   Vcl.Themes,
-  Vcl.Styles;
+  Vcl.Styles,
+  LauncherForm in '..\..\Source\LauncherForm.pas' {Launcher};
 
 {$R *.res}
 

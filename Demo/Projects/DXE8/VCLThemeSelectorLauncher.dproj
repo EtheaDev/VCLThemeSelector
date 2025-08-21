@@ -65,7 +65,7 @@
         <DCC_ExeOutput>..\..\Bin</DCC_ExeOutput>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <DCC_UnitSearchPath>..\..\..\Source;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
-        <VerInfo_Keys>CompanyName=Ethea S.r.l.;FileVersion=3.0.0.0;InternalName=;LegalCopyright=Copyright (c) 2020-2022 - Ethea S.r.l.;LegalTrademarks=;OriginalFilename=;ProductVersion=3.0;Comments=;ProgramID=;FileDescription=;ProductName=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=Ethea S.r.l.;FileVersion=3.4.0.0;InternalName=;LegalCopyright=Copyright (c) 2020-2025 - Ethea S.r.l.;LegalTrademarks=;OriginalFilename=;ProductVersion=3.4;Comments=;ProgramID=;FileDescription=;ProductName=</VerInfo_Keys>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_MajorVer>3</VerInfo_MajorVer>
     </PropertyGroup>
