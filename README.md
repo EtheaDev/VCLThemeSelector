@@ -2,6 +2,8 @@
 
 **Easy and elegant preview/selection of Theme (Light or Dark) for VCL apps plus HighDPI demo**
 
+_**Actual official version: 3.5.0**_
+
 Related links: https://www.embarcadero.com/ - https://learndelphi.org/
 
 With **VCLThemeSelector** you can easily add a modern and elegant Theme selector for your Delphi VCL app. The Form shows all the VCL Styles included in your application, then arrange them in defined Rows and Columns. You can specify to include or not 'Windows' not-styled option.
@@ -69,6 +71,10 @@ this Demo is inspired by TSplitView demo (original software is Copyright (c) 201
 **ModernAppDemo** is compatible with Delphi Delphi 13, 12, 11, 10.4, 10.3, 10.2 and 10.1 (notice: 10.1 png stream format of pictures inside biolife.xml are incompatible: use an old biolife.xml file).
 
 ## Release Notes ##
+
+28 Apr 2026
+- Added support for Delphi 13.1
+- Added new Delphi 13.1 VCL-Styles and third parties
 
 21 Aug 2025
 - Added support for Delphi 12.3

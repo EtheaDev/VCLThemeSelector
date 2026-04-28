@@ -2,7 +2,7 @@
 {                                                                              }
 {       VCLThemeSelector: Form for Preview and Selection of VCL Style          }
 {                                                                              }
-{       Copyright (c) 2020-2025 (Ethea S.r.l.)                                 }
+{       Copyright (c) 2020-2026 (Ethea S.r.l.)                                 }
 {       Author: Carlo Barazzetta                                               }
 {       Contributor: Nicola Tambascia                                          }
 {                                                                              }
@@ -301,6 +301,41 @@ begin
     RegisterThemeAttributes('Windows11 Impressive Dark SE',ttDark,  clWebDarkBlue      , clWebDarkGray );
     RegisterThemeAttributes('Windows11 Impressive Light',ttLight, clWebLightYellow   , clWebAliceBlue);
     RegisterThemeAttributes('Windows11 Impressive Light SE',ttLight, clWebLightYellow   , clWebAliceBlue);
+
+    //New Delphi 13.1 Styles
+    RegisterThemeAttributes('Windows Modern'             ,ttLight, clWebLightYellow   , clWebAliceBlue);
+    RegisterThemeAttributes('Windows Modern Dark'        ,ttDark , clWebDarkBlue      , clWebDarkGray );
+    RegisterThemeAttributes('Windows Modern Blue'        ,ttDark , clWebLightSkyBlue  , clWebLightgrey);
+    RegisterThemeAttributes('Windows Modern Green'       ,ttDark , clWebLightGreen    , clWebLightgrey);
+    RegisterThemeAttributes('Windows Modern Purple'      ,ttDark , clWebLightPink     , clWebLightgrey);
+    RegisterThemeAttributes('Windows Modern SlateGray'   ,ttDark , clWebDarkSlategray , clDkGray      );
+    RegisterThemeAttributes('Windows Modern MountainMist',ttLight, clWebLightYellow   , clWebLightgrey);
+
+    //New Third Parties Styles (provided by Lance Rasmussen)
+    RegisterThemeAttributes('CDE Frost: Blue'         ,ttDark , clWebLightSkyBlue  , clWebLightgrey);
+    RegisterThemeAttributes('CDE Frost: Teal'         ,ttDark , clWebDarkSlategray , clWebDarkGray );
+    RegisterThemeAttributes('CDE: Golden Graphite'    ,ttDark , clWebDarkOrange    , clWebDarkSalmon);
+    RegisterThemeAttributes('CDE Graphite: Blue'      ,ttDark , clWebLightSkyBlue  , clWebLightgrey);
+    RegisterThemeAttributes('CDE Graphite: Teal'      ,ttDark , clWebDarkSlategray , clWebDarkGray );
+    RegisterThemeAttributes('CDE Impressive: Dark'    ,ttDark , clWebDarkBlue      , clWebDarkGray );
+    RegisterThemeAttributes('CDE Impressive: Light'   ,ttLight, clWebLightYellow   , clWebAliceBlue);
+    RegisterThemeAttributes('CDE Modern: Dark'        ,ttDark , clWebDarkBlue      , clWebDarkGray );
+    RegisterThemeAttributes('CDE Modern: Light'       ,ttLight, clWebLightYellow   , clWebAliceBlue);
+    RegisterThemeAttributes('Raize Frost : Blue'      ,ttDark , clWebLightSkyBlue  , clWebLightgrey);
+    RegisterThemeAttributes('Raize Frost : Green'     ,ttDark , clWebLightGreen    , clWebLightgrey);
+    RegisterThemeAttributes('Raize Frost : Orange'    ,ttDark , clWebDarkOrange    , clWebDarkSalmon);
+    RegisterThemeAttributes('Raize Frost : Purple'    ,ttDark , clWebLightPink     , clWebLightgrey);
+    RegisterThemeAttributes('Raize Frost : Red'       ,ttDark , clWebDarkRed       , clDkGray      );
+    RegisterThemeAttributes('Raize Frost : Teal'      ,ttDark , clWebDarkSlategray , clWebDarkGray );
+    RegisterThemeAttributes('Raize Frost : Yellow'    ,ttDark , clWebYellow        , clWebDarkKhaki);
+    RegisterThemeAttributes('Raize Graphite : Blue'   ,ttDark , clWebLightSkyBlue  , clWebLightgrey);
+    RegisterThemeAttributes('Raize Graphite : Green'  ,ttDark , clWebLightGreen    , clWebLightgrey);
+    RegisterThemeAttributes('Raize Graphite : Orange' ,ttDark , clWebDarkOrange    , clWebDarkSalmon);
+    RegisterThemeAttributes('Raize Graphite : Purple' ,ttDark , clWebLightPink     , clWebLightgrey);
+    RegisterThemeAttributes('Raize Graphite : Red'    ,ttDark , clWebDarkRed       , clDkGray      );
+    RegisterThemeAttributes('Raize Graphite : Teal'   ,ttDark , clWebDarkSlategray , clWebDarkGray );
+    RegisterThemeAttributes('Raize Graphite : Yellow' ,ttDark , clWebYellow        , clWebDarkKhaki);
+
     RegisterThemeAttributes('Windows11 MineShaft'     ,ttDark,  clWebDarkBlue      , clWebDarkGray );
     RegisterThemeAttributes('Windows11 Polar Dark'    ,ttDark,  clWebDarkBlue      , clWebDarkGray );
     RegisterThemeAttributes('Windows11 Polar Light'   ,ttLight, clWebLightYellow   , clWebAliceBlue);

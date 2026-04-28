@@ -3,7 +3,7 @@
 {  A full example of an HighDPI - VCL Themed enabled application               }
 {  See how to select the application Theme using VCLThemeSelector Form         }
 {                                                                              }
-{       Copyright (c) 2020-2025 (Ethea S.r.l.)                                 }
+{       Copyright (c) 2020-2026 (Ethea S.r.l.)                                 }
 {       Author: Carlo Barazzetta                                               }
 {       https://github.com/EtheaDev/VCLThemeSelector                           }
 {                                                                              }
@@ -81,36 +81,24 @@ uses
   , DImageCollections
   , SVGIconImage
   , IconFontsImage
+  , Vcl.PlatformVclStylesActnCtrls
 {$IFDEF VCLSTYLEUTILS}
   //VCLStyles support:
   //to compile you need to donwload VCLStyleUtils+DDetours from:
   //https://github.com/RRUZ/vcl-styles-utils
   //https://github.com/MahdiSafsafi/DDetours
-  , Vcl.PlatformVclStylesActnCtrls
-  , Vcl.Styles.ColorTabs
-  , Vcl.Styles.ControlColor
-  , Vcl.Styles.DbGrid
-  , Vcl.Styles.DPIAware
   , Vcl.Styles.Fixes
-  , Vcl.Styles.Ext
-  , Vcl.Styles.FontAwesome
   , Vcl.Styles.FormStyleHooks
-  , Vcl.Styles.NC
   , Vcl.Styles.OwnerDrawFix
   , Vcl.Styles.Utils.ScreenTips
   , Vcl.Styles.Utils.SysStyleHook
-  , Vcl.Styles.WebBrowser
   , Vcl.Styles.Utils
-  , Vcl.Styles.Utils.Menus
-  , Vcl.Styles.Utils.Misc
-  , Vcl.Styles.Utils.SystemMenu
-  , Vcl.Styles.Utils.Graphics
   , Vcl.Styles.Utils.SysControls
   , Vcl.Styles.UxTheme
   , Vcl.Styles.Hooks
   , Vcl.Styles.Utils.Forms
   , Vcl.Styles.Utils.ComCtrls
-  , Vcl.Styles.Utils.StdCtrls, Vcl.VirtualImageList
+  , Vcl.Styles.Utils.StdCtrls
 {$ENDIF}
 
 {$IFDEF D10_2+}
@@ -118,6 +106,7 @@ uses
 {$ENDIF}
   {$IFDEF D10_4+}
   , Vcl.NumberBox
+  , Vcl.VirtualImageList
 {$ENDIF}
   {$IFDEF STYLEDCOMPONENTS}
   , Vcl.StyledComponentsHooks

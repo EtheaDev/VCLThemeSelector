@@ -46,10 +46,10 @@
         <DCC_ExeOutput>..\..\Bin</DCC_ExeOutput>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <DCC_UnitSearchPath>..\..\..\Source;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
-        <VerInfo_Keys>CompanyName=Ethea S.r.l.;FileVersion=3.4.0.0;InternalName=;LegalCopyright=Copyright (c) 2020-2025 - Ethea S.r.l.;LegalTrademarks=;OriginalFilename=;ProductVersion=3.4;Comments=;ProgramID=;FileDescription=;ProductName=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=Ethea S.r.l.;FileVersion=3.5.0.0;InternalName=;LegalCopyright=Copyright (c) 2020-2026 - Ethea S.r.l.;LegalTrademarks=;OriginalFilename=;ProductVersion=3.4;Comments=;ProgramID=;FileDescription=;ProductName=</VerInfo_Keys>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_MajorVer>3</VerInfo_MajorVer>
-        <VerInfo_MinorVer>4</VerInfo_MinorVer>
+        <VerInfo_MinorVer>5</VerInfo_MinorVer>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
@@ -107,10 +107,10 @@
         <Borland.ProjectType/>
         <BorlandProject>
             <Delphi.Personality>
+                <Excluded_Packages/>
                 <Source>
                     <Source Name="MainSource">VCLThemeSelectorLauncher.dpr</Source>
                 </Source>
-                <Excluded_Packages/>
             </Delphi.Personality>
             <Platforms>
                 <Platform value="Win32">True</Platform>
