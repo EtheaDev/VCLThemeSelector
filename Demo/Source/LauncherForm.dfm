@@ -687,7 +687,7 @@ object Launcher: TLauncher
     Height = 43
     Alignment = taCenter
     AutoSize = False
-    Caption = 'Copyright '#169' 2020 - 2025 Ethea S.r.l.'
+    Caption = 'Copyright '#169' 2020 - 2026 Ethea S.r.l.'
     WordWrap = True
   end
   object Label2: TLabel

@@ -1,10 +1,18 @@
-﻿# VCLThemeSelector [![License](https://img.shields.io/badge/License-Apache%202.0-yellowgreen.svg)](https://opensource.org/licenses/Apache-2.0)
+﻿# VCLThemeSelector
+
+[![License: Apache](https://img.shields.io/badge/License-Apache%202.0-green.svg)](LICENSE)
+[![Latest release](https://img.shields.io/github/v/release/EtheaDev/VCLThemeSelector?label=release&color=blue)](https://github.com/EtheaDev/IconFontsImageList/releases)
+[![Delphi 7+](https://img.shields.io/badge/Delphi-10.4%2B-e62329.svg)](https://www.embarcadero.com/products/delphi)
+[![Platform: VCL](https://img.shields.io/badge/Platform-VCL-8a2be2.svg)](https://docwiki.embarcadero.com/RADStudio/en/Main_Page)
+[![Windows 10 and 11](https://img.shields.io/badge/Windows-10%20%7C%2011-0078d6.svg)](https://www.microsoft.com/windows)
 
 **Easy and elegant preview/selection of Theme (Light or Dark) for VCL apps plus HighDPI demo**
 
-_**Actual official version: 3.5.0**_
+![Delphi Support](./Demo/Images/SupportingDelphi.jpg)
 
 Related links: https://www.embarcadero.com/ - https://learndelphi.org/
+
+---
 
 With **VCLThemeSelector** you can easily add a modern and elegant Theme selector for your Delphi VCL app. The Form shows all the VCL Styles included in your application, then arrange them in defined Rows and Columns. You can specify to include or not 'Windows' not-styled option.
 
@@ -34,6 +42,8 @@ end;
 License: the CBVCLStylePreview is based on VCLStylePreview (Vcl.Styles.Ext) from:
 [github.com/RRUZ/vcl-styles-utils](https://github.com/RRUZ/vcl-styles-utils/) with full High-DPI support, and released under Apache 2.0 license.
 
+---
+
 ## High-DPI Delphi App full example ##
 
 Also included in this repository you can find a full example of an HighDPI - VCL Themed enabled application that uses the VCLThemeSelector to change the Theme. You can run the demo from: Demo\Bin\ModernAppDemo.exe.
@@ -62,8 +72,6 @@ You can also use StyledComponents, enabling STYLEDCOMPONENTS Compiler directive 
 
 this Demo is inspired by TSplitView demo (original software is Copyright (c) 2015 Embarcadero Technologies, Inc.) and is released under Apache 2.0 license.
 
-![Delphi Support](./Demo/Images/SupportingDelphi.jpg)
-
 ## Compatibility ##
 
 **VCLThemeSelector** and **VCLThemeSelectorLauncher** are compatible from Delphi XE5 to Delphi 13, with some differences to High-DPI support.
@@ -72,57 +80,63 @@ this Demo is inspired by TSplitView demo (original software is Copyright (c) 201
 
 ## Release Notes ##
 
-28 Apr 2026
+15 Oct 2026 - version 3.6.0
+- Aligned VCL-Styles attributes with StyledComponents
+- Added attributes for IDE Styles (Win10IDE, Windows Designer, Mountain_Mist)
+- Fixed Raize Frost Styles: now registered as Light themes
+- Fixed duplicated registration of Material Oxford Blue
+
+28 Apr 2026 - version 3.5.0
 - Added support for Delphi 13.1
 - Added new Delphi 13.1 VCL-Styles and third parties
 
-21 Aug 2025
+21 Aug 2025 - version 3.4.0
 - Added support for Delphi 12.3
 - Added support for Delphi 13
 - Fixed Preview for DXE6
 
-20 Nov 2024
+20 Nov 2024 - version 3.3.0
 - Added support for Delphi 12.2
 - Fixed Font Loading fron Registry in DemoApp
 
-26 Apr 2024
+26 Apr 2024 - version 3.2.0
 - Added support for Delphi 12.1
 - Added StyledComponents integration
 - Added StyledComponents interposer in demo
 
-20 Oct 2023
+20 Oct 2023 - version 3.1.1
 - Added support for Delphi 12
 - Examples Built with Delphi 12 (beta)
 
-04 Mar 2023
+04 Mar 2023 - version 3.1.0
 - Built with Delphi 11.3
 - More VCL Styles supported
 
-15 Sep 2022
+15 Sep 2022 - version 3.0.2
 - Built with Delphi 11.2
 
-10 Apr 2022
+10 Apr 2022 - version 3.0.1
 - Built with Delphi 11.1
 - Fixed Size of menu when resize icons
 
-16 Feb 2022
+16 Feb 2022 - version 3.0.0
 - Added italian translation
 - SetEditorStyleAttributes to assign required/readonly attributes to edit controls
 - Added pixelsperinch when storing font
 - Added RegisterThemeAttributes to interface to add personal Styles
 
-19 Oct 2021
+19 Oct 2021 - version 2.1.1
 - Replaced "Windows11 Light" and "Windows11 Dark" Styles with "Windows11 Modern Light" and "Windows11 Modern Dark"
 - Updated demos to use new Windows 11 Styles available from Get-It
 
-16 Oct 2021
+16 Oct 2021 - version 2.1.0
 - Added New Windows11 Light and Dark Themes to Modern Demo (Delphi 11)
 - Added New Windows11 Light and Dark Themes to Launcher (Delphi 11)
 
-23 Aug 2021
+23 Aug 2021 - version 2.0.2
 - Added support for Delphi 11
 
-24 Jan 2021
+24 Jan 2021 - version 2.0.1
 - Changed preview to separate Light and Dark Themes
 - Added support for info about Themes: 
   TThemeAttribute = class
@@ -132,27 +146,27 @@ this Demo is inspired by TSplitView demo (original software is Copyright (c) 201
     EditReadonlyColor: TColor;
   end;
   
-30 Aug 2020
+30 Aug 2020 - version 2.0.0
 - Changed demo to use new IconsFontsVirtualImageList and SVGIconVirtualImageList components
 - Updated external project VCLStyleUtils
 
-19 Jun 2020
+19 Jun 2020 - version 1.1.2
 - Fixed VCLThemeSelector for app in "Windows" Style for D10.4
 - Recompiled Demo with IconFontsImageList 2.0 (with GDI+ support)
 
-11 Jun 2020
+11 Jun 2020 - version 1.1.1
 - Added SVGIconImageList
 - Demo: swith icons from Fonts to SVG
 
-09 Jun 2020
+09 Jun 2020 - version 1.1.0
 - Updated Demo for Delphi 10.4
 - Added custom form "per-control styled" for D10.4
 
-17 May 2020
+17 May 2020 - version 1.0.2
 - Changed "Material Design Desktop" Font used in Demo
 
-27 Apr 2020
+27 Apr 2020 - version 1.0.1
 - Added VCLThemeSelectorLauncher 
 
-25 Apr 2020
+25 Apr 2020 - version 1.0.0
 - First release of Selector and Demo App

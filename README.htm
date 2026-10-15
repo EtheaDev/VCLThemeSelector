@@ -1,4 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>README</title>
 <style type="text/css">
+:root{color-scheme:light;}
+body{font-family:"Arial",sans-serif;font-size:12pt;color:#000000;background-color:#FFFFFF;}
+a{color:#0000FF;}
+.markdown-alert>:last-child{margin-bottom:0;}
+.markdown-alert-title{margin-top:0;}
+@media print{body{color:#000;background-color:#fff;}}
+</style>
+<script>
+document.addEventListener("click",function(e){var a=e.target.closest("a");if(a){var h=a.getAttribute("href");if(h&&h.charAt(0)==="#"){e.preventDefault();var t=document.getElementById(decodeURIComponent(h.substring(1)));if(t)t.scrollIntoView();}}});
+window.addEventListener("scroll",function(){if(window.chrome&&chrome.webview)chrome.webview.postMessage("scrollY:"+Math.round(window.scrollY)+":"+Math.max(0,Math.round(document.documentElement.scrollHeight-window.innerHeight)));});
+</script>
+</head>
+<body>
+<style type="text/css">
+img{
+  max-width: 100%;
+  height: auto;
+}
+video{
+  max-width: 100%;
+  height: auto;
+}
 code{
   font-family: "Consolas", monospace;
 }
@@ -21,124 +48,194 @@ table{
   border:1px solid;
   border-collapse:collapse;
 }
-th{  padding:5px;
+th{
+  padding:5px;
   border:1px solid;
 }
 td{
   padding:5px;
   border:1px solid;
 }
+mark{
+  background-color: #fff3a0;
+  color: #000;
+}
+kbd{
+  font-family: "Consolas", monospace;
+  border: 1px solid #bbb;
+  padding: 0 4px;
+}
+div.math{
+  text-align: center;
+}
+pre.mermaid{
+  border: none;
+  padding: 0;
+}
+.markdown-alert{
+  padding: 0.5em 1em;
+  margin-bottom: 1em;
+  border-left: 4px solid #d0d7de;
+}
+.markdown-alert-title{
+  font-weight: bold;
+}
+.markdown-alert-note{
+  border-left: 4px solid #0969da;
+}
+.markdown-alert-note .markdown-alert-title{
+  color: #0969da;
+}
+.markdown-alert-tip{
+  border-left: 4px solid #1a7f37;
+}
+.markdown-alert-tip .markdown-alert-title{
+  color: #1a7f37;
+}
+.markdown-alert-important{
+  border-left: 4px solid #8250df;
+}
+.markdown-alert-important .markdown-alert-title{
+  color: #8250df;
+}
+.markdown-alert-warning{
+  border-left: 4px solid #9a6700;
+}
+.markdown-alert-warning .markdown-alert-title{
+  color: #9a6700;
+}
+.markdown-alert-caution{
+  border-left: 4px solid #cf222e;
+}
+.markdown-alert-caution .markdown-alert-title{
+  color: #cf222e;
+}
 </style>
-<h1>VCLThemeSelector <a href="https://opensource.org/licenses/Apache-2.0"><img src="https://img.shields.io/badge/License-Apache%202.0-yellowgreen.svg" alt="License"/></a></h1>
+<h1 id="vclthemeselector">VCLThemeSelector</h1>
+<p><a href="LICENSE"><img src="https://img.shields.io/badge/License-Apache%202.0-green.svg" alt="License: Apache" /></a>
+<a href="https://github.com/EtheaDev/IconFontsImageList/releases"><img src="https://img.shields.io/github/v/release/EtheaDev/VCLThemeSelector?label=release&amp;color=blue" alt="Latest release" /></a>
+<a href="https://www.embarcadero.com/products/delphi"><img src="https://img.shields.io/badge/Delphi-10.4%2B-e62329.svg" alt="Delphi 7+" /></a>
+<a href="https://docwiki.embarcadero.com/RADStudio/en/Main_Page"><img src="https://img.shields.io/badge/Platform-VCL-8a2be2.svg" alt="Platform: VCL" /></a>
+<a href="https://www.microsoft.com/windows"><img src="https://img.shields.io/badge/Windows-10%20%7C%2011-0078d6.svg" alt="Windows 10 and 11" /></a></p>
 <p><strong>Easy and elegant preview/selection of Theme (Light or Dark) for VCL apps plus HighDPI demo</strong></p>
-<p><em><strong>Actual official version: 3.5.0</strong></em></p>
-<p>Related links: https://www.embarcadero.com/ - https://learndelphi.org/</p>
+<p><img src="./Demo/Images/SupportingDelphi.jpg" alt="Delphi Support" /></p>
+<p>Related links: <a href="https://www.embarcadero.com/">https://www.embarcadero.com/</a> - <a href="https://learndelphi.org/">https://learndelphi.org/</a></p>
+<hr />
 <p>With <strong>VCLThemeSelector</strong> you can easily add a modern and elegant Theme selector for your Delphi VCL app. The Form shows all the VCL Styles included in your application, then arrange them in defined Rows and Columns. You can specify to include or not 'Windows' not-styled option.</p>
-<h3>Preview (from Delphi 10.4 to Delphi 13 - using PerControlStyles)</h3>
-<p><img src="./Demo/Images/PreviewD10_4.jpg" alt="/Demo/Images/PreviewD10_4.jpg"/></p>
-<h3>Preview (before Delphi 10.3 - Without PerControlStyle)</h3>
-<p><img src="./Demo/Images/PreviewD10_3.jpg" alt="/Demo/Images/PreviewD10_3.jpg"/></p>
+<h3 id="preview-from-delphi-104-to-delphi-13---using-percontrolstyles">Preview (from Delphi 10.4 to Delphi 13 - using PerControlStyles)</h3>
+<p><img src="./Demo/Images/PreviewD10_4.jpg" alt="/Demo/Images/PreviewD10_4.jpg" /></p>
+<h3 id="preview-before-delphi-103---without-percontrolstyle">Preview (before Delphi 10.3 - Without PerControlStyle)</h3>
+<p><img src="./Demo/Images/PreviewD10_3.jpg" alt="/Demo/Images/PreviewD10_3.jpg" /></p>
 <p>Use the <strong>VCLThemeSelectorLauncher</strong> demo present in Demo Folder to test it, and see how it's easy to use it, like in this example:</p>
-<pre><code class="pascal">var
-  LStyleName: string;
-  LExcludeWindows: boolean;
-  LMaxRows, LMaxCols: Integer;
-begin  
-  LStyleName := TStyleManager.ActiveStyle.Name;
-  LExcludeWindows := False;
-  LMaxRows := 3;
-  LMaxCols := 4;
-  if ShowVCLThemeSelector(LStyleName, LExcludeWindows, LMaxRows, LMaxCols) then
-    TStyleManager.SetStyle(LStyleName);
-end;    
+<div style="font-family: Arial, 'Courier New', monospace; font-size: 12pt;  background-color: #FFFFFF; color: #000000;">
+<pre><code><span style="color: #0000FF; font-weight: bold; ">var</span>
+<span>  LStyleName</span><span style="color: #555555; ">:</span><span> </span><span style="color: #0000FF; font-weight: bold; ">string</span><span style="color: #555555; ">;</span>
+<span>  LExcludeWindows</span><span style="color: #555555; ">:</span><span> </span><span style="color: #0000FF; font-weight: bold; ">boolean</span><span style="color: #555555; ">;</span>
+<span>  LMaxRows</span><span style="color: #555555; ">,</span><span> LMaxCols</span><span style="color: #555555; ">:</span><span> </span><span style="color: #0000FF; font-weight: bold; ">Integer</span><span style="color: #555555; ">;</span>
+<span style="color: #0000FF; font-weight: bold; ">begin</span><span>  
+  LStyleName </span><span style="color: #555555; ">:=</span><span> TStyleManager</span><span style="color: #555555; ">.</span><span>ActiveStyle</span><span style="color: #555555; ">.</span><span>Name</span><span style="color: #555555; ">;</span>
+<span>  LExcludeWindows </span><span style="color: #555555; ">:=</span><span> False</span><span style="color: #555555; ">;</span>
+<span>  LMaxRows </span><span style="color: #555555; ">:=</span><span> </span><span style="color: #098658; ">3</span><span style="color: #555555; ">;</span>
+<span>  LMaxCols </span><span style="color: #555555; ">:=</span><span> </span><span style="color: #098658; ">4</span><span style="color: #555555; ">;</span>
+<span>  </span><span style="color: #0000FF; font-weight: bold; ">if</span><span> ShowVCLThemeSelector</span><span style="color: #555555; ">(</span><span>LStyleName</span><span style="color: #555555; ">,</span><span> LExcludeWindows</span><span style="color: #555555; ">,</span><span> LMaxRows</span><span style="color: #555555; ">,</span><span> LMaxCols</span><span style="color: #555555; ">)</span><span> </span><span style="color: #0000FF; font-weight: bold; ">then</span>
+<span>    TStyleManager</span><span style="color: #555555; ">.</span><span>SetStyle</span><span style="color: #555555; ">(</span><span>LStyleName</span><span style="color: #555555; ">);</span>
+<span style="color: #0000FF; font-weight: bold; ">end</span><span style="color: #555555; ">;</span><span>    </span>
 </code></pre>
+</div>
 <p>License: the CBVCLStylePreview is based on VCLStylePreview (Vcl.Styles.Ext) from:
 <a href="https://github.com/RRUZ/vcl-styles-utils/">github.com/RRUZ/vcl-styles-utils</a> with full High-DPI support, and released under Apache 2.0 license.</p>
-<h2>High-DPI Delphi App full example</h2>
+<hr />
+<h2 id="high-dpi-delphi-app-full-example">High-DPI Delphi App full example</h2>
 <p>Also included in this repository you can find a full example of an HighDPI - VCL Themed enabled application that uses the VCLThemeSelector to change the Theme. You can run the demo from: Demo\Bin\ModernAppDemo.exe.</p>
-<h3>Preview ( Delphi 12 and Windows 11 Modern Dark Style)</h3>
-<p><img src="./Demo/Images/DemoPreviewD11_Dark.jpg" alt="/Demo/Images/DemoPreviewD11_Dark.jpg"/></p>
-<h3>Preview ( Delphi 12 and Windows 11 Modern Light Style)</h3>
-<p><img src="/Demo/Images/DemoPreview_D11_Light.jpg" alt="/Demo/Images/DemoPreview_D11_Light.jpg"/></p>
-<h3>Demo from 10.1 to 10.3 (with SVGIconsImageList)</h3>
-<p><img src="./Demo/Images/DemoPreview.jpg" alt="/Demo/Images/DemoPreview.jpg"/></p>
-<h3>Demo with Delphi 12 (with PerControlStyle and IconFontsImageList)</h3>
-<p><img src="./Demo/Images/DemoPreviewD10_4.jpg" alt="/Demo/Images/DemoPreviewD10_4.jpg"/></p>
+<h3 id="preview--delphi-12-and-windows-11-modern-dark-style">Preview ( Delphi 12 and Windows 11 Modern Dark Style)</h3>
+<p><img src="./Demo/Images/DemoPreviewD11_Dark.jpg" alt="/Demo/Images/DemoPreviewD11_Dark.jpg" /></p>
+<h3 id="preview--delphi-12-and-windows-11-modern-light-style">Preview ( Delphi 12 and Windows 11 Modern Light Style)</h3>
+<p><img src="/Demo/Images/DemoPreview_D11_Light.jpg" alt="/Demo/Images/DemoPreview_D11_Light.jpg" /></p>
+<h3 id="demo-from-101-to-103-with-svgiconsimagelist">Demo from 10.1 to 10.3 (with SVGIconsImageList)</h3>
+<p><img src="./Demo/Images/DemoPreview.jpg" alt="/Demo/Images/DemoPreview.jpg" /></p>
+<h3 id="demo-with-delphi-12-with-percontrolstyle-and-iconfontsimagelist">Demo with Delphi 12 (with PerControlStyle and IconFontsImageList)</h3>
+<p><img src="./Demo/Images/DemoPreviewD10_4.jpg" alt="/Demo/Images/DemoPreviewD10_4.jpg" /></p>
 <p>WARNING: to edit and compile the demo you must first download:
-IconFontsImageList free components <a href="https://github.com/EtheaDev/IconFontsImageList/">here&hellip;</a> and SVGIconImageList free components <a href="https://github.com/EtheaDev/SVGIconImageList/">here&hellip;</a></p>
-<p>You can also use StyledComponents, enabling STYLEDCOMPONENTS Compiler directive in the Demo. You must first download StyledComponents <a href="https://github.com/EtheaDev/StyledComponents/">here&hellip;</a></p>
-<h3>Preview using StyledComponents with Rounded Buttons</h3>
-<p><img src="./Demo/Images/DemoPreviewStyledComponents.jpg" alt="/Demo/Images/DemoPreviewStyledComponents.jpg"/></p>
-<h3>License</h3>
+IconFontsImageList free components <a href="https://github.com/EtheaDev/IconFontsImageList/">here…</a> and SVGIconImageList free components <a href="https://github.com/EtheaDev/SVGIconImageList/">here…</a></p>
+<p>You can also use StyledComponents, enabling STYLEDCOMPONENTS Compiler directive in the Demo. You must first download StyledComponents <a href="https://github.com/EtheaDev/StyledComponents/">here…</a></p>
+<h3 id="preview-using-styledcomponents-with-rounded-buttons">Preview using StyledComponents with Rounded Buttons</h3>
+<p><img src="./Demo/Images/DemoPreviewStyledComponents.jpg" alt="/Demo/Images/DemoPreviewStyledComponents.jpg" /></p>
+<h3 id="license">License</h3>
 <p>this Demo is inspired by TSplitView demo (original software is Copyright (c) 2015 Embarcadero Technologies, Inc.) and is released under Apache 2.0 license.</p>
-<p><img src="./Demo/Images/SupportingDelphi.jpg" alt="Delphi Support"/></p>
-<h2>Compatibility</h2>
+<h2 id="compatibility">Compatibility</h2>
 <p><strong>VCLThemeSelector</strong> and <strong>VCLThemeSelectorLauncher</strong> are compatible from Delphi XE5 to Delphi 13, with some differences to High-DPI support.</p>
 <p><strong>ModernAppDemo</strong> is compatible with Delphi Delphi 13, 12, 11, 10.4, 10.3, 10.2 and 10.1 (notice: 10.1 png stream format of pictures inside biolife.xml are incompatible: use an old biolife.xml file).</p>
-<h2>Release Notes</h2>
-<p>28 Apr 2026</p>
+<h2 id="release-notes">Release Notes</h2>
+<p>15 Oct 2026 - version 3.6.0</p>
+<ul>
+<li>Aligned VCL-Styles attributes with StyledComponents</li>
+<li>Added attributes for IDE Styles (Win10IDE, Windows Designer, Mountain_Mist)</li>
+<li>Fixed Raize Frost Styles: now registered as Light themes</li>
+<li>Fixed duplicated registration of Material Oxford Blue</li>
+</ul>
+<p>28 Apr 2026 - version 3.5.0</p>
 <ul>
 <li>Added support for Delphi 13.1</li>
 <li>Added new Delphi 13.1 VCL-Styles and third parties</li>
 </ul>
-<p>21 Aug 2025</p>
+<p>21 Aug 2025 - version 3.4.0</p>
 <ul>
 <li>Added support for Delphi 12.3</li>
 <li>Added support for Delphi 13</li>
 <li>Fixed Preview for DXE6</li>
 </ul>
-<p>20 Nov 2024</p>
+<p>20 Nov 2024 - version 3.3.0</p>
 <ul>
 <li>Added support for Delphi 12.2</li>
 <li>Fixed Font Loading fron Registry in DemoApp</li>
 </ul>
-<p>26 Apr 2024</p>
+<p>26 Apr 2024 - version 3.2.0</p>
 <ul>
 <li>Added support for Delphi 12.1</li>
 <li>Added StyledComponents integration</li>
 <li>Added StyledComponents interposer in demo</li>
 </ul>
-<p>20 Oct 2023</p>
+<p>20 Oct 2023 - version 3.1.1</p>
 <ul>
 <li>Added support for Delphi 12</li>
 <li>Examples Built with Delphi 12 (beta)</li>
 </ul>
-<p>04 Mar 2023</p>
+<p>04 Mar 2023 - version 3.1.0</p>
 <ul>
 <li>Built with Delphi 11.3</li>
 <li>More VCL Styles supported</li>
 </ul>
-<p>15 Sep 2022</p>
+<p>15 Sep 2022 - version 3.0.2</p>
 <ul>
 <li>Built with Delphi 11.2</li>
 </ul>
-<p>10 Apr 2022</p>
+<p>10 Apr 2022 - version 3.0.1</p>
 <ul>
 <li>Built with Delphi 11.1</li>
 <li>Fixed Size of menu when resize icons</li>
 </ul>
-<p>16 Feb 2022</p>
+<p>16 Feb 2022 - version 3.0.0</p>
 <ul>
 <li>Added italian translation</li>
 <li>SetEditorStyleAttributes to assign required/readonly attributes to edit controls</li>
 <li>Added pixelsperinch when storing font</li>
 <li>Added RegisterThemeAttributes to interface to add personal Styles</li>
 </ul>
-<p>19 Oct 2021</p>
+<p>19 Oct 2021 - version 2.1.1</p>
 <ul>
-<li>Replaced &ldquo;Windows11 Light&rdquo; and &ldquo;Windows11 Dark&rdquo; Styles with &ldquo;Windows11 Modern Light&rdquo; and &ldquo;Windows11 Modern Dark&rdquo;</li>
+<li>Replaced “Windows11 Light” and “Windows11 Dark” Styles with “Windows11 Modern Light” and “Windows11 Modern Dark”</li>
 <li>Updated demos to use new Windows 11 Styles available from Get-It</li>
 </ul>
-<p>16 Oct 2021</p>
+<p>16 Oct 2021 - version 2.1.0</p>
 <ul>
 <li>Added New Windows11 Light and Dark Themes to Modern Demo (Delphi 11)</li>
 <li>Added New Windows11 Light and Dark Themes to Launcher (Delphi 11)</li>
 </ul>
-<p>23 Aug 2021</p>
+<p>23 Aug 2021 - version 2.0.2</p>
 <ul>
 <li>Added support for Delphi 11</li>
 </ul>
-<p>24 Jan 2021</p>
+<p>24 Jan 2021 - version 2.0.1</p>
 <ul>
 <li>Changed preview to separate Light and Dark Themes</li>
 <li>Added support for info about Themes:
@@ -149,35 +246,37 @@ EditRequiredColor: TColor;
 EditReadonlyColor: TColor;
 end;</li>
 </ul>
-<p>30 Aug 2020</p>
+<p>30 Aug 2020 - version 2.0.0</p>
 <ul>
 <li>Changed demo to use new IconsFontsVirtualImageList and SVGIconVirtualImageList components</li>
 <li>Updated external project VCLStyleUtils</li>
 </ul>
-<p>19 Jun 2020</p>
+<p>19 Jun 2020 - version 1.1.2</p>
 <ul>
-<li>Fixed VCLThemeSelector for app in &ldquo;Windows&rdquo; Style for D10.4</li>
+<li>Fixed VCLThemeSelector for app in “Windows” Style for D10.4</li>
 <li>Recompiled Demo with IconFontsImageList 2.0 (with GDI+ support)</li>
 </ul>
-<p>11 Jun 2020</p>
+<p>11 Jun 2020 - version 1.1.1</p>
 <ul>
 <li>Added SVGIconImageList</li>
 <li>Demo: swith icons from Fonts to SVG</li>
 </ul>
-<p>09 Jun 2020</p>
+<p>09 Jun 2020 - version 1.1.0</p>
 <ul>
 <li>Updated Demo for Delphi 10.4</li>
-<li>Added custom form &ldquo;per-control styled&rdquo; for D10.4</li>
+<li>Added custom form “per-control styled” for D10.4</li>
 </ul>
-<p>17 May 2020</p>
+<p>17 May 2020 - version 1.0.2</p>
 <ul>
-<li>Changed &ldquo;Material Design Desktop&rdquo; Font used in Demo</li>
+<li>Changed “Material Design Desktop” Font used in Demo</li>
 </ul>
-<p>27 Apr 2020</p>
+<p>27 Apr 2020 - version 1.0.1</p>
 <ul>
 <li>Added VCLThemeSelectorLauncher</li>
 </ul>
-<p>25 Apr 2020</p>
+<p>25 Apr 2020 - version 1.0.0</p>
 <ul>
 <li>First release of Selector and Demo App</li>
 </ul>
+</body>
+</html>

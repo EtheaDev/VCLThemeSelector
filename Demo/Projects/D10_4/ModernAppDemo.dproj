@@ -59,11 +59,11 @@
         <DCC_ExeOutput>..\..\Bin</DCC_ExeOutput>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <DCC_UnitSearchPath>..\..\..\Source;..\..\..\Ext\VCLStyleUtils\Common;..\..\..\Ext\VCLStyleUtils\DDetours\Source;..\..\..\..\SVGIconImageList\Source;..\..\..\..\SVGIconImageList\Image32\Source;..\..\..\..\IconFontsImageList\Source;..\..\..\..\StyledComponents\Source;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
-        <VerInfo_Keys>CompanyName=Ethea S.r.l.;FileVersion=3.5.0.0;InternalName=;LegalCopyright=Copyright (c) 2020-2026 - Ethea S.r.l.;LegalTrademarks=;OriginalFilename=;ProductVersion=3.5;Comments=;ProgramID=;FileDescription=;ProductName=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=Ethea S.r.l.;FileVersion=3.6.0.0;InternalName=;LegalCopyright=Copyright (c) 2020-2026 - Ethea S.r.l.;LegalTrademarks=;OriginalFilename=;ProductVersion=3.6;Comments=;ProgramID=;FileDescription=;ProductName=</VerInfo_Keys>
         <DCC_Define>VCLSTYLEUTILS;NO_STYLEDCOMPONENTS;$(DCC_Define)</DCC_Define>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_MajorVer>3</VerInfo_MajorVer>
-        <VerInfo_MinorVer>5</VerInfo_MinorVer>
+        <VerInfo_MinorVer>6</VerInfo_MinorVer>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>

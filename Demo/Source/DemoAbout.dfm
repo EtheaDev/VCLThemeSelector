@@ -142,7 +142,7 @@ object FrmAbout: TFrmAbout
       'Author:'
       'Carlo Barazzetta'
       'https://github.com/EtheaDev/VCLThemeSelector'
-      'Copyright '#169' 2022-2024 all rights reserved.'
+      'Copyright '#169' 2022-2026 all rights reserved.'
       ''
       'License: this Demo is inspired by TSplitView demo'
       
