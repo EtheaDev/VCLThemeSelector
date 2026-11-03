@@ -138,17 +138,6 @@ object FrmAbout: TFrmAbout
     Height = 146
     Anchors = [akLeft, akTop, akBottom]
     Color = clBtnFace
-    Lines.Strings = (
-      'Author:'
-      'Carlo Barazzetta'
-      'https://github.com/EtheaDev/VCLThemeSelector'
-      'Copyright '#169' 2022-2026 all rights reserved.'
-      ''
-      'License: this Demo is inspired by TSplitView demo'
-      
-        '(original software is Copyright (c) 2015 Embarcadero Technologie' +
-        's, Inc.)'
-      'and is released under Apache 2.0 license')
     ReadOnly = True
     ScrollBars = ssVertical
     TabOrder = 1

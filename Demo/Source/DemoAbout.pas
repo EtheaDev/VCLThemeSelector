@@ -63,6 +63,19 @@ uses
 
 {$R *.dfm}
 
+{ Year of the module (exe, dll or bpl) that shows the About box: the copyright
+  ends there, so it never needs a yearly update }
+function ModuleYear: Integer;
+var
+  LDate: TDateTime;
+  LYear, LMonth, LDay: Word;
+begin
+  if not FileAge(GetModuleName(HInstance), LDate) then
+    LDate := Now;
+  DecodeDate(LDate, LYear, LMonth, LDay);
+  Result := LYear;
+end;
+
 procedure ShowAboutForm(const ATitle: string);
 var
   LFrm: TFrmAbout;
@@ -94,6 +107,15 @@ end;
 procedure TFrmAbout.FormCreate(Sender: TObject);
 begin
   TitleLabel.Font.Height := Round(TitleLabel.Font.Height * 1.6);
+  MemoCopyRights.Lines.Text := Format(
+    'Author: Carlo Barazzetta' + sLineBreak +
+    'https://github.com/EtheaDev/VCLThemeSelector' + sLineBreak +
+    'Copyright '#169' 2022-%d Ethea S.r.l.' + sLineBreak +
+    sLineBreak +
+    'License: this Demo is inspired by TSplitView demo' + sLineBreak +
+    '(original software is Copyright (c) 2015 Embarcadero Technologies, Inc.)' + sLineBreak +
+    'and is released under Apache 2.0 license',
+    [ModuleYear]);
 end;
 
 procedure TFrmAbout.SetTitle(const Value: string);

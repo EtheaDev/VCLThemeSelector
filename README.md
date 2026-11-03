@@ -1,8 +1,8 @@
 ﻿# VCLThemeSelector
 
 [![License: Apache](https://img.shields.io/badge/License-Apache%202.0-green.svg)](LICENSE)
-[![Latest release](https://img.shields.io/github/v/release/EtheaDev/VCLThemeSelector?label=release&color=blue)](https://github.com/EtheaDev/IconFontsImageList/releases)
-[![Delphi 7+](https://img.shields.io/badge/Delphi-10.4%2B-e62329.svg)](https://www.embarcadero.com/products/delphi)
+[![Latest release](https://img.shields.io/github/v/release/EtheaDev/VCLThemeSelector?label=release&color=blue)](https://github.com/EtheaDev/VCLThemeSelector/releases)
+[![Delphi 10.4+](https://img.shields.io/badge/Delphi-10.4%2B-e62329.svg)](https://www.embarcadero.com/products/delphi)
 [![Platform: VCL](https://img.shields.io/badge/Platform-VCL-8a2be2.svg)](https://docwiki.embarcadero.com/RADStudio/en/Main_Page)
 [![Windows 10 and 11](https://img.shields.io/badge/Windows-10%20%7C%2011-0078d6.svg)](https://www.microsoft.com/windows)
 
